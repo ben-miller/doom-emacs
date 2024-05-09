@@ -72,6 +72,9 @@
       :desc "Open inbox.org" "d i" (lambda () (interactive) (find-file "~/org/inbox.org"))
       :desc "Open emacs.org" "d e" (lambda () (interactive) (find-file "~/org/emacs.org"))
 
+      ;; Call this with default=nil so that 'projectile-switch-project-hook is used.
+      ;; :desc "Switch project" "p p" (lambda () (interactive) (counsel-projectile-switch-project nil))
+
       ;; Java
       :desc "Gradle test" "j j" #'gradle-test
       :desc "Gradle build" "j k" #'gradle-build
