@@ -105,6 +105,9 @@
       ;; Projectile
       :desc "Find file" "s-o" #'+ivy/projectile-find-file
 
+      ;; Counsel-rg (ripgrep)
+      :desc "Ripgrep in project" "s-i" #'counsel-rg
+
       ;; System clipboard.
       :desc "Paste from system clipboard" "s-v" #'paste-from-system-clipboard
       :desc "Copy to system clipboard" "s-c" #'copy-region-to-system-clipboard
