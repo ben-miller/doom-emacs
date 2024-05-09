@@ -168,12 +168,38 @@ With a prefix ARG invokes `projectile-commander' instead of
         persp-auto-save-opt 1
         persp-auto-resume-time 0))
 
+(defun treemacs-remove-project-from-workspace-no-prompt (&optional arg)
+  "Remove the project at point from the current workspace without prompting.
+With a prefix ARG select project to remove by name."
+  (interactive "P")
+  (let ((project (treemacs-project-at-point))
+        (save-pos))
+    (when (or arg (null project))
+      (setf project (treemacs--select-project-by-name)
+            save-pos (not (equal project (treemacs-project-at-point)))))
+    (pcase (if save-pos
+               (treemacs-save-position
+                (treemacs-do-remove-project-from-workspace project nil nil))
+             (treemacs-do-remove-project-from-workspace project nil nil))
+      (`success
+       (whitespace-cleanup)
+       (treemacs-pulse-on-success "Removed project %s from the workspace."
+         (propertize (treemacs-project->name project) 'face 'font-lock-type-face)))
+      (`user-cancel
+       (ignore))
+      (`cannot-delete-last-project
+       (treemacs-pulse-on-failure "Cannot delete the last project."))
+      (`(invalid-project ,reason)
+       (treemacs-pulse-on-failure "Cannot delete project: %s"
+         (propertize reason 'face 'font-lock-string-face))))))
+
 (after! treemacs
   (setq treemacs-persist-file (concat doom-cache-dir "treemacs-persist")
         treemacs-width 36)
   (treemacs-follow-mode nil)
   (treemacs-filewatch-mode t)
-  (treemacs-git-mode 'deferred))
+  (treemacs-git-mode 'deferred)
+  (define-key treemacs-mode-map (kbd "D") #'treemacs-remove-project-from-workspace-no-prompt))
 
 (defun edit-config-file (filename)
   (switch-to-project-by-index 0)
