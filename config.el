@@ -18,6 +18,9 @@
 (setq select-enable-clipboard nil)
 (setq select-enable-primary nil)
 
+;; Disable .dir-locals.el warning.
+(setq enable-local-variables :all)
+
 ;;
 ;; Settings for random packages.
 ;;
