@@ -74,9 +74,9 @@
       :desc "Gradle build" "j k" #'gradle-build
 
       ;; Frequently edited files (SPC k).
-      :desc "Edit config" "k k" (lambda () (interactive) (find-file "~/.doom.d/config.el"))
-      :desc "Edit config" "k i" (lambda () (interactive) (find-file "~/.doom.d/config/inbox.el"))
-      :desc "Edit config" "k p" (lambda () (interactive) (find-file "~/.doom.d/packages.el"))
+      :desc "Edit config" "k k" (lambda () (interactive) (edit-config-file "~/.doom.d/config.el"))
+      :desc "Edit config" "k i" (lambda () (interactive) (edit-config-file "~/.doom.d/config/inbox.el"))
+      :desc "Edit config" "k p" (lambda () (interactive) (edit-config-file "~/.doom.d/packages.el"))
       )
 
 ;; Non-SPC key bindings.
@@ -113,5 +113,5 @@
       :desc "Copy to system clipboard" "s-c" #'copy-region-to-system-clipboard
 
       ;; Old habits die hard.
-      :desc "Edit config" "s-," (lambda () (interactive) (find-file "~/.doom.d/config.el"))
+      :desc "Edit config" "s-," (lambda () (interactive) (edit-config-file "~/.doom.d/config.el"))
       )
