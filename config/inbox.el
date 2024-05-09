@@ -122,9 +122,6 @@ If FROM is non nil, execute the sync of the entire buffer from trello."
 (add-hook 'doom-after-init-hook
           (lambda () (doom/quickload-session t)))
 
-(after! treemacs
-  (setq treemacs-width 30))
-
 (after! persp-mode
   (setq persp-autosave-fname "autosave"
         persp-save-dir (concat doom-cache-dir "workspaces/")
@@ -132,8 +129,8 @@ If FROM is non nil, execute the sync of the entire buffer from trello."
         persp-auto-resume-time 0))
 
 (after! treemacs
-  (setq treemacs-persist-file (concat doom-cache-dir "treemacs-persist"))
+  (setq treemacs-persist-file (concat doom-cache-dir "treemacs-persist")
+        treemacs-width 36)
   (treemacs-follow-mode nil)
   (treemacs-filewatch-mode t)
   (treemacs-git-mode 'deferred))
-
