@@ -79,9 +79,9 @@
       :desc "Gradle build" "j k" #'gradle-build
 
       ;; Frequently edited files (SPC k).
-      :desc "Edit config" "k k" (lambda () (interactive) (find-file "~/.doom.d/config.el"))
-      :desc "Edit config" "k i" (lambda () (interactive) (find-file "~/.doom.d/config/inbox.el"))
-      :desc "Edit config" "k p" (lambda () (interactive) (find-file "~/.doom.d/packages.el"))
+      :desc "Edit config" "k k" (lambda () (interactive) (open-config-file "~/.doom.d/config.el"))
+      :desc "Edit config" "k i" (lambda () (interactive) (open-config-file "~/.doom.d/config/inbox.el"))
+      :desc "Edit config" "k p" (lambda () (interactive) (open-config-file "~/.doom.d/packages.el"))
       )
 
 ;; Non-SPC key bindings.
