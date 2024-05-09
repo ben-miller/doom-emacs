@@ -194,8 +194,7 @@ With a prefix ARG select project to remove by name."
          (propertize reason 'face 'font-lock-string-face))))))
 
 (after! treemacs
-  (setq treemacs-persist-file (concat doom-cache-dir "treemacs-persist")
-        treemacs-width 36)
+  (setq treemacs-width 36)
   (treemacs-follow-mode nil)
   (treemacs-filewatch-mode t)
   (treemacs-git-mode 'deferred)
