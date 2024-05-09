@@ -101,6 +101,7 @@
       :desc "Previous buffer" "s-[" #'previous-buffer
       :desc "Next buffer" "s-]" #'next-buffer
       :desc "Toggle pane maximization" "s-K" #'toggle-maximize-window
+      :desc "Jump to definition" "s-b" #'+lookup/definition
 
       ;; Swiper.
       :desc "Swiper" "C-/" #'swiper
