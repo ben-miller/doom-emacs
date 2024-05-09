@@ -166,12 +166,6 @@ With a prefix ARG invokes `projectile-commander' instead of
 (add-hook 'doom-after-init-hook
           (lambda () (doom/quickload-session t)))
 
-(after! persp-mode
-  (setq persp-autosave-fname "autosave"
-        persp-save-dir (concat doom-cache-dir "workspaces/")
-        persp-auto-save-opt 1
-        persp-auto-resume-time 0))
-
 (defun treemacs-remove-project-from-workspace-no-prompt (&optional arg)
   "Remove the project at point from the current workspace without prompting.
 With a prefix ARG select project to remove by name."
@@ -205,5 +199,5 @@ With a prefix ARG select project to remove by name."
   (define-key treemacs-mode-map (kbd "D") #'treemacs-remove-project-from-workspace-no-prompt))
 
 (defun edit-config-file (filename)
-  (switch-to-project-by-index 0)
+  ;; (switch-to-project-by-index 0)
   (find-file filename))
