@@ -97,7 +97,7 @@ If FROM is non nil, execute the sync of the entire buffer from trello."
 (defun gradle-build ()
   "Run the 'build' task using the Gradle wrapper."
   (interactive)
-  (gradle-run-from-root "test"))
+  (gradle-run-from-root "build"))
 
 (defun gradle-run-from-root (task)
   "Run the Gradle task `task` from the top-level directory of the current Git repository."
