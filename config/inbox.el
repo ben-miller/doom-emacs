@@ -113,8 +113,11 @@ If FROM is non nil, execute the sync of the entire buffer from trello."
                                     )
         projectile-completion-system 'ivy
         projectile-auto-discover nil
-        )
-  )
+        projectile-project-search-path nil
+        projectile-cache-file (concat doom-cache-dir "projectile.cache")
+        projectile-enable-caching t
+        projectile-track-known-projects-automatically nil
+        ))
 
 (add-hook 'doom-after-init-hook
           (lambda () (doom/quickload-session t)))
@@ -133,9 +136,4 @@ If FROM is non nil, execute the sync of the entire buffer from trello."
   (treemacs-follow-mode nil)
   (treemacs-filewatch-mode t)
   (treemacs-git-mode 'deferred))
-
-(after! projectile
-  (setq projectile-cache-file (concat doom-cache-dir "projectile.cache")
-        projectile-known-projects-file (concat doom-cache-dir "projectile.projects")
-        projectile-enable-caching t))
 
