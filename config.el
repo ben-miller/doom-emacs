@@ -111,6 +111,9 @@
       ;; Counsel-rg (ripgrep)
       :desc "Ripgrep in project" "s-i" #'counsel-rg
 
+      ;; Treemacs.
+      :desc "Treemacs" "M-h" #'treemacs-add-and-display-current-project-exclusively
+
       ;; System clipboard.
       :desc "Paste from system clipboard" "s-v" #'paste-from-system-clipboard
       :desc "Copy to system clipboard" "s-c" #'copy-region-to-system-clipboard
