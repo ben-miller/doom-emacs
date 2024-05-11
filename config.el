@@ -51,6 +51,7 @@
                                     "~/org"
                                     "~/life"
                                     "~/src/projects/java-dsa"
+                                    "~/src/projects/nuxt-docs-clone"
                                     )
         projectile-completion-system 'ivy
         projectile-auto-discover nil
