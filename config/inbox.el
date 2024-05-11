@@ -104,24 +104,6 @@ If FROM is non nil, execute the sync of the entire buffer from trello."
   (let ((default-directory (projectile-project-root)))
     (compile (concat "./gradlew " task))))
 
-(after! projectile
-  (setq projectile-known-projects '(
-                                    "~/.doom.d/"
-                                    "~/org"
-                                    "~/life"
-                                    "~/src/projects/java-dsa"
-                                    )
-        projectile-completion-system 'ivy
-        projectile-auto-discover nil
-        projectile-project-search-path nil
-        projectile-cache-file (concat doom-cache-dir "projectile.cache")
-        projectile-enable-caching t
-        ;; counsel-projectile-switch-project-action (lambda (input)
-                                                   ;; (message "Custom project switch action!!")
-                                                   ;; (treemacs-add-and-display-current-project-exclusively))
-        projectile-track-known-projects-automatically nil)
-        )
-
 (defun projectile-switch-project-by-name-no-prompt (project-to-switch &optional arg)
   "Switch to project by project name PROJECT-TO-SWITCH.
 Invokes the command referenced by `projectile-switch-project-action' on switch.
