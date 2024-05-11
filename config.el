@@ -8,6 +8,17 @@
 ;; Emacs / doom emacs settings.
 ;;
 
+;; Font.
+(setq doom-font (font-spec :family "Monaco" :size 22)
+      doom-variable-pitch-font (font-spec :family "Monaco" :size 22)
+      doom-big-font (font-spec :family "Monaco" :size 26))
+(after! doom-themes
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t))
+(custom-set-faces!
+  '(font-lock-comment-face :slant italic)
+  '(font-lock-keyword-face :slant italic))
+
 ;; Theme.
 (setq doom-theme 'doom-one-light)
 
