@@ -72,9 +72,6 @@
       ;; File/directory navigation.
       :desc "Find files in homedir" "f j" (lambda () (interactive) (counsel-find-file "~"))
       :desc "Find files in homedir" "f k" #'counsel-fzf
-      ;; :desc "Neotree change root to homedir" "f K" (lambda () (interactive) (neotree-dir "~"))
-      ;; :desc "Open currrent file in NeoTree pane" "f h" #'neotree-find
-      ;; :desc "NeoTree toggle pane" "f n" #'neotree-toggle
       :desc "Dired" "SPC" #'dired
 
       ;; Magit.
@@ -97,6 +94,9 @@
       ;; Java
       :desc "Gradle test" "j j" #'gradle-test
       :desc "Gradle build" "j k" #'gradle-build
+
+      ;; Shell interaction.
+      :desc "Kill process" "m k" #'kill-process
 
       ;; Frequently edited files (SPC k).
       :desc "Edit config" "k k" (lambda () (interactive) (edit-config-file "~/.doom.d/config.el"))
