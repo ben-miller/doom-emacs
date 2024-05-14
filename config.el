@@ -3,6 +3,11 @@
 (add-hook 'doom-after-init-hook
           (lambda () (doom/quickload-session t)))
 
+(defadvice! reload-with-tangle ()
+  "Tangle README.org before reloading Doom Emacs."
+  :before #'doom/reload
+  (tangle-readme-org))
+
 (map! :leader
       ;; File/directory navigation.
       :desc "Find files in homedir" "f j" (lambda () (interactive) (counsel-find-file "~"))
@@ -362,3 +367,8 @@ If FROM is non nil, execute the sync of the entire buffer from trello."
 (defun edit-config-file (filename)
   ;; (switch-to-project-by-index 0)
   (find-file filename))
+
+(defun tangle-readme-org ()
+  "Tangle the README.org file."
+  (org-babel-tangle-file (expand-file-name "README.org" doom-private-dir)))
+;; Change!

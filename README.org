@@ -18,7 +18,7 @@
   - [[#org-trello][Org Trello]]
   - [[#leetcode][LeetCode]]
   - [[#expand-region][Expand-Region]]
-- [[#utilities][Utilities]]
+- [[#functions][Functions]]
 
 * Header
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
@@ -26,6 +26,11 @@
 
 (add-hook 'doom-after-init-hook
           (lambda () (doom/quickload-session t)))
+
+(defadvice! reload-with-tangle ()
+  "Tangle README.org before reloading Doom Emacs."
+  :before #'doom/reload
+  (tangle-readme-org))
 #+END_SRC
 * Key Bindings
 ** Leader key
@@ -418,9 +423,14 @@ If FROM is non nil, execute the sync of the entire buffer from trello."
   :bind ("M-j" . er/contract-region)
   )
 #+END_SRC
-* Utilities
+* Functions
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
 (defun edit-config-file (filename)
   ;; (switch-to-project-by-index 0)
   (find-file filename))
+
+(defun tangle-readme-org ()
+  "Tangle the README.org file."
+  (org-babel-tangle-file (expand-file-name "README.org" doom-private-dir)))
+;; Change!
 #+END_SRC
