@@ -63,6 +63,7 @@
 
       ;; Projectile
       :desc "Find file" "s-o" #'+ivy/projectile-find-file
+      :desc "Create file" "s-n" #'projectile-create-new-file
 
       ;; Counsel-rg (ripgrep)
       :desc "Ripgrep in project" "s-i" #'counsel-rg
@@ -195,15 +196,15 @@
 (after! org
   (add-to-list 'org-capture-templates
                '("i" "Inbox item" entry
-                 (file+headline "~/org/inbox.org" "Inbox")
+                 (file+headline "~/org/tasks.org" "Inbox")
                  "** INBOX %?\n"))
   (add-to-list 'org-capture-templates
                '("d" "Inbox item" entry
-                 (file+headline "~/org/inbox.org" "Inbox")
+                 (file+headline "~/org/tasks.org" "Inbox")
                  "** DOING %?\n"))
   (add-to-list 'org-capture-templates
                '("n" "Inbox item" entry
-                 (file+headline "~/org/inbox.org" "Inbox")
+                 (file+headline "~/org/tasks.org" "Inbox")
                  "** NEXT %?\n"))
   )
 
@@ -280,6 +281,14 @@ With a prefix ARG invokes `projectile-commander' instead of
   (when (and (>= index 0) (< index (length projectile-known-projects)))
     (setq projectile-project-root (nth index projectile-known-projects))
     (projectile-switch-project-by-name-no-prompt projectile-project-root)))
+
+(defun projectile-create-new-file (filename)
+  "Create a new file called FILENAME in the project's root directory."
+  (interactive "GNew file name!: ")
+  (let ((file (concat (projectile-project-root) filename)))
+    (unless (file-exists-p file)
+      (write-region "" nil file))
+    (find-file file)))
 
 ;; Magit
 (after! magit
