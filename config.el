@@ -1,5 +1,8 @@
 ;; -*- no-byte-compile: t; -*-
 
+(add-hook 'doom-after-init-hook
+          (lambda () (doom/quickload-session t)))
+
 (map! :leader
       ;; File/directory navigation.
       :desc "Find files in homedir" "f j" (lambda () (interactive) (counsel-find-file "~"))
@@ -93,6 +96,61 @@
 ;; Disable line numbers.
 (setq display-line-numbers-type nil)
 
+(defun open-scratch-in-new-tab ()
+  "Open a new tab with a *scratch* buffer."
+  (interactive)
+  (tab-new)
+  (switch-to-buffer "*scratch*"))
+
+(defun split-and-balance-windows-vertically ()
+  (interactive)
+  (split-window-right)
+  (balance-windows)
+  (select-window (next-window)))
+
+(defun split-and-balance-windows-horizontally ()
+  (interactive)
+  (split-window-below)
+  (balance-windows)
+  (select-window (next-window)))
+
+(defun close-window-or-tab ()
+  (interactive)
+  (if (one-window-p)
+      (tab-close)
+    (progn
+      (delete-window)
+      (balance-windows))
+    ))
+
+(defun my-list-windows ()
+  "List all windows in the current tab along with their widths."
+  (interactive)
+  (let ((window-info '()))
+    (walk-windows
+     (lambda (w)
+       (push (format "%s (width: %d)" (buffer-name (window-buffer w)) (window-width w)) window-info))
+     nil t)
+    (message "Windows in current tab: %s" (mapconcat 'identity window-info ", "))))
+
+(defun window-is-maximized ()
+  "Check if any window in the current tab has a width under 16 characters."
+  (cl-some (lambda (w) (< (window-width w) 16))
+           (window-list)))
+
+(defun toggle-maximize-window ()
+  "Toggle the maximization state of the current window."
+  (interactive)
+  (if (window-is-maximized)
+      (balance-windows)    ; If the window is maximized, balance the windows.
+      (maximize-window)))  ; If the window is not maximized, maximize it.
+
+(defun move-and-maybe-maximize (move-fn)
+  "Move using the lambda function MOVE-FN and maximize if the window is already maximized."
+  (funcall move-fn)
+  (when (window-is-maximized)
+    (maximize-window)))
+
 ;; Disable the system clipboard.
 (setq select-enable-clipboard nil)
 (setq select-enable-primary nil)
@@ -110,6 +168,21 @@
     (let ((selection-value (buffer-substring-no-properties start end)))
       (x-set-selection 'CLIPBOARD selection-value)
       (message "Region copied to system clipboard"))))
+
+(defun gradle-test ()
+  "Run the 'test' task using the Gradle wrapper."
+  (interactive)
+  (gradle-run-from-root "test"))
+
+(defun gradle-build ()
+  "Run the 'build' task using the Gradle wrapper."
+  (interactive)
+  (gradle-run-from-root "build"))
+
+(defun gradle-run-from-root (task)
+  "Run the Gradle task `task` from the top-level directory of the current Git repository."
+  (let ((default-directory (projectile-project-root)))
+    (compile (concat "./gradlew " task))))
 
 (after! org
   (setq org-todo-keyword-faces
@@ -256,70 +329,6 @@ With a prefix ARG select project to remove by name."
        (treemacs-pulse-on-failure "Cannot delete project: %s"
          (propertize reason 'face 'font-lock-string-face))))))
 
-;; LeetCode
-(setq leetcode-prefer-language "java")
-
-;; Expand-region
-(use-package! expand-region
-  :bind ("M-k" . er/expand-region)
-  :bind ("M-j" . er/contract-region)
-  )
-
-(defun open-scratch-in-new-tab ()
-  "Open a new tab with a *scratch* buffer."
-  (interactive)
-  (tab-new)
-  (switch-to-buffer "*scratch*"))
-
-(defun split-and-balance-windows-vertically ()
-  (interactive)
-  (split-window-right)
-  (balance-windows)
-  (select-window (next-window)))
-
-(defun split-and-balance-windows-horizontally ()
-  (interactive)
-  (split-window-below)
-  (balance-windows)
-  (select-window (next-window)))
-
-(defun close-window-or-tab ()
-  (interactive)
-  (if (one-window-p)
-      (tab-close)
-    (progn
-      (delete-window)
-      (balance-windows))
-    ))
-
-(defun my-list-windows ()
-  "List all windows in the current tab along with their widths."
-  (interactive)
-  (let ((window-info '()))
-    (walk-windows
-     (lambda (w)
-       (push (format "%s (width: %d)" (buffer-name (window-buffer w)) (window-width w)) window-info))
-     nil t)
-    (message "Windows in current tab: %s" (mapconcat 'identity window-info ", "))))
-
-(defun window-is-maximized ()
-  "Check if any window in the current tab has a width under 16 characters."
-  (cl-some (lambda (w) (< (window-width w) 16))
-           (window-list)))
-
-(defun toggle-maximize-window ()
-  "Toggle the maximization state of the current window."
-  (interactive)
-  (if (window-is-maximized)
-      (balance-windows)    ; If the window is maximized, balance the windows.
-      (maximize-window)))  ; If the window is not maximized, maximize it.
-
-(defun move-and-maybe-maximize (move-fn)
-  "Move using the lambda function MOVE-FN and maximize if the window is already maximized."
-  (funcall move-fn)
-  (when (window-is-maximized)
-    (maximize-window)))
-
 ;;;###autoload
 (defun org-trello-pull-buffer (&optional from)
   "Execute the sync of the entire buffer to trello.
@@ -333,23 +342,14 @@ If FROM is non nil, execute the sync of the entire buffer from trello."
            '("Request 'sync org buffer from trello board'"
              orgtrello-controller-do-sync-buffer-from-trello)))))
 
-(defun gradle-test ()
-  "Run the 'test' task using the Gradle wrapper."
-  (interactive)
-  (gradle-run-from-root "test"))
+;; LeetCode
+(setq leetcode-prefer-language "java")
 
-(defun gradle-build ()
-  "Run the 'build' task using the Gradle wrapper."
-  (interactive)
-  (gradle-run-from-root "build"))
-
-(defun gradle-run-from-root (task)
-  "Run the Gradle task `task` from the top-level directory of the current Git repository."
-  (let ((default-directory (projectile-project-root)))
-    (compile (concat "./gradlew " task))))
-
-(add-hook 'doom-after-init-hook
-          (lambda () (doom/quickload-session t)))
+;; Expand-region
+(use-package! expand-region
+  :bind ("M-k" . er/expand-region)
+  :bind ("M-j" . er/contract-region)
+  )
 
 (defun edit-config-file (filename)
   ;; (switch-to-project-by-index 0)
