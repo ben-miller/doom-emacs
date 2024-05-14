@@ -158,6 +158,13 @@
   (setq ivy-use-virtual-buffers t
         ivy-count-format "%d/%d "))
 
+(after! treemacs
+  (setq treemacs-width 36)
+  (treemacs-follow-mode nil)
+  (treemacs-filewatch-mode t)
+  (treemacs-git-mode 'deferred)
+  (define-key treemacs-mode-map (kbd "D") #'treemacs-remove-project-from-workspace-no-prompt))
+
 ;; LeetCode
 (setq leetcode-prefer-language "java")
 
@@ -337,13 +344,6 @@ With a prefix ARG select project to remove by name."
       (`(invalid-project ,reason)
        (treemacs-pulse-on-failure "Cannot delete project: %s"
          (propertize reason 'face 'font-lock-string-face))))))
-
-(after! treemacs
-  (setq treemacs-width 36)
-  (treemacs-follow-mode nil)
-  (treemacs-filewatch-mode t)
-  (treemacs-git-mode 'deferred)
-  (define-key treemacs-mode-map (kbd "D") #'treemacs-remove-project-from-workspace-no-prompt))
 
 (defun edit-config-file (filename)
   ;; (switch-to-project-by-index 0)

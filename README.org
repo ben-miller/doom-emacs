@@ -102,7 +102,7 @@
 ;; Disable line numbers.
 (setq display-line-numbers-type nil)
 #+END_SRC
-* Editor Settings
+* Settings
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
 ;; Disable the system clipboard.
 (setq select-enable-clipboard nil)
@@ -111,7 +111,8 @@
 ;; Disable .dir-locals.el warning.
 (setq enable-local-variables :all)
 #+END_SRC
-* Org Mode
+* Packages
+** Org Mode
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
 (after! org
   (setq org-todo-keyword-faces
@@ -141,7 +142,7 @@
   (map! :map org-agenda-mode-map
         "<escape>" #'org-agenda-exit))
 #+END_SRC
-* Projectile
+** Projectile
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
 ;; Projectile
 (after! projectile
@@ -163,7 +164,6 @@
         projectile-track-known-projects-automatically nil)
         )
 #+END_SRC
-* Other Packages
 ** Magit
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
 ;; Magit
@@ -177,6 +177,15 @@
 (after! ivy
   (setq ivy-use-virtual-buffers t
         ivy-count-format "%d/%d "))
+#+END_SRC
+** Treemacs
+#+BEGIN_SRC emacs-lisp :tangle "config.el"
+(after! treemacs
+  (setq treemacs-width 36)
+  (treemacs-follow-mode nil)
+  (treemacs-filewatch-mode t)
+  (treemacs-git-mode 'deferred)
+  (define-key treemacs-mode-map (kbd "D") #'treemacs-remove-project-from-workspace-no-prompt))
 #+END_SRC
 ** LeetCode
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
@@ -363,13 +372,6 @@ With a prefix ARG select project to remove by name."
       (`(invalid-project ,reason)
        (treemacs-pulse-on-failure "Cannot delete project: %s"
          (propertize reason 'face 'font-lock-string-face))))))
-
-(after! treemacs
-  (setq treemacs-width 36)
-  (treemacs-follow-mode nil)
-  (treemacs-filewatch-mode t)
-  (treemacs-git-mode 'deferred)
-  (define-key treemacs-mode-map (kbd "D") #'treemacs-remove-project-from-workspace-no-prompt))
 
 (defun edit-config-file (filename)
   ;; (switch-to-project-by-index 0)
