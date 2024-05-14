@@ -1,7 +1,171 @@
 ;; -*- no-byte-compile: t; -*-
 
-;;
-;; Unsorted config functions, etc.
+(map! :leader
+      ;; File/directory navigation.
+      :desc "Find files in homedir" "f j" (lambda () (interactive) (counsel-find-file "~"))
+      :desc "Find files in homedir" "f k" #'counsel-fzf
+      :desc "Dired" "SPC" #'dired
+
+      ;; Magit.
+      :desc "Magit commit -m 'Update'" "g k" #'magit-commit-update
+
+      ;; Org mode (SPC d).
+      :desc "Org refile" "d f" #'org-refile
+      :desc "Show DOING items" "d d" (lambda () (interactive) (org-todo-list "DOING"))
+      :desc "Show NEXT items" "d n" (lambda () (interactive) (org-todo-list "NEXT"))
+      :desc "Capture note to inbox as INBOX" "d k" (lambda () (interactive) (org-capture nil "i"))
+      :desc "Capture note to inbox as INBOX" "d I" (lambda () (interactive) (org-capture nil "i"))
+      :desc "Capture note to inbox as DOING" "d D" (lambda () (interactive) (org-capture nil "d"))
+      :desc "Capture note to inbox as NEXT" "d N" (lambda () (interactive) (org-capture nil "n"))
+      :desc "Open inbox.org" "d i" (lambda () (interactive) (find-file "~/org/inbox.org"))
+      :desc "Open emacs.org" "d e" (lambda () (interactive) (find-file "~/org/emacs.org"))
+
+      ;; Call this with default=nil so that 'projectile-switch-project-hook is used.
+      ;; :desc "Switch project" "p p" (lambda () (interactive) (counsel-projectile-switch-project nil))
+
+      ;; Java
+      :desc "Gradle test" "j j" #'gradle-test
+      :desc "Gradle build" "j k" #'gradle-build
+
+      ;; Shell interaction.
+      :desc "Kill process" "m k" #'kill-process
+
+      ;; Frequently edited files (SPC k).
+      :desc "Edit config" "k k" (lambda () (interactive) (edit-config-file "~/.doom.d/config.el"))
+      :desc "Edit config" "k p" (lambda () (interactive) (edit-config-file "~/.doom.d/packages.el"))
+      :desc "Edit config" "k I" (lambda () (interactive) (edit-config-file "~/.doom.d/init.el"))
+      )
+
+(map! :map global-map
+      ;; Editor navigation.
+      :desc "Move tab right" "s-S-<right>" #'tab-bar-move-tab
+      :desc "Move tab left" "s-S-<left>" #'tab-bar-move-tab-backward
+      :desc "Change to right tab" "s-<right>" #'tab-bar-switch-to-next-tab
+      :desc "Change to left tab" "s-<left>" #'tab-bar-switch-to-prev-tab
+      :desc "New tab (scratch)" "s-t" #'open-scratch-in-new-tab
+      :desc "Close tab" "s-w" #'tab-bar-close-tab
+      :desc "Focus pane left" "s-h" (lambda () (interactive) (move-and-maybe-maximize (lambda () (windmove-left))))
+      :desc "Focus pane right" "s-l" (lambda () (interactive) (move-and-maybe-maximize (lambda () (windmove-right))))
+      :desc "Focus pane up" "s-k" (lambda () (interactive) (move-and-maybe-maximize (lambda () (windmove-up))))
+      :desc "Focus pane down" "s-j" (lambda () (interactive) (move-and-maybe-maximize (lambda () (windmove-down))))
+      :desc "Split pane vertically" "s-d" #'split-and-balance-windows-vertically
+      :desc "Split pane horizontally" "s-D" #'split-and-balance-windows-horizontally
+      :desc "Close tab" "s-w" #'close-window-or-tab
+      :desc "Previous buffer" "s-[" #'previous-buffer
+      :desc "Next buffer" "s-]" #'next-buffer
+      :desc "Toggle pane maximization" "s-K" #'toggle-maximize-window
+      :desc "Jump to definition" "s-b" #'+lookup/definition
+
+      ;; Swiper.
+      :desc "Swiper" "C-/" #'swiper
+
+      ;; Projectile
+      :desc "Find file" "s-o" #'+ivy/projectile-find-file
+
+      ;; Counsel-rg (ripgrep)
+      :desc "Ripgrep in project" "s-i" #'counsel-rg
+
+      ;; Treemacs.
+      :desc "Treemacs" "M-h" #'treemacs-add-and-display-current-project-exclusively
+
+      ;; System clipboard.
+      :desc "Paste from system clipboard" "s-v" #'paste-from-system-clipboard
+      :desc "Copy to system clipboard" "s-c" #'copy-region-to-system-clipboard
+
+      ;; Old habits die hard.
+      :desc "Edit config" "s-," (lambda () (interactive) (edit-config-file "~/.doom.d/config.el"))
+      )
+
+;; Font.
+(setq doom-font (font-spec :family "Monaco" :size 20)
+      doom-variable-pitch-font (font-spec :family "Monaco" :size 20)
+      doom-big-font (font-spec :family "Monaco" :size 26))
+(after! doom-themes
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t))
+(custom-set-faces!
+  '(font-lock-comment-face :slant italic)
+  '(font-lock-keyword-face :slant italic))
+
+;; Theme.
+(setq doom-theme 'doom-one-light)
+
+;; Disable line numbers.
+(setq display-line-numbers-type nil)
+
+;; Disable the system clipboard.
+(setq select-enable-clipboard nil)
+(setq select-enable-primary nil)
+
+;; Disable .dir-locals.el warning.
+(setq enable-local-variables :all)
+
+(after! org
+  (setq org-todo-keyword-faces
+        '(("INBOX" . "#1E90FF")
+          ("DOING" . "#FF8C00")
+          ("NEXT" . "#32CD32")
+          ("BUG" . "#EE4B2B")
+          ("IDEA" . "#9B30FF")
+          )))
+
+(after! org
+  (add-to-list 'org-capture-templates
+               '("i" "Inbox item" entry
+                 (file+headline "~/org/inbox.org" "Inbox")
+                 "** INBOX %?\n"))
+  (add-to-list 'org-capture-templates
+               '("d" "Inbox item" entry
+                 (file+headline "~/org/inbox.org" "Inbox")
+                 "** DOING %?\n"))
+  (add-to-list 'org-capture-templates
+               '("n" "Inbox item" entry
+                 (file+headline "~/org/inbox.org" "Inbox")
+                 "** NEXT %?\n"))
+  )
+
+(after! org-agenda
+  (map! :map org-agenda-mode-map
+        "<escape>" #'org-agenda-exit))
+
+;; Projectile
+(after! projectile
+  (setq projectile-known-projects '(
+                                    "~/.doom.d/"
+                                    "~/org"
+                                    "~/life"
+                                    "~/src/projects/java-dsa"
+                                    "~/src/projects/nuxt-docs-clone"
+                                    )
+        projectile-completion-system 'ivy
+        projectile-auto-discover nil
+        projectile-project-search-path nil
+        projectile-cache-file (concat doom-cache-dir "projectile.cache")
+        projectile-enable-caching t
+        ;; counsel-projectile-switch-project-action (lambda (input)
+                                                   ;; (message "Custom project switch action!!")
+                                                   ;; (treemacs-add-and-display-current-project-exclusively))
+        projectile-track-known-projects-automatically nil)
+        )
+
+;; Magit
+(after! magit
+  (map! :map magit-mode-map
+        "<escape>" #'magit-mode-bury-buffer))
+
+;; Ivy
+(after! ivy
+  (setq ivy-use-virtual-buffers t
+        ivy-count-format "%d/%d "))
+
+;; LeetCode
+(setq leetcode-prefer-language "java")
+
+;; Expand-region
+(use-package! expand-region
+  :bind ("M-k" . er/expand-region)
+  :bind ("M-j" . er/contract-region)
+  )
 
 (defun open-scratch-in-new-tab ()
   "Open a new tab with a *scratch* buffer."
@@ -190,170 +354,3 @@ With a prefix ARG select project to remove by name."
  '((emacs-lisp . t)
    ;; Add other languages here if needed
    ))
-
-(map! :leader
-      ;; File/directory navigation.
-      :desc "Find files in homedir" "f j" (lambda () (interactive) (counsel-find-file "~"))
-      :desc "Find files in homedir" "f k" #'counsel-fzf
-      :desc "Dired" "SPC" #'dired
-
-      ;; Magit.
-      :desc "Magit commit -m 'Update'" "g k" #'magit-commit-update
-
-      ;; Org mode (SPC d).
-      :desc "Org refile" "d f" #'org-refile
-      :desc "Show DOING items" "d d" (lambda () (interactive) (org-todo-list "DOING"))
-      :desc "Show NEXT items" "d n" (lambda () (interactive) (org-todo-list "NEXT"))
-      :desc "Capture note to inbox as INBOX" "d k" (lambda () (interactive) (org-capture nil "i"))
-      :desc "Capture note to inbox as INBOX" "d I" (lambda () (interactive) (org-capture nil "i"))
-      :desc "Capture note to inbox as DOING" "d D" (lambda () (interactive) (org-capture nil "d"))
-      :desc "Capture note to inbox as NEXT" "d N" (lambda () (interactive) (org-capture nil "n"))
-      :desc "Open inbox.org" "d i" (lambda () (interactive) (find-file "~/org/inbox.org"))
-      :desc "Open emacs.org" "d e" (lambda () (interactive) (find-file "~/org/emacs.org"))
-
-      ;; Call this with default=nil so that 'projectile-switch-project-hook is used.
-      ;; :desc "Switch project" "p p" (lambda () (interactive) (counsel-projectile-switch-project nil))
-
-      ;; Java
-      :desc "Gradle test" "j j" #'gradle-test
-      :desc "Gradle build" "j k" #'gradle-build
-
-      ;; Shell interaction.
-      :desc "Kill process" "m k" #'kill-process
-
-      ;; Frequently edited files (SPC k).
-      :desc "Edit config" "k k" (lambda () (interactive) (edit-config-file "~/.doom.d/config.el"))
-      :desc "Edit config" "k p" (lambda () (interactive) (edit-config-file "~/.doom.d/packages.el"))
-      :desc "Edit config" "k I" (lambda () (interactive) (edit-config-file "~/.doom.d/init.el"))
-      )
-
-(map! :map global-map
-      ;; Editor navigation.
-      :desc "Move tab right" "s-S-<right>" #'tab-bar-move-tab
-      :desc "Move tab left" "s-S-<left>" #'tab-bar-move-tab-backward
-      :desc "Change to right tab" "s-<right>" #'tab-bar-switch-to-next-tab
-      :desc "Change to left tab" "s-<left>" #'tab-bar-switch-to-prev-tab
-      :desc "New tab (scratch)" "s-t" #'open-scratch-in-new-tab
-      :desc "Close tab" "s-w" #'tab-bar-close-tab
-      :desc "Focus pane left" "s-h" (lambda () (interactive) (move-and-maybe-maximize (lambda () (windmove-left))))
-      :desc "Focus pane right" "s-l" (lambda () (interactive) (move-and-maybe-maximize (lambda () (windmove-right))))
-      :desc "Focus pane up" "s-k" (lambda () (interactive) (move-and-maybe-maximize (lambda () (windmove-up))))
-      :desc "Focus pane down" "s-j" (lambda () (interactive) (move-and-maybe-maximize (lambda () (windmove-down))))
-      :desc "Split pane vertically" "s-d" #'split-and-balance-windows-vertically
-      :desc "Split pane horizontally" "s-D" #'split-and-balance-windows-horizontally
-      :desc "Close tab" "s-w" #'close-window-or-tab
-      :desc "Previous buffer" "s-[" #'previous-buffer
-      :desc "Next buffer" "s-]" #'next-buffer
-      :desc "Toggle pane maximization" "s-K" #'toggle-maximize-window
-      :desc "Jump to definition" "s-b" #'+lookup/definition
-
-      ;; Swiper.
-      :desc "Swiper" "C-/" #'swiper
-
-      ;; Projectile
-      :desc "Find file" "s-o" #'+ivy/projectile-find-file
-
-      ;; Counsel-rg (ripgrep)
-      :desc "Ripgrep in project" "s-i" #'counsel-rg
-
-      ;; Treemacs.
-      :desc "Treemacs" "M-h" #'treemacs-add-and-display-current-project-exclusively
-
-      ;; System clipboard.
-      :desc "Paste from system clipboard" "s-v" #'paste-from-system-clipboard
-      :desc "Copy to system clipboard" "s-c" #'copy-region-to-system-clipboard
-
-      ;; Old habits die hard.
-      :desc "Edit config" "s-," (lambda () (interactive) (edit-config-file "~/.doom.d/config.el"))
-      )
-
-;; Font.
-(setq doom-font (font-spec :family "Monaco" :size 20)
-      doom-variable-pitch-font (font-spec :family "Monaco" :size 20)
-      doom-big-font (font-spec :family "Monaco" :size 26))
-(after! doom-themes
-  (setq doom-themes-enable-bold t
-        doom-themes-enable-italic t))
-(custom-set-faces!
-  '(font-lock-comment-face :slant italic)
-  '(font-lock-keyword-face :slant italic))
-
-;; Theme.
-(setq doom-theme 'doom-one-light)
-
-;; Disable line numbers.
-(setq display-line-numbers-type nil)
-
-;; Disable the system clipboard.
-(setq select-enable-clipboard nil)
-(setq select-enable-primary nil)
-
-;; Disable .dir-locals.el warning.
-(setq enable-local-variables :all)
-
-(after! org
-  (setq org-todo-keyword-faces
-        '(("INBOX" . "#1E90FF")
-          ("DOING" . "#FF8C00")
-          ("NEXT" . "#32CD32")
-          ("BUG" . "#EE4B2B")
-          ("IDEA" . "#9B30FF")
-          )))
-
-(after! org
-  (add-to-list 'org-capture-templates
-               '("i" "Inbox item" entry
-                 (file+headline "~/org/inbox.org" "Inbox")
-                 "** INBOX %?\n"))
-  (add-to-list 'org-capture-templates
-               '("d" "Inbox item" entry
-                 (file+headline "~/org/inbox.org" "Inbox")
-                 "** DOING %?\n"))
-  (add-to-list 'org-capture-templates
-               '("n" "Inbox item" entry
-                 (file+headline "~/org/inbox.org" "Inbox")
-                 "** NEXT %?\n"))
-  )
-
-(after! org-agenda
-  (map! :map org-agenda-mode-map
-        "<escape>" #'org-agenda-exit))
-
-;; Projectile
-(after! projectile
-  (setq projectile-known-projects '(
-                                    "~/.doom.d/"
-                                    "~/org"
-                                    "~/life"
-                                    "~/src/projects/java-dsa"
-                                    "~/src/projects/nuxt-docs-clone"
-                                    )
-        projectile-completion-system 'ivy
-        projectile-auto-discover nil
-        projectile-project-search-path nil
-        projectile-cache-file (concat doom-cache-dir "projectile.cache")
-        projectile-enable-caching t
-        ;; counsel-projectile-switch-project-action (lambda (input)
-                                                   ;; (message "Custom project switch action!!")
-                                                   ;; (treemacs-add-and-display-current-project-exclusively))
-        projectile-track-known-projects-automatically nil)
-        )
-
-;; Magit
-(after! magit
-  (map! :map magit-mode-map
-        "<escape>" #'magit-mode-bury-buffer))
-
-;; Ivy
-(after! ivy
-  (setq ivy-use-virtual-buffers t
-        ivy-count-format "%d/%d "))
-
-;; LeetCode
-(setq leetcode-prefer-language "java")
-
-;; Expand-region
-(use-package! expand-region
-  :bind ("M-k" . er/expand-region)
-  :bind ("M-j" . er/contract-region)
-  )
