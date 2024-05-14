@@ -20,8 +20,7 @@
       :desc "Capture note to inbox as INBOX" "d I" (lambda () (interactive) (org-capture nil "i"))
       :desc "Capture note to inbox as DOING" "d D" (lambda () (interactive) (org-capture nil "d"))
       :desc "Capture note to inbox as NEXT" "d N" (lambda () (interactive) (org-capture nil "n"))
-      :desc "Open inbox.org" "d i" (lambda () (interactive) (find-file "~/org/inbox.org"))
-      :desc "Open emacs.org" "d e" (lambda () (interactive) (find-file "~/org/emacs.org"))
+      :desc "Open tasks.org" "d i" (lambda () (interactive) (find-file "~/org/tasks.org"))
 
       ;; Call this with default=nil so that 'projectile-switch-project-hook is used.
       ;; :desc "Switch project" "p p" (lambda () (interactive) (counsel-projectile-switch-project nil))
@@ -34,7 +33,7 @@
       :desc "Kill process" "m k" #'kill-process
 
       ;; Frequently edited files (SPC k).
-      :desc "Edit config" "k k" (lambda () (interactive) (edit-config-file "~/.doom.d/config.el"))
+      :desc "Edit config" "k k" (lambda () (interactive) (edit-config-file "~/.doom.d/README.org"))
       :desc "Edit config" "k p" (lambda () (interactive) (edit-config-file "~/.doom.d/packages.el"))
       :desc "Edit config" "k I" (lambda () (interactive) (edit-config-file "~/.doom.d/init.el"))
       )
@@ -76,7 +75,7 @@
       :desc "Copy to system clipboard" "s-c" #'copy-region-to-system-clipboard
 
       ;; Old habits die hard.
-      :desc "Edit config" "s-," (lambda () (interactive) (edit-config-file "~/.doom.d/config.el"))
+      :desc "Edit config" "s-," (lambda () (interactive) (edit-config-file "~/.doom.d/README.org"))
       )
 
 ;; Font.
