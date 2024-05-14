@@ -294,6 +294,13 @@ With a prefix ARG select project to remove by name."
 ;; Disable line numbers.
 (setq display-line-numbers-type nil)
 
+;; Disable the system clipboard.
+(setq select-enable-clipboard nil)
+(setq select-enable-primary nil)
+
+;; Disable .dir-locals.el warning.
+(setq enable-local-variables :all)
+
 (after! org
   (setq org-todo-keyword-faces
         '(("INBOX" . "#1E90FF")
@@ -342,16 +349,10 @@ With a prefix ARG select project to remove by name."
         projectile-track-known-projects-automatically nil)
         )
 
-;; Disable the system clipboard.
-(setq select-enable-clipboard nil)
-(setq select-enable-primary nil)
-
-;; Disable .dir-locals.el warning.
-(setq enable-local-variables :all)
-
-;;
-;; Settings for random packages.
-;;
+;; Magit
+(after! magit
+  (map! :map magit-mode-map
+        "<escape>" #'magit-mode-bury-buffer))
 
 ;; Ivy
 (after! ivy
@@ -366,8 +367,3 @@ With a prefix ARG select project to remove by name."
   :bind ("M-k" . er/expand-region)
   :bind ("M-j" . er/contract-region)
   )
-
-;; Magit
-(after! magit
-  (map! :map magit-mode-map
-        "<escape>" #'magit-mode-bury-buffer))
