@@ -183,3 +183,9 @@ With a prefix ARG select project to remove by name."
 (defun edit-config-file (filename)
   ;; (switch-to-project-by-index 0)
   (find-file filename))
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((emacs-lisp . t)
+   ;; Add other languages here if needed
+   ))
