@@ -1,3 +1,25 @@
+* Table of Contents :toc:
+- [[#header][Header]]
+- [[#key-bindings][Key Bindings]]
+  - [[#leader-key][Leader key]]
+  - [[#hold-down-keys][Hold-down keys]]
+- [[#appearance][Appearance]]
+- [[#settings][Settings]]
+  - [[#tabs-windows-panes-etc][Tabs, Windows, Panes, etc.]]
+  - [[#clipboard-settings][Clipboard Settings]]
+- [[#languages][Languages]]
+  - [[#java][Java]]
+- [[#packages][Packages]]
+  - [[#org-mode][Org Mode]]
+  - [[#projectile][Projectile]]
+  - [[#magit][Magit]]
+  - [[#ivy][Ivy]]
+  - [[#treemacs][Treemacs]]
+  - [[#org-trello][Org Trello]]
+  - [[#leetcode][LeetCode]]
+  - [[#expand-region][Expand-Region]]
+- [[#utilities][Utilities]]
+
 * Header
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
 ;; -*- no-byte-compile: t; -*-
