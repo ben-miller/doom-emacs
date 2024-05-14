@@ -97,8 +97,19 @@
 (setq select-enable-clipboard nil)
 (setq select-enable-primary nil)
 
-;; Disable .dir-locals.el warning.
-(setq enable-local-variables :all)
+;; Function to paste directly from the system clipboard
+(defun paste-from-system-clipboard ()
+  "Paste text from the system clipboard."
+  (interactive)
+  (insert (shell-command-to-string "pbpaste")))
+
+(defun copy-region-to-system-clipboard (start end)
+  "Copy the region to the system clipboard."
+  (interactive "r")
+  (when (display-graphic-p)
+    (let ((selection-value (buffer-substring-no-properties start end)))
+      (x-set-selection 'CLIPBOARD selection-value)
+      (message "Region copied to system clipboard"))))
 
 (after! org
   (setq org-todo-keyword-faces
@@ -133,6 +144,9 @@
  '((emacs-lisp . t)
    ;; Add other languages here if needed
    ))
+
+;; Disable .dir-locals.el warning.
+(setq enable-local-variables :all)
 
 ;; Projectile
 (after! projectile
@@ -199,6 +213,11 @@ With a prefix ARG invokes `projectile-commander' instead of
 (after! magit
   (map! :map magit-mode-map
         "<escape>" #'magit-mode-bury-buffer))
+
+(defun magit-commit-update ()
+  "Commit with message 'Update' in Magit."
+  (interactive)
+  (magit-commit-create `("-m" "Update")))
 
 ;; Ivy
 (after! ivy
@@ -313,25 +332,6 @@ If FROM is non nil, execute the sync of the entire buffer from trello."
                orgtrello-controller-do-sync-buffer-from-trello)
            '("Request 'sync org buffer from trello board'"
              orgtrello-controller-do-sync-buffer-from-trello)))))
-
-(defun magit-commit-update ()
-  "Commit with message 'Update' in Magit."
-  (interactive)
-  (magit-commit-create `("-m" "Update")))
-
-;; Function to paste directly from the system clipboard
-(defun paste-from-system-clipboard ()
-  "Paste text from the system clipboard."
-  (interactive)
-  (insert (shell-command-to-string "pbpaste")))
-
-(defun copy-region-to-system-clipboard (start end)
-  "Copy the region to the system clipboard."
-  (interactive "r")
-  (when (display-graphic-p)
-    (let ((selection-value (buffer-substring-no-properties start end)))
-      (x-set-selection 'CLIPBOARD selection-value)
-      (message "Region copied to system clipboard"))))
 
 (defun gradle-test ()
   "Run the 'test' task using the Gradle wrapper."
