@@ -240,6 +240,26 @@ With a prefix ARG select project to remove by name."
   (map! :map org-agenda-mode-map
         "<escape>" #'org-agenda-exit))
 
+;; Projectile
+(after! projectile
+  (setq projectile-known-projects '(
+                                    "~/.doom.d/"
+                                    "~/org"
+                                    "~/life"
+                                    "~/src/projects/java-dsa"
+                                    "~/src/projects/nuxt-docs-clone"
+                                    )
+        projectile-completion-system 'ivy
+        projectile-auto-discover nil
+        projectile-project-search-path nil
+        projectile-cache-file (concat doom-cache-dir "projectile.cache")
+        projectile-enable-caching t
+        ;; counsel-projectile-switch-project-action (lambda (input)
+                                                   ;; (message "Custom project switch action!!")
+                                                   ;; (treemacs-add-and-display-current-project-exclusively))
+        projectile-track-known-projects-automatically nil)
+        )
+
 ;; Disable the system clipboard.
 (setq select-enable-clipboard nil)
 (setq select-enable-primary nil)
@@ -269,26 +289,6 @@ With a prefix ARG select project to remove by name."
 (after! magit
   (map! :map magit-mode-map
         "<escape>" #'magit-mode-bury-buffer))
-
-;; Projectile
-(after! projectile
-  (setq projectile-known-projects '(
-                                    "~/.doom.d/"
-                                    "~/org"
-                                    "~/life"
-                                    "~/src/projects/java-dsa"
-                                    "~/src/projects/nuxt-docs-clone"
-                                    )
-        projectile-completion-system 'ivy
-        projectile-auto-discover nil
-        projectile-project-search-path nil
-        projectile-cache-file (concat doom-cache-dir "projectile.cache")
-        projectile-enable-caching t
-        ;; counsel-projectile-switch-project-action (lambda (input)
-                                                   ;; (message "Custom project switch action!!")
-                                                   ;; (treemacs-add-and-display-current-project-exclusively))
-        projectile-track-known-projects-automatically nil)
-        )
 
 ;;
 ;; Key bindings.
