@@ -191,6 +191,27 @@ With a prefix ARG select project to remove by name."
    ;; Add other languages here if needed
    ))
 
+;;
+;; Emacs / doom emacs settings.
+;;
+
+;; Font.
+(setq doom-font (font-spec :family "Monaco" :size 20)
+      doom-variable-pitch-font (font-spec :family "Monaco" :size 20)
+      doom-big-font (font-spec :family "Monaco" :size 26))
+(after! doom-themes
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t))
+(custom-set-faces!
+  '(font-lock-comment-face :slant italic)
+  '(font-lock-keyword-face :slant italic))
+
+;; Theme.
+(setq doom-theme 'doom-one-light)
+
+;; Disable line numbers.
+(setq display-line-numbers-type nil)
+
 (after! org
   (setq org-todo-keyword-faces
         '(("INBOX" . "#1E90FF")
@@ -218,27 +239,6 @@ With a prefix ARG select project to remove by name."
 (after! org-agenda
   (map! :map org-agenda-mode-map
         "<escape>" #'org-agenda-exit))
-
-;;
-;; Emacs / doom emacs settings.
-;;
-
-;; Font.
-(setq doom-font (font-spec :family "Monaco" :size 20)
-      doom-variable-pitch-font (font-spec :family "Monaco" :size 20)
-      doom-big-font (font-spec :family "Monaco" :size 26))
-(after! doom-themes
-  (setq doom-themes-enable-bold t
-        doom-themes-enable-italic t))
-(custom-set-faces!
-  '(font-lock-comment-face :slant italic)
-  '(font-lock-keyword-face :slant italic))
-
-;; Theme.
-(setq doom-theme 'doom-one-light)
-
-;; Disable line numbers.
-(setq display-line-numbers-type nil)
 
 ;; Disable the system clipboard.
 (setq select-enable-clipboard nil)
