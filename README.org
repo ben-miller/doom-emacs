@@ -1,5 +1,5 @@
 * Inbox
-#+BEGIN_SRC emacs-lisp :tangle "config-test.el"
+#+BEGIN_SRC emacs-lisp :tangle "config.el"
 ;; -*- no-byte-compile: t; -*-
 
 ;;
@@ -193,15 +193,38 @@ With a prefix ARG select project to remove by name."
    ;; Add other languages here if needed
    ))
 #+END_SRC
+* Org Mode
+#+BEGIN_SRC emacs-lisp :tangle "config.el"
+(after! org
+  (setq org-todo-keyword-faces
+        '(("INBOX" . "#1E90FF")
+          ("DOING" . "#FF8C00")
+          ("NEXT" . "#32CD32")
+          ("BUG" . "#EE4B2B")
+          ("IDEA" . "#9B30FF")
+          )))
 
-#+BEGIN_SRC emacs-lisp :tangle "config-test.el"
+(after! org
+  (add-to-list 'org-capture-templates
+               '("i" "Inbox item" entry
+                 (file+headline "~/org/inbox.org" "Inbox")
+                 "** INBOX %?\n"))
+  (add-to-list 'org-capture-templates
+               '("d" "Inbox item" entry
+                 (file+headline "~/org/inbox.org" "Inbox")
+                 "** DOING %?\n"))
+  (add-to-list 'org-capture-templates
+               '("n" "Inbox item" entry
+                 (file+headline "~/org/inbox.org" "Inbox")
+                 "** NEXT %?\n"))
+  )
 
-(load! "config/org-config.el")
-
+(after! org-agenda
+  (map! :map org-agenda-mode-map
+        "<escape>" #'org-agenda-exit))
 #+END_SRC
-
-#+BEGIN_SRC emacs-lisp :tangle "config-test.el"
-
+* Original Config
+#+BEGIN_SRC emacs-lisp :tangle "config.el"
 ;;
 ;; Emacs / doom emacs settings.
 ;;
@@ -312,7 +335,6 @@ With a prefix ARG select project to remove by name."
       :desc "Edit config" "k k" (lambda () (interactive) (edit-config-file "~/.doom.d/config.el"))
       :desc "Edit config" "k p" (lambda () (interactive) (edit-config-file "~/.doom.d/packages.el"))
       :desc "Edit config" "k I" (lambda () (interactive) (edit-config-file "~/.doom.d/init.el"))
-      :desc "Edit config" "k i" (lambda () (interactive) (edit-config-file "~/.doom.d/config/inbox.el"))
       )
 
 ;; Non-SPC key bindings.
