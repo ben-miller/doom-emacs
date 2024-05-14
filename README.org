@@ -194,12 +194,8 @@ With a prefix ARG select project to remove by name."
    ))
 #+END_SRC
 * Key Bindings
+** Leader key
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
-;;
-;; Key bindings.
-;;
-
-;; SPC keybindings.
 (map! :leader
       ;; File/directory navigation.
       :desc "Find files in homedir" "f j" (lambda () (interactive) (counsel-find-file "~"))
@@ -235,8 +231,9 @@ With a prefix ARG select project to remove by name."
       :desc "Edit config" "k p" (lambda () (interactive) (edit-config-file "~/.doom.d/packages.el"))
       :desc "Edit config" "k I" (lambda () (interactive) (edit-config-file "~/.doom.d/init.el"))
       )
-
-;; Non-SPC key bindings.
+#+END_SRC
+** Hold-down keys
+#+BEGIN_SRC emacs-lisp :tangle "config.el"
 (map! :map global-map
       ;; Editor navigation.
       :desc "Move tab right" "s-S-<right>" #'tab-bar-move-tab
@@ -279,10 +276,6 @@ With a prefix ARG select project to remove by name."
 #+END_SRC
 * Appearance
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
-;;
-;; Emacs / doom emacs settings.
-;;
-
 ;; Font.
 (setq doom-font (font-spec :family "Monaco" :size 20)
       doom-variable-pitch-font (font-spec :family "Monaco" :size 20)
@@ -299,7 +292,6 @@ With a prefix ARG select project to remove by name."
 
 ;; Disable line numbers.
 (setq display-line-numbers-type nil)
-
 #+END_SRC
 * Editor Settings
 #+BEGIN_SRC emacs-lisp :tangle "config.el"

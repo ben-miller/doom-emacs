@@ -191,11 +191,6 @@ With a prefix ARG select project to remove by name."
    ;; Add other languages here if needed
    ))
 
-;;
-;; Key bindings.
-;;
-
-;; SPC keybindings.
 (map! :leader
       ;; File/directory navigation.
       :desc "Find files in homedir" "f j" (lambda () (interactive) (counsel-find-file "~"))
@@ -232,7 +227,6 @@ With a prefix ARG select project to remove by name."
       :desc "Edit config" "k I" (lambda () (interactive) (edit-config-file "~/.doom.d/init.el"))
       )
 
-;; Non-SPC key bindings.
 (map! :map global-map
       ;; Editor navigation.
       :desc "Move tab right" "s-S-<right>" #'tab-bar-move-tab
@@ -272,10 +266,6 @@ With a prefix ARG select project to remove by name."
       ;; Old habits die hard.
       :desc "Edit config" "s-," (lambda () (interactive) (edit-config-file "~/.doom.d/config.el"))
       )
-
-;;
-;; Emacs / doom emacs settings.
-;;
 
 ;; Font.
 (setq doom-font (font-spec :family "Monaco" :size 20)
