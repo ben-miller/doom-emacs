@@ -141,6 +141,12 @@
 (after! org-agenda
   (map! :map org-agenda-mode-map
         "<escape>" #'org-agenda-exit))
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((emacs-lisp . t)
+   ;; Add other languages here if needed
+   ))
 #+END_SRC
 ** Projectile
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
@@ -163,6 +169,48 @@
                                                    ;; (treemacs-add-and-display-current-project-exclusively))
         projectile-track-known-projects-automatically nil)
         )
+
+(defun projectile-switch-project-by-name-no-prompt (project-to-switch &optional arg)
+  "Switch to project by project name PROJECT-TO-SWITCH.
+Invokes the command referenced by `projectile-switch-project-action' on switch.
+With a prefix ARG invokes `projectile-commander' instead of
+`projectile-switch-project-action.'"
+  ;; let's make sure that the target directory exists and is actually a project
+  ;; we ignore remote folders, as the check breaks for TRAMP unless already connected
+  (unless (or (file-remote-p project-to-switch) (projectile-project-p project-to-switch))
+    (projectile-remove-known-project project-to-switch)
+    (error "Directory %s is not a project" project-to-switch))
+  (let ((switch-project-action (if arg
+                                   'projectile-commander
+                                 projectile-switch-project-action)))
+    (let* ((default-directory project-to-switch)
+           (switched-buffer
+            ;; use a temporary buffer to load PROJECT-TO-SWITCH's dir-locals
+            ;; before calling SWITCH-PROJECT-ACTION
+            (with-temp-buffer
+              (hack-dir-local-variables-non-file-buffer)
+              ;; Normally the project name is determined from the current
+              ;; buffer. However, when we're switching projects, we want to
+              ;; show the name of the project being switched to, rather than
+              ;; the current project, in the minibuffer. This is a simple hack
+              ;; to tell the `projectile-project-name' function to ignore the
+              ;; current buffer and the caching mechanism, and just return the
+              ;; value of the `projectile-project-name' variable.
+              (let ((projectile-project-name (funcall projectile-project-name-function
+                                                      project-to-switch)))
+                ;; (funcall switch-project-action)
+                (current-buffer)))))
+      ;; If switch-project-action switched buffers then with-temp-buffer will
+      ;; have lost that change, so switch back to the correct buffer.
+      (when (buffer-live-p switched-buffer)
+        (switch-to-buffer switched-buffer)))))
+
+(defun switch-to-project-by-index (index)
+  "Switch to the project by INDEX in `projectile-known-projects`."
+  (when (and (>= index 0) (< index (length projectile-known-projects)))
+    (setq projectile-project-root (nth index projectile-known-projects))
+    (projectile-switch-project-by-name-no-prompt projectile-project-root)))
+
 #+END_SRC
 ** Magit
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
@@ -186,6 +234,32 @@
   (treemacs-filewatch-mode t)
   (treemacs-git-mode 'deferred)
   (define-key treemacs-mode-map (kbd "D") #'treemacs-remove-project-from-workspace-no-prompt))
+
+(defun treemacs-remove-project-from-workspace-no-prompt (&optional arg)
+  "Remove the project at point from the current workspace without prompting.
+With a prefix ARG select project to remove by name."
+  (interactive "P")
+  (let ((project (treemacs-project-at-point))
+        (save-pos))
+    (when (or arg (null project))
+      (setf project (treemacs--select-project-by-name)
+            save-pos (not (equal project (treemacs-project-at-point)))))
+    (pcase (if save-pos
+               (treemacs-save-position
+                (treemacs-do-remove-project-from-workspace project nil nil))
+             (treemacs-do-remove-project-from-workspace project nil nil))
+      (`success
+       (whitespace-cleanup)
+       (treemacs-pulse-on-success "Removed project %s from the workspace."
+         (propertize (treemacs-project->name project) 'face 'font-lock-type-face)))
+      (`user-cancel
+       (ignore))
+      (`cannot-delete-last-project
+       (treemacs-pulse-on-failure "Cannot delete the last project."))
+      (`(invalid-project ,reason)
+       (treemacs-pulse-on-failure "Cannot delete project: %s"
+         (propertize reason 'face 'font-lock-string-face))))))
+
 #+END_SRC
 ** LeetCode
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
@@ -304,82 +378,10 @@ If FROM is non nil, execute the sync of the entire buffer from trello."
   (let ((default-directory (projectile-project-root)))
     (compile (concat "./gradlew " task))))
 
-(defun projectile-switch-project-by-name-no-prompt (project-to-switch &optional arg)
-  "Switch to project by project name PROJECT-TO-SWITCH.
-Invokes the command referenced by `projectile-switch-project-action' on switch.
-With a prefix ARG invokes `projectile-commander' instead of
-`projectile-switch-project-action.'"
-  ;; let's make sure that the target directory exists and is actually a project
-  ;; we ignore remote folders, as the check breaks for TRAMP unless already connected
-  (unless (or (file-remote-p project-to-switch) (projectile-project-p project-to-switch))
-    (projectile-remove-known-project project-to-switch)
-    (error "Directory %s is not a project" project-to-switch))
-  (let ((switch-project-action (if arg
-                                   'projectile-commander
-                                 projectile-switch-project-action)))
-    (let* ((default-directory project-to-switch)
-           (switched-buffer
-            ;; use a temporary buffer to load PROJECT-TO-SWITCH's dir-locals
-            ;; before calling SWITCH-PROJECT-ACTION
-            (with-temp-buffer
-              (hack-dir-local-variables-non-file-buffer)
-              ;; Normally the project name is determined from the current
-              ;; buffer. However, when we're switching projects, we want to
-              ;; show the name of the project being switched to, rather than
-              ;; the current project, in the minibuffer. This is a simple hack
-              ;; to tell the `projectile-project-name' function to ignore the
-              ;; current buffer and the caching mechanism, and just return the
-              ;; value of the `projectile-project-name' variable.
-              (let ((projectile-project-name (funcall projectile-project-name-function
-                                                      project-to-switch)))
-                ;; (funcall switch-project-action)
-                (current-buffer)))))
-      ;; If switch-project-action switched buffers then with-temp-buffer will
-      ;; have lost that change, so switch back to the correct buffer.
-      (when (buffer-live-p switched-buffer)
-        (switch-to-buffer switched-buffer)))))
-
-(defun switch-to-project-by-index (index)
-  "Switch to the project by INDEX in `projectile-known-projects`."
-  (when (and (>= index 0) (< index (length projectile-known-projects)))
-    (setq projectile-project-root (nth index projectile-known-projects))
-    (projectile-switch-project-by-name-no-prompt projectile-project-root)))
-
 (add-hook 'doom-after-init-hook
           (lambda () (doom/quickload-session t)))
-
-(defun treemacs-remove-project-from-workspace-no-prompt (&optional arg)
-  "Remove the project at point from the current workspace without prompting.
-With a prefix ARG select project to remove by name."
-  (interactive "P")
-  (let ((project (treemacs-project-at-point))
-        (save-pos))
-    (when (or arg (null project))
-      (setf project (treemacs--select-project-by-name)
-            save-pos (not (equal project (treemacs-project-at-point)))))
-    (pcase (if save-pos
-               (treemacs-save-position
-                (treemacs-do-remove-project-from-workspace project nil nil))
-             (treemacs-do-remove-project-from-workspace project nil nil))
-      (`success
-       (whitespace-cleanup)
-       (treemacs-pulse-on-success "Removed project %s from the workspace."
-         (propertize (treemacs-project->name project) 'face 'font-lock-type-face)))
-      (`user-cancel
-       (ignore))
-      (`cannot-delete-last-project
-       (treemacs-pulse-on-failure "Cannot delete the last project."))
-      (`(invalid-project ,reason)
-       (treemacs-pulse-on-failure "Cannot delete project: %s"
-         (propertize reason 'face 'font-lock-string-face))))))
 
 (defun edit-config-file (filename)
   ;; (switch-to-project-by-index 0)
   (find-file filename))
-
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((emacs-lisp . t)
-   ;; Add other languages here if needed
-   ))
 #+END_SRC
