@@ -40,7 +40,7 @@
       ;; Frequently edited files (SPC k).
       :desc "Edit config" "k k" (lambda () (interactive) (edit-config-file "~/.doom.d/README.org"))
       :desc "Edit config" "k p" (lambda () (interactive) (edit-config-file "~/.doom.d/packages.el"))
-      :desc "Edit config" "k I" (lambda () (interactive) (edit-config-file "~/.doom.d/init.el"))
+      :desc "Edit config" "k i" (lambda () (interactive) (edit-config-file "~/.doom.d/init.el"))
       )
 
 (map! :map global-map
