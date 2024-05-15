@@ -9,4 +9,5 @@
 (package! org-trello)
 (package! persp-mode)
 (package! org-modern)
+(package! centaur-tabs)
 (package! swiper)
