@@ -9,3 +9,4 @@
 (package! org-trello)
 (package! persp-mode)
 (package! org-modern)
+(package! swiper)
