@@ -47,19 +47,18 @@
 
 (map! :map global-map
       ;; Editor navigation.
-      :desc "Move tab right" "s-S-<right>" #'tab-bar-move-tab
-      :desc "Move tab left" "s-S-<left>" #'tab-bar-move-tab-backward
-      :desc "Change to right tab" "s-<right>" #'tab-bar-switch-to-next-tab
-      :desc "Change to left tab" "s-<left>" #'tab-bar-switch-to-prev-tab
-      :desc "New tab (scratch)" "s-t" #'open-scratch-in-new-tab
-      :desc "Close tab" "s-w" #'tab-bar-close-tab
+      :desc "Move tab right" "s-S-<right>" #'centaur-tabs-move-current-tab-to-right
+      :desc "Move tab left" "s-S-<left>" #'centaur-tabs-move-current-tab-to-left
+      :desc "Change to tab right" "s-<right>" #'centaur-tabs-forward
+      :desc "Change to tab left" "s-<left>" #'centaur-tabs-backward
+      :desc "New tab (scratch)" "s-t" #'centaur-tabs--create-new-tab
+      :desc "Close tab" "s-w" #'kill-current-buffer
       :desc "Focus pane left" "s-h" (lambda () (interactive) (move-and-maybe-maximize (lambda () (windmove-left))))
       :desc "Focus pane right" "s-l" (lambda () (interactive) (move-and-maybe-maximize (lambda () (windmove-right))))
       :desc "Focus pane up" "s-k" (lambda () (interactive) (move-and-maybe-maximize (lambda () (windmove-up))))
       :desc "Focus pane down" "s-j" (lambda () (interactive) (move-and-maybe-maximize (lambda () (windmove-down))))
       :desc "Split pane vertically" "s-d" #'split-and-balance-windows-vertically
       :desc "Split pane horizontally" "s-D" #'split-and-balance-windows-horizontally
-      :desc "Close tab" "s-w" #'close-window-or-tab
       :desc "Previous buffer" "s-[" #'previous-buffer
       :desc "Next buffer" "s-]" #'next-buffer
       :desc "Toggle pane maximization" "s-K" #'toggle-maximize-window
@@ -352,6 +351,30 @@ With a prefix ARG invokes `projectile-commander' instead of
     (unless (file-exists-p file)
       (write-region "" nil file))
     (find-file file)))
+
+  (defun neotree-project-dir ()
+    "Open NeoTree using the git root."
+    (interactive)
+    (let ((project-dir (projectile-project-root))
+          (file-name (buffer-file-name)))
+      (neotree-toggle)
+      (if project-dir
+          (if (neo-global--window-exists-p)
+              (progn
+                (neotree-dir project-dir)
+                (neotree-find file-name)))
+        (message "Could not find git project root."))))
+
+(defun centaur-tabs-buffer-groups ()
+  "Group buffers by their Projectile project."
+  (if (projectile-project-p)
+      (list (projectile-project-name))
+    (list "Misc")))
+
+;; Apply the custom grouping function
+;; (advice-add 'centaur-tabs-buffer-groups :override #'centaur-tabs-buffer-groups)
+
+(centaur-tabs-mode)
 
 ;; Magit
 (after! magit
