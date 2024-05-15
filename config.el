@@ -296,6 +296,8 @@
         projectile-project-search-path nil
         projectile-cache-file (concat doom-cache-dir "projectile.cache")
         projectile-enable-caching t
+        projectile-sort-order 'recentf
+        projectile-require-project-root t
         ;; counsel-projectile-switch-project-action (lambda (input)
                                                    ;; (message "Custom project switch action!!")
                                                    ;; (treemacs-add-and-display-current-project-exclusively))
