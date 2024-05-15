@@ -32,6 +32,8 @@
   "Tangle README.org before reloading Doom Emacs."
   :before #'doom/reload
   (tangle-readme-org))
+
+(setq warning-suppress-types '((obsolete)))
 #+END_SRC
 * Key Bindings
 ** Leader key

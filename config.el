@@ -8,6 +8,8 @@
   :before #'doom/reload
   (tangle-readme-org))
 
+(setq warning-suppress-types '((obsolete)))
+
 (map! :leader
       ;; File/directory navigation.
       :desc "Find files in homedir" "f j" (lambda () (interactive) (counsel-find-file "~"))
