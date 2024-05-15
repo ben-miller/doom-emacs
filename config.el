@@ -83,9 +83,9 @@
       )
 
 ;; Font.
-(setq doom-font (font-spec :family "Monaco" :size 18)
-      doom-variable-pitch-font (font-spec :family "Monaco" :size 18)
-      doom-big-font (font-spec :family "Monaco" :size 26))
+(setq doom-font (font-spec :family "Iosevka" :size 18)
+      doom-variable-pitch-font (font-spec :family "Iosevka" :size 18)
+      doom-big-font (font-spec :family "Iosevka" :size 26))
 
 ;; Disable line numbers.
 (setq display-line-numbers-type nil)
@@ -96,10 +96,9 @@
 (scroll-bar-mode -1)
 (load-theme 'modus-operandi t)
 
-;; Choose some fonts
-;; (set-face-attribute 'default nil :family "Iosevka")
+(set-face-attribute 'default nil :family "Iosevka")
 ;; (set-face-attribute 'variable-pitch nil :family "Iosevka Aile")
-;; (set-face-attribute 'org-modern-symbol nil :family "Iosevka")
+;;(set-face-attribute 'org-modern-symbol nil :family "Iosevka")
 
 ;; Add frame borders and window dividers
 (modify-all-frames-parameters
