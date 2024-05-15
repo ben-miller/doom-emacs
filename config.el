@@ -74,9 +74,8 @@
       ;; Counsel-rg (ripgrep)
       :desc "Ripgrep in project" "s-i" #'counsel-rg
 
-      ;; Treemacs.
-      :desc "Treemacs" "M-s-g" #'treemacs-add-and-display-current-project-exclusively
-      :desc "Toggle treemacs" "s-g" #'treemacs
+      ;; Neotree.
+      :desc "Toggle neotree" "s-g" #'neotree-project-dir
 
       ;; System clipboard.
       :desc "Paste from system clipboard" "s-v" #'paste-from-system-clipboard
@@ -390,38 +389,6 @@ With a prefix ARG invokes `projectile-commander' instead of
 (after! ivy
   (setq ivy-use-virtual-buffers t
         ivy-count-format "%d/%d "))
-
-(after! treemacs
-  (setq treemacs-width 36)
-  (treemacs-follow-mode nil)
-  (treemacs-filewatch-mode t)
-  (treemacs-git-mode 'deferred)
-  (define-key treemacs-mode-map (kbd "D") #'treemacs-remove-project-from-workspace-no-prompt))
-
-(defun treemacs-remove-project-from-workspace-no-prompt (&optional arg)
-  "Remove the project at point from the current workspace without prompting.
-With a prefix ARG select project to remove by name."
-  (interactive "P")
-  (let ((project (treemacs-project-at-point))
-        (save-pos))
-    (when (or arg (null project))
-      (setf project (treemacs--select-project-by-name)
-            save-pos (not (equal project (treemacs-project-at-point)))))
-    (pcase (if save-pos
-               (treemacs-save-position
-                (treemacs-do-remove-project-from-workspace project nil nil))
-             (treemacs-do-remove-project-from-workspace project nil nil))
-      (`success
-       (whitespace-cleanup)
-       (treemacs-pulse-on-success "Removed project %s from the workspace."
-         (propertize (treemacs-project->name project) 'face 'font-lock-type-face)))
-      (`user-cancel
-       (ignore))
-      (`cannot-delete-last-project
-       (treemacs-pulse-on-failure "Cannot delete the last project."))
-      (`(invalid-project ,reason)
-       (treemacs-pulse-on-failure "Cannot delete project: %s"
-         (propertize reason 'face 'font-lock-string-face))))))
 
 ;;;###autoload
 (defun org-trello-pull-buffer (&optional from)
