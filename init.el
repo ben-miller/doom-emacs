@@ -2,7 +2,7 @@
 
 (doom! :completion
        company           ; the ultimate code completion backend
-       vertico           ; the search engine of the future
+       ;; vertico           ; the search engine of the future
 
        :ui
        doom              ; what makes DOOM look the way it does
@@ -15,7 +15,7 @@
        nav-flash         ; blink cursor line after big motions
        ophints           ; highlight the region an operation acts on
        (popup +defaults) ; tame sudden yet inevitable temporary windows
-       tabs            ; a tab bar for Emacs
+       ;; tabs            ; a tab bar for Emacs
        treemacs          ; a project drawer, like neotree but cooler
        unicode           ; extended unicode support for various languages
        (vc-gutter +pretty) ; vcs diff in the fringe
