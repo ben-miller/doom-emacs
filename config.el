@@ -8,7 +8,9 @@
   :before #'doom/reload
   (tangle-readme-org))
 
+;; Suppress warnings.
 (setq warning-suppress-types '((obsolete)))
+(setq enable-local-variables :all)
 
 (map! :leader
       ;; File/directory navigation.
@@ -265,9 +267,6 @@
   :hook (org-mode . org-modern-mode)
   :config
   (global-org-modern-mode))
-
-;; Disable .dir-locals.el warning.
-(setq enable-local-variables :all)
 
 ;; Projectile
 (after! projectile

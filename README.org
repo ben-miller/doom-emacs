@@ -34,7 +34,9 @@
   :before #'doom/reload
   (tangle-readme-org))
 
+;; Suppress warnings.
 (setq warning-suppress-types '((obsolete)))
+(setq enable-local-variables :all)
 #+END_SRC
 * Key Bindings
 ** Leader key
@@ -317,9 +319,6 @@
 #+END_SRC
 ** Projectile
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
-;; Disable .dir-locals.el warning.
-(setq enable-local-variables :all)
-
 ;; Projectile
 (after! projectile
   (setq projectile-known-projects '(
