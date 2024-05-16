@@ -35,7 +35,10 @@
   (org-babel-tangle-file (expand-file-name "README.org" doom-private-dir)))
 
 ;; Suppress warnings.
-(setq warning-suppress-types '((obsolete)))
+(setq warning-suppress-types
+      '((obsolete)
+        (bytecomp)
+        (bytecomp . buffer-local-value)))
 (setq enable-local-variables :all)
 #+END_SRC
 * Key Bindings
