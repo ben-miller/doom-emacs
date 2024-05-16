@@ -280,6 +280,32 @@
  '((emacs-lisp . t)
    ;; Add other languages here if needed
    ))
+
+(defun my/org-agenda-files ()
+  (interactive)
+  (append
+   (list (my/org-project-agenda-file))
+   (directory-files (eval org-directory) t "\\.org$")))
+
+(defun my/org-capture-templates ()
+  (
+    ("i" "Inbox item" entry
+     (file+headline "~/org/tasks.org" "Inbox")
+     "** INBOX %?\n")
+    ("d" "Inbox item" entry
+     (file+headline "~/org/tasks.org" "Inbox")
+     "** DOING %?\n")
+    ("n" "Inbox item" entry
+     (file+headline "~/org/tasks.org" "Inbox")
+     "** NEXT %?\n")
+    ))
+#+END_SRC
+
+A project may have a `project.org` file containing org-mode formatted project notes.
+#+BEGIN_SRC emacs-lisp :tangle "config.el"
+(defun my/org-project-agenda-file ()
+  "Get project's project.org file, if it exists."
+  (expand-file-name "project.org" (projectile-project-root)))
 #+END_SRC
 ** Org Modern
 #+BEGIN_SRC emacs-lisp :tangle "config.el"

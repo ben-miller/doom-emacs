@@ -235,6 +235,29 @@
    ;; Add other languages here if needed
    ))
 
+(defun my/org-agenda-files ()
+  (interactive)
+  (append
+   (list (my/org-project-agenda-file))
+   (directory-files (eval org-directory) t "\\.org$")))
+
+(defun my/org-capture-templates ()
+  (
+    ("i" "Inbox item" entry
+     (file+headline "~/org/tasks.org" "Inbox")
+     "** INBOX %?\n")
+    ("d" "Inbox item" entry
+     (file+headline "~/org/tasks.org" "Inbox")
+     "** DOING %?\n")
+    ("n" "Inbox item" entry
+     (file+headline "~/org/tasks.org" "Inbox")
+     "** NEXT %?\n")
+    ))
+
+(defun my/org-project-agenda-file ()
+  "Get project's project.org file, if it exists."
+  (expand-file-name "project.org" (projectile-project-root)))
+
 ;; Org-mode settings
 (setq
  ;; Edit settings
