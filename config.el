@@ -317,8 +317,11 @@
 (use-package! perspective
   :custom
   (persp-mode-prefix-key (kbd "C-c M-p"))
+  (persp-state-default-file (expand-file-name "persp-state.el" user-emacs-directory))
   :init
   (persp-mode)
+  :config
+  (add-hook 'kill-emacs-hook #'persp-state-save)
   )
 
   (defun neotree-project-dir ()

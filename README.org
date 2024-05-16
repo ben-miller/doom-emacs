@@ -374,8 +374,11 @@ A project may have a `project.org` file containing org-mode formatted project no
 (use-package! perspective
   :custom
   (persp-mode-prefix-key (kbd "C-c M-p"))
+  (persp-state-default-file (expand-file-name "persp-state.el" user-emacs-directory))
   :init
   (persp-mode)
+  :config
+  (add-hook 'kill-emacs-hook #'persp-state-save)
   )
 #+END_SRC
 ** Neotree
