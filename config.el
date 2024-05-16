@@ -34,8 +34,8 @@
       :desc "Capture note to inbox as NEXT" "d N" (lambda () (interactive) (org-capture nil "n"))
       :desc "Open tasks.org" "d i" (lambda () (interactive) (find-file "~/org/tasks.org"))
 
-      ;; Call this with default=nil so that 'projectile-switch-project-hook is used.
-      ;; :desc "Switch project" "p p" (lambda () (interactive) (counsel-projectile-switch-project nil))
+      ;; Projectile-perspective.
+      :desc "Switch project" "p p" #'projectile-persp-switch-project
 
       ;; Java
       :desc "Gradle test" "j j" #'gradle-test
