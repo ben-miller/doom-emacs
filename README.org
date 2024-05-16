@@ -144,7 +144,6 @@
   (face-spec-reset-face face)
   (set-face-foreground face (face-attribute 'default :background)))
 (set-face-background 'fringe (face-attribute 'default :background))
-
 #+END_SRC
 * Settings
 ** Tabs, Windows, Panes, etc.
