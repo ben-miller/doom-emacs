@@ -9,3 +9,5 @@
 (package! org-modern)
 (package! centaur-tabs)
 (package! swiper)
+(package! perspective)
+(package! persp-projectile)

@@ -13,6 +13,7 @@
   - [[#org-mode][Org Mode]]
   - [[#org-modern][Org Modern]]
   - [[#projectile][Projectile]]
+  - [[#perspective][Perspective]]
   - [[#neotree][Neotree]]
   - [[#centaur][Centaur]]
   - [[#magit][Magit]]
@@ -369,6 +370,15 @@ A project may have a `project.org` file containing org-mode formatted project no
                                                     (message "Project org file: %s" (my/org-project-agenda-file)))))
 #+END_SRC
 
+** Perspective
+#+BEGIN_SRC emacs-lisp :tangle "config.el"
+(use-package! perspective
+  :custom
+  (persp-mode-prefix-key (kbd "C-c M-p"))
+  :init
+  (persp-mode)
+  )
+#+END_SRC
 ** Neotree
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
   (defun neotree-project-dir ()

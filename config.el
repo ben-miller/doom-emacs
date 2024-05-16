@@ -314,6 +314,13 @@
   (add-hook 'projectile-after-switch-project-hook (lambda ()
                                                     (message "Project org file: %s" (my/org-project-agenda-file)))))
 
+(use-package! perspective
+  :custom
+  (persp-mode-prefix-key (kbd "C-c M-p"))
+  :init
+  (persp-mode)
+  )
+
   (defun neotree-project-dir ()
     "Open NeoTree using the git root."
     (interactive)
