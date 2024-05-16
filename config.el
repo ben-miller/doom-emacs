@@ -285,60 +285,8 @@
         projectile-enable-caching t
         projectile-sort-order 'recentf
         projectile-require-project-root t
-        ;; counsel-projectile-switch-project-action (lambda (input)
-                                                   ;; (message "Custom project switch action!!")
-                                                   ;; (treemacs-add-and-display-current-project-exclusively))
         projectile-track-known-projects-automatically nil)
         )
-
-(defun projectile-switch-project-by-name-no-prompt (project-to-switch &optional arg)
-  "Switch to project by project name PROJECT-TO-SWITCH.
-Invokes the command referenced by `projectile-switch-project-action' on switch.
-With a prefix ARG invokes `projectile-commander' instead of
-`projectile-switch-project-action.'"
-  ;; let's make sure that the target directory exists and is actually a project
-  ;; we ignore remote folders, as the check breaks for TRAMP unless already connected
-  (unless (or (file-remote-p project-to-switch) (projectile-project-p project-to-switch))
-    (projectile-remove-known-project project-to-switch)
-    (error "Directory %s is not a project" project-to-switch))
-  (let ((switch-project-action (if arg
-                                   'projectile-commander
-                                 projectile-switch-project-action)))
-    (let* ((default-directory project-to-switch)
-           (switched-buffer
-            ;; use a temporary buffer to load PROJECT-TO-SWITCH's dir-locals
-            ;; before calling SWITCH-PROJECT-ACTION
-            (with-temp-buffer
-              (hack-dir-local-variables-non-file-buffer)
-              ;; Normally the project name is determined from the current
-              ;; buffer. However, when we're switching projects, we want to
-              ;; show the name of the project being switched to, rather than
-              ;; the current project, in the minibuffer. This is a simple hack
-              ;; to tell the `projectile-project-name' function to ignore the
-              ;; current buffer and the caching mechanism, and just return the
-              ;; value of the `projectile-project-name' variable.
-              (let ((projectile-project-name (funcall projectile-project-name-function
-                                                      project-to-switch)))
-                ;; (funcall switch-project-action)
-                (current-buffer)))))
-      ;; If switch-project-action switched buffers then with-temp-buffer will
-      ;; have lost that change, so switch back to the correct buffer.
-      (when (buffer-live-p switched-buffer)
-        (switch-to-buffer switched-buffer)))))
-
-(defun switch-to-project-by-index (index)
-  "Switch to the project by INDEX in `projectile-known-projects`."
-  (when (and (>= index 0) (< index (length projectile-known-projects)))
-    (setq projectile-project-root (nth index projectile-known-projects))
-    (projectile-switch-project-by-name-no-prompt projectile-project-root)))
-
-(defun projectile-create-new-file (filename)
-  "Create a new file called FILENAME in the project's root directory."
-  (interactive "GNew file name!: ")
-  (let ((file (concat (projectile-project-root) filename)))
-    (unless (file-exists-p file)
-      (write-region "" nil file))
-    (find-file file)))
 
   (defun neotree-project-dir ()
     "Open NeoTree using the git root."
