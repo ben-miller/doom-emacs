@@ -21,7 +21,6 @@
   - [[#org-trello][Org Trello]]
   - [[#leetcode][LeetCode]]
   - [[#expand-region][Expand-Region]]
-- [[#functions][Functions]]
 
 * Header
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
@@ -75,9 +74,9 @@
       :desc "Kill process" "m k" #'kill-process
 
       ;; Frequently edited files (SPC k).
-      :desc "Edit config" "k k" (lambda () (interactive) (edit-config-file "~/.doom.d/README.org"))
-      :desc "Edit config" "k p" (lambda () (interactive) (edit-config-file "~/.doom.d/packages.el"))
-      :desc "Edit config" "k i" (lambda () (interactive) (edit-config-file "~/.doom.d/init.el"))
+      :desc "Edit config" "k k" (lambda () (interactive) (find-file "~/.doom.d/README.org"))
+      :desc "Edit config" "k p" (lambda () (interactive) (find-file "~/.doom.d/packages.el"))
+      :desc "Edit config" "k i" (lambda () (interactive) (find-file "~/.doom.d/init.el"))
       )
 #+END_SRC
 
@@ -454,10 +453,4 @@ If FROM is non nil, execute the sync of the entire buffer from trello."
   :bind ("M-k" . er/expand-region)
   :bind ("M-j" . er/contract-region)
   )
-#+END_SRC
-* Functions
-#+BEGIN_SRC emacs-lisp :tangle "config.el"
-(defun edit-config-file (filename)
-  ;; (switch-to-project-by-index 0)
-  (find-file filename))
 #+END_SRC

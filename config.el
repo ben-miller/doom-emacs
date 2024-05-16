@@ -45,9 +45,9 @@
       :desc "Kill process" "m k" #'kill-process
 
       ;; Frequently edited files (SPC k).
-      :desc "Edit config" "k k" (lambda () (interactive) (edit-config-file "~/.doom.d/README.org"))
-      :desc "Edit config" "k p" (lambda () (interactive) (edit-config-file "~/.doom.d/packages.el"))
-      :desc "Edit config" "k i" (lambda () (interactive) (edit-config-file "~/.doom.d/init.el"))
+      :desc "Edit config" "k k" (lambda () (interactive) (find-file "~/.doom.d/README.org"))
+      :desc "Edit config" "k p" (lambda () (interactive) (find-file "~/.doom.d/packages.el"))
+      :desc "Edit config" "k i" (lambda () (interactive) (find-file "~/.doom.d/init.el"))
       )
 
 (map! :map global-map
@@ -381,7 +381,3 @@ If FROM is non nil, execute the sync of the entire buffer from trello."
   :bind ("M-k" . er/expand-region)
   :bind ("M-j" . er/contract-region)
   )
-
-(defun edit-config-file (filename)
-  ;; (switch-to-project-by-index 0)
-  (find-file filename))
