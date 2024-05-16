@@ -336,8 +336,10 @@
         projectile-sort-order 'recentf
         projectile-require-project-root t
         projectile-track-known-projects-automatically nil)
-        )
+  (add-hook 'projectile-after-switch-project-hook (lambda ()
+                                                    (message "Project org file: %s" (my/org-project-agenda-file)))))
 #+END_SRC
+
 ** Neotree
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
   (defun neotree-project-dir ()

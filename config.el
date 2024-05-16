@@ -285,7 +285,8 @@
         projectile-sort-order 'recentf
         projectile-require-project-root t
         projectile-track-known-projects-automatically nil)
-        )
+  (add-hook 'projectile-after-switch-project-hook (lambda ()
+                                                    (message "Project org file: %s" (my/org-project-agenda-file)))))
 
   (defun neotree-project-dir ()
     "Open NeoTree using the git root."
