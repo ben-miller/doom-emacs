@@ -46,9 +46,10 @@
       :desc "Kill process" "m k" #'kill-process
 
       ;; Frequently edited files (SPC k).
-      :desc "Edit config" "k k" (lambda () (interactive) (find-file "~/.doom.d/README.org"))
-      :desc "Edit config" "k p" (lambda () (interactive) (find-file "~/.doom.d/packages.el"))
-      :desc "Edit config" "k i" (lambda () (interactive) (find-file "~/.doom.d/init.el"))
+      :desc "Edit config.el (README.org)" "k k" (lambda () (interactive) (find-file "~/.doom.d/README.org"))
+      :desc "Edit packages.el" "k p" (lambda () (interactive) (find-file "~/.doom.d/packages.el"))
+      :desc "Edit init.el" "k i" (lambda () (interactive) (find-file "~/.doom.d/init.el"))
+      :desc "Edit hammerspoon config" "k h" (lambda () (interactive) (find-file "~/src/infra/hs-profiles/init.lua"))
       )
 
 (map! :map global-map
@@ -307,6 +308,7 @@
                                     "~/life"
                                     "~/src/projects/java-dsa"
                                     "~/src/projects/nuxt-docs-clone"
+                                    "~/src/infra/hs-profiles"
                                     )
         projectile-completion-system 'ivy
         projectile-auto-discover nil
