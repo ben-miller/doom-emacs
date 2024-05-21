@@ -29,10 +29,10 @@
       :desc "Show DOING items" "d d" (lambda () (interactive) (org-todo-list "DOING"))
       :desc "Show NEXT items" "d n" (lambda () (interactive) (org-todo-list "NEXT"))
       :desc "Show SELECTED items" "d s" (lambda () (interactive) (org-todo-list "SELECTED"))
-      :desc "Capture note to inbox as INBOX" "d k" (lambda () (interactive) (org-capture nil "i"))
-      :desc "Capture note to inbox as INBOX" "d I" (lambda () (interactive) (org-capture nil "i"))
-      :desc "Capture note to inbox as DOING" "d D" (lambda () (interactive) (org-capture nil "d"))
-      :desc "Capture note to inbox as NEXT" "d N" (lambda () (interactive) (org-capture nil "n"))
+      :desc "Capture to inbox as INBOX" "d k" (lambda () (interactive) (org-capture nil "i"))
+      :desc "Capture to inbox as INBOX" "d I" (lambda () (interactive) (org-capture nil "i"))
+      :desc "Capture to inbox as DOING" "d D" (lambda () (interactive) (org-capture nil "d"))
+      :desc "Capture to inbox as NEXT" "d N" (lambda () (interactive) (org-capture nil "n"))
       :desc "Open tasks.org" "d i" (lambda () (interactive) (find-file "~/org/tasks.org"))
 
       ;; Projectile-perspective.
