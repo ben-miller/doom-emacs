@@ -206,38 +206,6 @@
   (let ((default-directory (projectile-project-root)))
     (compile (concat "./gradlew " task))))
 
-(after! org
-  (setq org-todo-keyword-faces
-        '(("INBOX" . "#1E90FF")
-          ("DOING" . "#FF8C00")
-          ("NEXT" . "#32CD32")
-          ("BUG" . "#EE4B2B")
-          ("IDEA" . "#9B30FF")
-          )))
-
-(after! org
-  (add-to-list 'org-capture-templates
-               '("i" "Inbox item" entry
-                 (file+headline "~/org/tasks.org" "Inbox")
-                 "** INBOX %?\n"))
-  (add-to-list 'org-capture-templates
-               '("d" "Inbox item" entry
-                 (file+headline "~/org/tasks.org" "Inbox")
-                 "** DOING %?\n"))
-  (add-to-list 'org-capture-templates
-               '("n" "Inbox item" entry
-                 (file+headline "~/org/tasks.org" "Inbox")
-                 "** NEXT %?\n"))
-  (add-to-list 'org-capture-templates
-               '("s" "Inbox item" entry
-                 (file+headline "~/org/tasks.org" "Inbox")
-                 "** SELECTED %?\n"))
-  )
-
-(after! org-agenda
-  (map! :map org-agenda-mode-map
-        "<escape>" #'org-agenda-exit))
-
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((emacs-lisp . t)
@@ -251,17 +219,33 @@
    (directory-files (eval org-directory) t "\\.org$")))
 
 (defun my/org-capture-templates ()
-  (
-    ("i" "Inbox item" entry
+  '(("i" "INBOX item" entry
      (file+headline "~/org/tasks.org" "Inbox")
      "** INBOX %?\n")
-    ("d" "Inbox item" entry
+    ("d" "DOING item" entry
      (file+headline "~/org/tasks.org" "Inbox")
      "** DOING %?\n")
-    ("n" "Inbox item" entry
+    ("n" "NEXT item" entry
      (file+headline "~/org/tasks.org" "Inbox")
      "** NEXT %?\n")
+    ("s" "SELECTED item" entry
+     (file+headline "~/org/tasks.org" "Inbox")
+     "** SELECTED %?\n")
     ))
+
+(after! org
+  (setq org-todo-keyword-faces
+        '(("INBOX" . "#1E90FF")
+          ("DOING" . "#FF8C00")
+          ("NEXT" . "#32CD32")
+          ("BUG" . "#EE4B2B")
+          ("IDEA" . "#9B30FF"))
+        org-capture-templates (my/org-capture-templates)
+   ))
+
+(after! org-agenda
+  (map! :map org-agenda-mode-map
+        "<escape>" #'org-agenda-exit))
 
 (defun my/org-project-agenda-file ()
   "Get project's project.org file, if it exists."
