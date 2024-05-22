@@ -29,11 +29,14 @@
       :desc "Show DOING items" "d d" (lambda () (interactive) (org-todo-list "DOING"))
       :desc "Show NEXT items" "d n" (lambda () (interactive) (org-todo-list "NEXT"))
       :desc "Show SELECTED items" "d s" (lambda () (interactive) (org-todo-list "SELECTED"))
-      :desc "Capture to inbox as INBOX" "d k" (lambda () (interactive) (org-capture nil "i"))
-      :desc "Capture to inbox as INBOX" "d I" (lambda () (interactive) (org-capture nil "i"))
+
       :desc "Capture to inbox as DOING" "d D" (lambda () (interactive) (org-capture nil "d"))
+      :desc "Capture to inbox as INBOX" "d I" (lambda () (interactive) (org-capture nil "i"))
       :desc "Capture to inbox as NEXT" "d N" (lambda () (interactive) (org-capture nil "n"))
-      :desc "Open tasks.org" "d i" (lambda () (interactive) (find-file "~/org/tasks.org"))
+      :desc "Capture to global inbox" "n I" (lambda () (interactive) (org-capture nil "g"))
+
+      :desc "Open current tasks.org" "d k" (lambda () (interactive) (find-file (my/org-project-agenda-file)))
+      :desc "Open global tasks.org" "n k" (lambda () (interactive) (find-file "~/org/tasks.org"))
 
       ;; Projectile-perspective.
       :desc "Switch project" "p p" #'projectile-persp-switch-project
