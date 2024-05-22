@@ -215,6 +215,10 @@
    ;; Add other languages here if needed
    ))
 
+(defun my/org-project-agenda-file ()
+  "Get project's tasks.org file, if it exists."
+  (expand-file-name "tasks.org" (or (projectile-project-root) "~/org/")))
+
 (defun my/org-agenda-files ()
   (interactive)
   (append
@@ -222,17 +226,25 @@
    (directory-files (eval org-directory) t "\\.org$")))
 
 (defun my/org-capture-templates ()
-  '(("i" "INBOX item" entry
+  "Define org capture templates. Global capture, as well templates specific to current project."
+  `(("g" "Global INBOX item" entry
      (file+headline "~/org/tasks.org" "Inbox")
      "** INBOX %?\n")
+
+    ("i" "INBOX item" entry
+     (file+headline ,(my/org-project-agenda-file) "Inbox")
+     "** INBOX %?\n")
+
     ("d" "DOING item" entry
-     (file+headline "~/org/tasks.org" "Inbox")
+     (file+headline ,(my/org-project-agenda-file) "Inbox")
      "** DOING %?\n")
+
     ("n" "NEXT item" entry
-     (file+headline "~/org/tasks.org" "Inbox")
+     (file+headline ,(my/org-project-agenda-file) "Inbox")
      "** NEXT %?\n")
+
     ("s" "SELECTED item" entry
-     (file+headline "~/org/tasks.org" "Inbox")
+     (file+headline ,(my/org-project-agenda-file) "Inbox")
      "** SELECTED %?\n")
     ))
 
@@ -249,10 +261,6 @@
 (after! org-agenda
   (map! :map org-agenda-mode-map
         "<escape>" #'org-agenda-exit))
-
-(defun my/org-project-agenda-file ()
-  "Get project's project.org file, if it exists."
-  (expand-file-name "project.org" (projectile-project-root)))
 
 ;; Org-mode settings
 (setq
@@ -306,6 +314,7 @@
         projectile-require-project-root t
         projectile-track-known-projects-automatically nil)
   (add-hook 'projectile-after-switch-project-hook (lambda ()
+                                                    (setq org-capture-templates (my/org-capture-templates))
                                                     (message "Project org file: %s" (my/org-project-agenda-file)))))
 
 (use-package! perspective
