@@ -221,9 +221,7 @@
 
 (defun my/org-agenda-files ()
   (interactive)
-  (append
-   (list (my/org-project-agenda-file))
-   (directory-files (eval org-directory) t "\\.org$")))
+  (list "~/org/tasks.org" (my/org-project-agenda-file)))
 
 (defun my/org-capture-templates ()
   "Define org capture templates. Global capture, as well templates specific to current project."
@@ -256,6 +254,8 @@
           ("BUG" . "#EE4B2B")
           ("IDEA" . "#9B30FF"))
         org-capture-templates (my/org-capture-templates)
+        org-agenda-files (my/org-agenda-files)
+        org-todo-keywords '((sequence "INBOX" "SELECTED" "NEXT" "DOING" "POSTPONED" "BUG" "|" "DONE"))
    ))
 
 (after! org-agenda
