@@ -379,3 +379,5 @@ If FROM is non nil, execute the sync of the entire buffer from trello."
   :bind ("M-k" . er/expand-region)
   :bind ("M-j" . er/contract-region)
   )
+
+(setq evil-ex-search-case 'smart)

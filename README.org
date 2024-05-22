@@ -21,6 +21,7 @@
   - [[#org-trello][Org Trello]]
   - [[#leetcode][LeetCode]]
   - [[#expand-region][Expand-Region]]
+  - [[#evil][Evil]]
 
 * Header
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
@@ -448,4 +449,9 @@ If FROM is non nil, execute the sync of the entire buffer from trello."
   :bind ("M-k" . er/expand-region)
   :bind ("M-j" . er/contract-region)
   )
+#+END_SRC
+
+** Evil
+#+BEGIN_SRC emacs-lisp :tangle "config.el"
+(setq evil-ex-search-case 'smart)
 #+END_SRC
