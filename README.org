@@ -293,12 +293,7 @@
     ))
 
 (after! org
-  (setq org-todo-keyword-faces
-        '(("INBOX" . "#1E90FF")
-          ("DOING" . "#FF8C00")
-          ("NEXT" . "#32CD32")
-          ("BUG" . "#EE4B2B")
-          ("IDEA" . "#9B30FF"))
+  (setq
         org-capture-templates (my/org-capture-templates)
         org-agenda-files (my/org-agenda-files)
         org-todo-keywords '((sequence "INBOX" "SELECTED" "NEXT" "DOING" "POSTPONED" "BUG" "|" "DONE"))
@@ -331,6 +326,13 @@
 (use-package! org-modern
   :hook (org-mode . org-modern-mode)
   :config
+  (setq org-modern-todo-faces '(
+                                ("INBOX" :background "#1E90FF" :foreground "white")
+                                ("DOING" :background "#FF8C00" :foreground "white")
+                                ("NEXT" :background "#32CD32" :foreground "white")
+                                ("BUG" :background "#EE4B2B" :foreground "white")
+                                ("SELECTED" :background "#9B30FF" :foreground "white")
+                                ))
   (global-org-modern-mode))
 
 #+END_SRC
