@@ -273,17 +273,7 @@
 
  ;; Org styling, hide markup etc.
  org-hide-emphasis-markers t
- org-pretty-entities t
-
- ;; Agenda styling
- org-agenda-tags-column 0
- org-agenda-block-separator ?─
- org-agenda-time-grid
- '((daily today require-timed)
-   (800 1000 1200 1400 1600 1800 2000)
-   " ┄┄┄┄┄ " "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄")
- org-agenda-current-time-string
- "◀── now ─────────────────────────────────────────────────")
+ org-pretty-entities t)
 
 ;; Ellipsis styling
 (setq org-ellipsis "…")
