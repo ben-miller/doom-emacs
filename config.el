@@ -293,7 +293,7 @@
                                     "~/.doom.d/"
                                     "~/org"
                                     "~/life"
-                                    "~/src/projects/java-dsa"
+                                    "~/src/projects/tech-learning"
                                     "~/src/projects/nuxt-docs-clone"
                                     "~/src/infra/hs-profiles"
                                     )
