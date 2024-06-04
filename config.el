@@ -209,6 +209,14 @@
   (let ((default-directory (projectile-project-root)))
     (compile (concat "./gradlew " task))))
 
+;; Ensure inf-ruby is installed and configured
+(use-package! inf-ruby
+  :hook (ruby-mode . inf-ruby-minor-mode)
+  :config
+  ;; Use pry as the default REPL
+  (setq inf-ruby-default-implementation "pry"
+        inf-ruby-console-environment "pry"))
+
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((emacs-lisp . t)
