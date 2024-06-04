@@ -21,6 +21,7 @@
   - [[#org-trello][Org Trello]]
   - [[#leetcode][LeetCode]]
   - [[#expand-region][Expand-Region]]
+  - [[#gptel][GPTel]]
   - [[#evil][Evil]]
 
 * Header
@@ -450,6 +451,17 @@ If FROM is non nil, execute the sync of the entire buffer from trello."
   :bind ("M-k" . er/expand-region)
   :bind ("M-j" . er/contract-region)
   )
+#+END_SRC
+
+** GPTel
+#+BEGIN_SRC emacs-lisp :tangle "config.el"
+(use-package auth-source
+  :config
+  (setq auth-sources '(macos-keychain-internet macos-keychain-generic)))
+
+(use-package gptel
+  :config
+    (setq gptel-model "gpt-4o"))
 #+END_SRC
 
 ** Evil

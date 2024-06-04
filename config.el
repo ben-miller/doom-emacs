@@ -381,4 +381,12 @@ If FROM is non nil, execute the sync of the entire buffer from trello."
   :bind ("M-j" . er/contract-region)
   )
 
+(use-package auth-source
+  :config
+  (setq auth-sources '(macos-keychain-internet macos-keychain-generic)))
+
+(use-package gptel
+  :config
+    (setq gptel-model "gpt-4o"))
+
 (setq evil-ex-search-case 'smart)
