@@ -295,6 +295,7 @@
                                     "~/life"
                                     "~/src/projects/tech-learning"
                                     "~/src/projects/nuxt-docs-clone"
+                                    "~/src/projects/interview-practice"
                                     "~/src/infra/hs-profiles"
                                     )
         projectile-completion-system 'ivy
@@ -373,7 +374,7 @@ If FROM is non nil, execute the sync of the entire buffer from trello."
              orgtrello-controller-do-sync-buffer-from-trello)))))
 
 ;; LeetCode
-(setq leetcode-prefer-language "java")
+(setq leetcode-prefer-language "ruby")
 
 ;; Expand-region
 (use-package! expand-region
