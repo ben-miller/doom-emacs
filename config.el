@@ -293,19 +293,17 @@
                                     "~/.doom.d/"
                                     "~/org"
                                     "~/life"
-                                    "~/src/projects/tech-learning"
-                                    "~/src/projects/nuxt-docs-clone"
-                                    "~/src/projects/interview-practice"
                                     "~/src/infra/hs-profiles"
                                     )
         projectile-completion-system 'ivy
         projectile-auto-discover nil
-        projectile-project-search-path nil
+        projectile-project-search-path '("~/src/projects/")
         projectile-cache-file (concat doom-cache-dir "projectile.cache")
         projectile-enable-caching t
         projectile-sort-order 'recentf
         projectile-require-project-root t
         projectile-track-known-projects-automatically nil)
+  (projectile-discover-projects-in-search-path)
   (add-hook 'projectile-after-switch-project-hook (lambda ()
                                                     (setq org-capture-templates (my/org-capture-templates)
                                                           org-agenda-files (my/org-agenda-files))
