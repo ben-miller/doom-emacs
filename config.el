@@ -109,6 +109,8 @@
 (scroll-bar-mode -1)
 (load-theme 'whiteboard t)
 
+(set-face-background 'default "#ffffff")
+
 (set-face-attribute 'default nil :family "Iosevka")
 
 ;; Add frame borders and window dividers
