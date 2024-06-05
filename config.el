@@ -8,6 +8,9 @@
   :before #'doom/reload
   (org-babel-tangle-file (expand-file-name "README.org" doom-private-dir)))
 
+;; Visual line mode
+(global-visual-line-mode)
+
 ;; Suppress warnings.
 (setq warning-suppress-types
       '((obsolete)
