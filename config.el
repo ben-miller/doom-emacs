@@ -104,11 +104,9 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
-(load-theme 'modus-operandi t)
+(load-theme 'whiteboard t)
 
 (set-face-attribute 'default nil :family "Iosevka")
-;; (set-face-attribute 'variable-pitch nil :family "Iosevka Aile")
-;;(set-face-attribute 'org-modern-symbol nil :family "Iosevka")
 
 ;; Add frame borders and window dividers
 (modify-all-frames-parameters
