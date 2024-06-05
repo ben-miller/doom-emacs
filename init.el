@@ -2,8 +2,7 @@
 
 (doom! :completion
        company           ; the ultimate code completion backend
-       ;; vertico           ; the search engine of the future
-       ivy
+       vertico           ; the search engine of the future
 
        :ui
        doom              ; what makes DOOM look the way it does
