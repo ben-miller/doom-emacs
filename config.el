@@ -215,8 +215,10 @@
   :hook (ruby-mode . inf-ruby-minor-mode)
   :config
   ;; Use pry as the default REPL
-  (setq inf-ruby-default-implementation "pry"
-        inf-ruby-console-environment "pry"))
+  (setq
+   ;; inf-ruby-default-implementation "ruby"
+   inf-ruby-console-environment "pry"
+   ))
 
 (org-babel-do-load-languages
  'org-babel-load-languages
