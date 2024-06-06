@@ -52,7 +52,6 @@
 (map! :leader
       ;; File/directory navigation.
       :desc "Find files in homedir" "f j" (lambda () (interactive) (affe-find "~"))
-      :desc "Find files in homedir" "f k" #'counsel-fzf
       :desc "Dired" "SPC" #'dired
 
       ;; Magit.
@@ -117,12 +116,10 @@
       ;; Swiper.
       :desc "Swiper" "C-/" #'swiper
 
-      ;; Projectile
+      ;; Files.
       :desc "Find file" "s-o" #'affe-find
+      :desc "Grep in project" "s-i" #'affe-grep
       :desc "Create file" "s-n" #'projectile-create-new-file
-
-      ;; Counsel-rg (ripgrep)
-      :desc "Ripgrep in project" "s-i" #'affe-grep
 
       ;; Neotree.
       :desc "Toggle neotree" "s-g" #'neotree-project-dir
