@@ -56,6 +56,7 @@
       :desc "Edit packages.el" "k p" (lambda () (interactive) (find-file "~/.doom.d/packages.el"))
       :desc "Edit init.el" "k i" (lambda () (interactive) (find-file "~/.doom.d/init.el"))
       :desc "Edit hammerspoon config" "k h" (lambda () (interactive) (find-file "~/src/infra/hs-profiles/init.lua"))
+      :desc "Edit wezterm config" "k w" (lambda () (interactive) (find-file "~/src/infra/config/wezterm/.wezterm.lua"))
       )
 
 (map! :map global-map
@@ -328,6 +329,7 @@
                                     "~/org"
                                     "~/life"
                                     "~/src/infra/hs-profiles"
+                                    "~/src/infra/config"
                                     )
         projectile-completion-system 'ivy
         projectile-auto-discover nil
