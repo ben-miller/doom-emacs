@@ -19,9 +19,11 @@
 (setq enable-local-variables :all)
 
 (map! :leader
+      ;; Inbox
+      :desc "Babel execute source block" "c RET" #'org-babel-execute-src-block
+
       ;; File/directory navigation.
       :desc "Find files in homedir" "f j" (lambda () (interactive) (affe-find "~"))
-      :desc "Dired" "SPC" #'dired
 
       ;; Magit.
       :desc "Magit commit -m 'Update'" "g k" #'magit-commit-update

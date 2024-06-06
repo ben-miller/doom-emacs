@@ -14,3 +14,4 @@
 (package! gptel)
 (package! inf-ruby)
 (package! affe)
+(package! verb)
