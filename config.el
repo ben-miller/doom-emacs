@@ -20,7 +20,7 @@
 
 (map! :leader
       ;; File/directory navigation.
-      :desc "Find files in homedir" "f j" (lambda () (interactive) (counsel-find-file "~"))
+      :desc "Find files in homedir" "f j" (lambda () (interactive) (affe-find "~"))
       :desc "Find files in homedir" "f k" #'counsel-fzf
       :desc "Dired" "SPC" #'dired
 
@@ -84,11 +84,11 @@
       :desc "Swiper" "C-/" #'swiper
 
       ;; Projectile
-      :desc "Find file" "s-o" #'+ivy/projectile-find-file
+      :desc "Find file" "s-o" #'affe-find
       :desc "Create file" "s-n" #'projectile-create-new-file
 
       ;; Counsel-rg (ripgrep)
-      :desc "Ripgrep in project" "s-i" #'counsel-rg
+      :desc "Ripgrep in project" "s-i" #'affe-grep
 
       ;; Neotree.
       :desc "Toggle neotree" "s-g" #'neotree-project-dir
