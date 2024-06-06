@@ -57,6 +57,8 @@
       :desc "Edit init.el" "k i" (lambda () (interactive) (find-file "~/.doom.d/init.el"))
       :desc "Edit hammerspoon config" "k h" (lambda () (interactive) (find-file "~/src/infra/hs-profiles/init.lua"))
       :desc "Edit wezterm config" "k w" (lambda () (interactive) (find-file "~/src/infra/config/wezterm/.wezterm.lua"))
+      :desc "Edit tmux config" "k t" (lambda () (interactive) (find-file "~/src/infra/config/tmux/.tmux.conf"))
+      :desc "Edit fish config" "k f" (lambda () (interactive) (find-file "~/src/infra/config/fish/.config/fish/config.fish"))
       )
 
 (map! :map global-map
