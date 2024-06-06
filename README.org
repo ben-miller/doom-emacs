@@ -21,7 +21,6 @@
   - [[#ivy][Ivy]]
   - [[#org-trello][Org Trello]]
   - [[#leetcode][LeetCode]]
-  - [[#expand-region][Expand-Region]]
   - [[#gptel][GPTel]]
   - [[#evil][Evil]]
 
@@ -130,10 +129,22 @@
       :desc "Copy to system clipboard" "s-c" #'copy-region-to-system-clipboard
 
       ;; Next/previous error.
-      :desc "Next error" "M-s-j" #'next-error
-      :desc "Previous error" "M-s-k" #'previous-error
+      :desc "Next error" "M-]" #'next-error
+      :desc "Previous error" "M-[" #'previous-error
+
+      ;; Drag stuff.
+      :desc "Drag stuff up" "M-k" #'drag-stuff-up
+      :desc "Drag stuff down" "M-j" #'drag-stuff-down
+
+      ;; Expand-region
+      :desc "Expand region" "M-s-j" #'er/expand-region
+      :desc "Contract region" "M-s-k" #'er/contract-region
+
       )
 #+END_SRC
+
+#+RESULTS:
+
 * Appearance
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
 ;; Font.
@@ -471,15 +482,6 @@ If FROM is non nil, execute the sync of the entire buffer from trello."
 ;; LeetCode
 (setq leetcode-prefer-language "ruby")
 #+END_SRC
-** Expand-Region
-#+BEGIN_SRC emacs-lisp :tangle "config.el"
-;; Expand-region
-(use-package! expand-region
-  :bind ("M-k" . er/expand-region)
-  :bind ("M-j" . er/contract-region)
-  )
-#+END_SRC
-
 ** GPTel
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
 (use-package auth-source

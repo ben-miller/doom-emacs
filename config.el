@@ -95,8 +95,17 @@
       :desc "Copy to system clipboard" "s-c" #'copy-region-to-system-clipboard
 
       ;; Next/previous error.
-      :desc "Next error" "M-s-j" #'next-error
-      :desc "Previous error" "M-s-k" #'previous-error
+      :desc "Next error" "M-]" #'next-error
+      :desc "Previous error" "M-[" #'previous-error
+
+      ;; Drag stuff.
+      :desc "Drag stuff up" "M-k" #'drag-stuff-up
+      :desc "Drag stuff down" "M-j" #'drag-stuff-down
+
+      ;; Expand-region
+      :desc "Expand region" "M-s-j" #'er/expand-region
+      :desc "Contract region" "M-s-k" #'er/contract-region
+
       )
 
 ;; Font.
@@ -398,12 +407,6 @@ If FROM is non nil, execute the sync of the entire buffer from trello."
 
 ;; LeetCode
 (setq leetcode-prefer-language "ruby")
-
-;; Expand-region
-(use-package! expand-region
-  :bind ("M-k" . er/expand-region)
-  :bind ("M-j" . er/contract-region)
-  )
 
 (use-package auth-source
   :config
