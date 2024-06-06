@@ -78,6 +78,7 @@
       :desc "Next buffer" "s-]" #'next-buffer
       :desc "Toggle pane maximization" "s-K" #'toggle-maximize-window
       :desc "Jump to definition" "s-b" #'+lookup/definition
+      :desc "Toggle compilation buffer" "s-u" #'toggle-rspec-compilation-buffer
 
       ;; Swiper.
       :desc "Swiper" "C-/" #'swiper
@@ -418,3 +419,14 @@ If FROM is non nil, execute the sync of the entire buffer from trello."
     (setq gptel-model "gpt-4o"))
 
 (setq evil-ex-search-case 'smart)
+
+(defun toggle-rspec-compilation-buffer ()
+  "Toggle the visibility of the *rspec-compilation* buffer in the bottom window."
+  (interactive)
+  (let ((buffer (get-buffer "*rspec-compilation*")))
+    (if buffer
+        (if (get-buffer-window buffer)
+            (delete-window (get-buffer-window buffer))
+          (display-buffer buffer '((display-buffer-at-bottom)
+                                   (window-height . 0.3))))
+      (message "*rspec-compilation* buffer does not exist."))))
