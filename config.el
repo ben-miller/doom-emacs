@@ -93,6 +93,10 @@
       ;; System clipboard.
       :desc "Paste from system clipboard" "s-v" #'paste-from-system-clipboard
       :desc "Copy to system clipboard" "s-c" #'copy-region-to-system-clipboard
+
+      ;; Next/previous error.
+      :desc "Next error" "M-s-j" #'next-error
+      :desc "Previous error" "M-s-k" #'previous-error
       )
 
 ;; Font.
