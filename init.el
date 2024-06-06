@@ -50,7 +50,7 @@
        ein               ; tame Jupyter notebooks with emacs
        (eval +overlay)     ; run code, run (also, repls)
        lookup              ; navigate your code and its documentation
-       ;; lsp               ; M-x vscode
+       lsp               ; M-x vscode
        magit             ; a git porcelain for Emacs
        pdf               ; pdf enhancements
        prodigy           ; FIXME managing external services & code builders

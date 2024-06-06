@@ -222,6 +222,14 @@
    inf-ruby-console-environment "pry"
    ))
 
+(use-package! rspec-mode
+  :ensure t
+  :hook (ruby-mode . rspec-mode)
+  :config
+  (setq rspec-use-spring-when-possible nil)
+  (setq rspec-use-bundler-when-possible t)
+  (setq rspec-command-options "--format documentation --color"))
+
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((emacs-lisp . t)
