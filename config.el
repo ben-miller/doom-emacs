@@ -60,6 +60,8 @@
       :desc "Edit wezterm config" "k w" (lambda () (interactive) (find-file "~/src/infra/config/wezterm/.wezterm.lua"))
       :desc "Edit tmux config" "k t" (lambda () (interactive) (find-file "~/src/infra/config/tmux/.tmux.conf"))
       :desc "Edit fish config" "k f" (lambda () (interactive) (find-file "~/src/infra/config/fish/.config/fish/config.fish"))
+      :desc "Edit nvim config" "k v" (lambda () (interactive) (find-file "~/.config/nvim/lua/options.lua"))
+      :desc "Edit nvim config" "k V" (lambda () (interactive) (find-file "~/.config/nvim/lua/plugins.lua"))
       )
 
 (map! :map global-map
