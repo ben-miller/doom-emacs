@@ -9,7 +9,6 @@
   - [[#clipboard-settings][Clipboard Settings]]
 - [[#languages][Languages]]
   - [[#java][Java]]
-  - [[#ruby][Ruby]]
 - [[#packages][Packages]]
   - [[#org-mode][Org Mode]]
   - [[#org-modern][Org Modern]]
@@ -273,26 +272,6 @@
   "Run the Gradle task `task` from the top-level directory of the current Git repository."
   (let ((default-directory (projectile-project-root)))
     (compile (concat "./gradlew " task))))
-#+END_SRC
-** Ruby
-#+BEGIN_SRC emacs-lisp :tangle "config.el"
-;; Ensure inf-ruby is installed and configured
-(use-package! inf-ruby
-  :hook (ruby-mode . inf-ruby-minor-mode)
-  :config
-  ;; Use pry as the default REPL
-  (setq
-   ;; inf-ruby-default-implementation "ruby"
-   inf-ruby-console-environment "pry"
-   ))
-
-(use-package! rspec-mode
-  :ensure t
-  :hook (ruby-mode . rspec-mode)
-  :config
-  (setq rspec-use-spring-when-possible nil)
-  (setq rspec-use-bundler-when-possible t)
-  (setq rspec-command-options "--format documentation --color"))
 #+END_SRC
 * Packages
 ** Org Mode

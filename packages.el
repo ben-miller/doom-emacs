@@ -12,6 +12,5 @@
 (package! perspective)
 (package! persp-projectile)
 (package! gptel)
-(package! inf-ruby)
 (package! affe)
 (package! verb)
