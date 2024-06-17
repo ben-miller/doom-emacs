@@ -18,6 +18,10 @@
         (bytecomp . buffer-local-value)))
 (setq enable-local-variables :all)
 
+(after! emacs
+  (find-file "~/.doom.d/tasks.org")
+  (neotree))
+
 (map! :leader
       ;; Inbox
       :desc "Babel execute source block" "c RET" #'org-babel-execute-src-block

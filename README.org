@@ -45,6 +45,10 @@
         (bytecomp)
         (bytecomp . buffer-local-value)))
 (setq enable-local-variables :all)
+
+(after! emacs
+  (find-file "~/.doom.d/tasks.org")
+  (neotree))
 #+END_SRC
 * Key Bindings
 ** Leader key
