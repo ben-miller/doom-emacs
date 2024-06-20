@@ -22,6 +22,11 @@
   (find-file "~/.doom.d/tasks.org")
   (neotree))
 
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (find-file "~/.doom.d/tasks.org")
+            (org-mode-restart)))
+
 (map! :leader
       ;; Inbox
       :desc "Babel execute source block" "c RET" #'org-babel-execute-src-block

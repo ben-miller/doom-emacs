@@ -49,6 +49,11 @@
 (after! emacs
   (find-file "~/.doom.d/tasks.org")
   (neotree))
+
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (find-file "~/.doom.d/tasks.org")
+            (org-mode-restart)))
 #+END_SRC
 * Key Bindings
 ** Leader key
