@@ -323,11 +323,12 @@
                                     )
         projectile-completion-system 'ivy
         projectile-auto-discover nil
-        projectile-project-search-path '("~/src/projects/")
+        projectile-project-search-path '("~/src/projects/" "~/src/tech-learning/")
         projectile-cache-file (concat doom-cache-dir "projectile.cache")
         projectile-enable-caching t
         projectile-sort-order 'recentf
         projectile-require-project-root t
+        projectile-switch-project-action (lambda () (find-file (expand-file-name "tasks.org" (projectile-project-root))))
         projectile-track-known-projects-automatically nil)
   (projectile-discover-projects-in-search-path)
   (add-hook 'projectile-after-switch-project-hook (lambda ()
