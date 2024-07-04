@@ -328,7 +328,6 @@
                                     )
         projectile-completion-system 'ivy
         projectile-auto-discover nil
-        projectile-project-search-path '("~/src/projects/" "~/src/tech-learning/")
         projectile-cache-file (concat doom-cache-dir "projectile.cache")
         projectile-enable-caching t
         projectile-sort-order 'recentf
