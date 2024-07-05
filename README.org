@@ -48,12 +48,12 @@
 (setq enable-local-variables :all)
 
 (after! emacs
-  (find-file "~/.doom.d/tasks.org")
+  (find-file "~/org/tasks.org")
   (neotree))
 
 (add-hook 'emacs-startup-hook
           (lambda ()
-            (find-file "~/.doom.d/tasks.org")
+            (find-file "~/org/tasks.org")
             (org-mode-restart)))
 #+END_SRC
 * Key Bindings
