@@ -334,7 +334,6 @@
                                     "~/src/infra/hs-profiles"
                                     "~/src/infra/config"
                                     )
-        projectile-completion-system 'ivy
         projectile-completion-system 'default
         projectile-auto-discover nil
         projectile-cache-file (concat doom-cache-dir "projectile.cache")
