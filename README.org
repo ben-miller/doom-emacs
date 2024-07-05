@@ -3,6 +3,7 @@
 - [[#key-bindings][Key Bindings]]
   - [[#leader-key][Leader key]]
   - [[#hold-down-keys][Hold-down keys]]
+  - [[#evil-keys][Evil keys]]
 - [[#appearance][Appearance]]
 - [[#settings][Settings]]
   - [[#tabs-windows-panes-etc][Tabs, Windows, Panes, etc.]]
@@ -154,7 +155,17 @@
       :desc "Expand region" "M-s-j" #'er/expand-region
       :desc "Contract region" "M-s-k" #'er/contract-region
 
+      ;; Comments.
+      :desc "Comment LOC" "s-/" (lambda () (interactive)
+                                  (evilnc-comment-or-uncomment-lines 1)
+                                  (forward-line 1))
       )
+#+END_SRC
+** Evil keys
+#+BEGIN_SRC emacs-lisp :tangle "config.el"
+(after! evil
+  (map! :n "s-/" nil)
+)
 #+END_SRC
 * Appearance
 #+BEGIN_SRC emacs-lisp :tangle "config.el"

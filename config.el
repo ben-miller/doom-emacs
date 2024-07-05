@@ -120,7 +120,15 @@
       :desc "Expand region" "M-s-j" #'er/expand-region
       :desc "Contract region" "M-s-k" #'er/contract-region
 
+      ;; Comments.
+      :desc "Comment LOC" "s-/" (lambda () (interactive)
+                                  (evilnc-comment-or-uncomment-lines 1)
+                                  (forward-line 1))
       )
+
+(after! evil
+  (map! :n "s-/" nil)
+)
 
 ;; Font.
 (setq doom-font (font-spec :family "Iosevka" :size 18)
