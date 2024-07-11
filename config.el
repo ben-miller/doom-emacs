@@ -289,6 +289,7 @@
         org-capture-templates (my/org-capture-templates)
         org-agenda-files (my/org-agenda-files)
         org-todo-keywords '((sequence "INBOX" "SELECTED" "NEXT" "DOING" "POSTPONED" "BUG" "|" "DONE"))
+        org-agenda-window-setup 'other-window
    ))
 
 (after! org-agenda
@@ -331,8 +332,8 @@
                                     "~/.doom.d/"
                                     "~/org"
                                     "~/life"
-                                    "~/src/infra/hs-profiles"
-                                    "~/src/infra/config"
+                                    "~/src/infra/"
+                                    "~/src/projects/comptus-takehome"
                                     )
         projectile-completion-system 'default
         projectile-auto-discover nil
