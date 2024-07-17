@@ -11,6 +11,9 @@
 ;; Visual line mode
 (global-visual-line-mode)
 
+;; Blink cursor mode.
+(blink-cursor-mode 1)
+
 ;; Suppress warnings.
 (setq warning-suppress-types
       '((obsolete)
@@ -44,12 +47,12 @@
       :desc "Show SELECTED items" "d s" (lambda () (interactive) (org-todo-list "SELECTED"))
 
       :desc "Capture to inbox as DOING" "d D" (lambda () (interactive) (org-capture nil "d"))
-      :desc "Capture to inbox as INBOX" "d I" (lambda () (interactive) (org-capture nil "i"))
+      :desc "Capture to inbox as INBOX" "d k" (lambda () (interactive) (org-capture nil "i"))
       :desc "Capture to inbox as NEXT" "d N" (lambda () (interactive) (org-capture nil "n"))
-      :desc "Capture to global inbox" "n I" (lambda () (interactive) (org-capture nil "g"))
+      :desc "Capture to global inbox" "n k" (lambda () (interactive) (org-capture nil "g"))
 
-      :desc "Open current tasks.org" "d k" (lambda () (interactive) (find-file (my/org-project-agenda-file)))
-      :desc "Open global tasks.org" "n k" (lambda () (interactive) (find-file "~/org/tasks.org"))
+      :desc "Open current tasks.org" "d K" (lambda () (interactive) (find-file (my/org-project-agenda-file)))
+      :desc "Open global tasks.org" "n K" (lambda () (interactive) (find-file "~/org/tasks.org"))
 
       ;; Projectile-perspective.
       :desc "Switch project" "p p" #'projectile-persp-switch-project
@@ -289,7 +292,6 @@
         org-capture-templates (my/org-capture-templates)
         org-agenda-files (my/org-agenda-files)
         org-todo-keywords '((sequence "INBOX" "SELECTED" "NEXT" "DOING" "POSTPONED" "BUG" "|" "DONE"))
-        org-agenda-window-setup 'other-window
    ))
 
 (after! org-agenda
@@ -334,6 +336,7 @@
                                     "~/life"
                                     "~/src/infra/"
                                     "~/src/projects/comptus-takehome"
+                                    "~/src/projects/personal-website"
                                     )
         projectile-completion-system 'default
         projectile-auto-discover nil
