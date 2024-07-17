@@ -291,12 +291,16 @@
   (setq
         org-capture-templates (my/org-capture-templates)
         org-agenda-files (my/org-agenda-files)
-        org-todo-keywords '((sequence "INBOX" "SELECTED" "NEXT" "DOING" "POSTPONED" "BUG" "|" "DONE"))
-   ))
+        org-todo-keywords '((sequence "INBOX" "SELECTED" "NEXT" "DOING" "POSTPONED" "BUG" "|" "DONE")))
+  (map! :map org-mode-map
+        "M-o" (lambda ()
+                (interactive)
+                (org-meta-return)
+                (evil-insert 1)
+                )))
 
 (after! org-agenda
-  (map! :map org-agenda-mode-map
-        "<escape>" #'org-agenda-exit))
+  (map! :map org-agenda-mode-map "<escape>" #'org-agenda-exit))
 
 ;; Org-mode settings
 (setq
