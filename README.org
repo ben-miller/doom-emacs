@@ -3,11 +3,6 @@
   - [[#leader-key][Leader key]]
   - [[#hold-down-keys][Hold-down keys]]
   - [[#evil-keys][Evil keys]]
-- [[#appearance][Appearance]]
-- [[#settings][Settings]]
-  - [[#header][Header]]
-  - [[#tabs-windows-panes-etc][Tabs, Windows, Panes, etc.]]
-  - [[#clipboard-settings][Clipboard Settings]]
 - [[#packages][Packages]]
   - [[#org-mode][Org Mode]]
   - [[#org-modern][Org Modern]]
@@ -21,6 +16,11 @@
   - [[#leetcode][LeetCode]]
   - [[#gptel][GPTel]]
   - [[#evil][Evil]]
+- [[#appearance][Appearance]]
+- [[#settings][Settings]]
+  - [[#header][Header]]
+  - [[#tabs-windows-panes-etc][Tabs, Windows, Panes, etc.]]
+  - [[#clipboard-settings][Clipboard Settings]]
 - [[#functions][Functions]]
 
 * Key Bindings
@@ -134,158 +134,6 @@
   (map! :n "s-/" nil)
 )
 #+END_SRC
-* Appearance
-#+BEGIN_SRC emacs-lisp :tangle "config.el"
-;; Font.
-(setq doom-font (font-spec :family "Iosevka" :size 18)
-      doom-variable-pitch-font (font-spec :family "Iosevka" :size 18)
-      doom-big-font (font-spec :family "Iosevka" :size 26))
-
-;; Disable line numbers.
-(setq display-line-numbers-type nil)
-
-;; Minimal UI
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-(load-theme 'whiteboard t)
-
-(set-face-background 'default "#ffffff")
-
-(set-face-attribute 'default nil :family "Iosevka")
-
-;; Add frame borders and window dividers
-(modify-all-frames-parameters
- '((right-divider-width . 40)
-   (internal-border-width . 40)))
-(dolist (face '(window-divider
-                window-divider-first-pixel
-                window-divider-last-pixel))
-  (face-spec-reset-face face)
-  (set-face-foreground face (face-attribute 'default :background)))
-(set-face-background 'fringe (face-attribute 'default :background))
-#+END_SRC
-* Settings
-** Header
-#+BEGIN_SRC emacs-lisp :tangle "config.el"
-;; -*- no-byte-compile: t; -*-
-
-(add-hook 'doom-after-init-hook
-          (lambda () (doom/quickload-session t)))
-
-(defadvice! reload-with-tangle ()
-  "Tangle README.org before reloading Doom Emacs."
-  :before #'doom/reload
-  (org-babel-tangle-file (expand-file-name "README.org" doom-private-dir)))
-
-;; Visual line mode
-(global-visual-line-mode)
-
-;; Blink cursor mode.
-(blink-cursor-mode 1)
-
-;; Disable highlight line mode.
-(remove-hook 'doom-first-buffer-hook #'global-hl-line-mode)
-
-;; Disable flyspell.
-(remove-hook 'text-mode-hook #'flyspell-mode)
-(remove-hook 'prog-mode-hook #'flyspell-prog-mode)
-
-;; Suppress warnings.
-(setq warning-suppress-types
-      '((obsolete)
-        (bytecomp)
-        (bytecomp . buffer-local-value)))
-(setq enable-local-variables :all)
-
-(after! emacs
-  (find-file "~/org/tasks.org")
-  (neotree))
-
-(add-hook 'emacs-startup-hook
-          (lambda ()
-            (find-file "~/org/tasks.org")
-            (org-mode-restart)))
-#+END_SRC
-
-** Tabs, Windows, Panes, etc.
-#+BEGIN_SRC emacs-lisp :tangle "config.el"
-(defun open-scratch-in-new-tab ()
-  "Open a new tab with a *scratch* buffer."
-  (interactive)
-  (tab-new)
-  (switch-to-buffer "*scratch*"))
-
-(defun split-and-balance-windows-vertically ()
-  (interactive)
-  (split-window-right)
-  (balance-windows)
-  (select-window (next-window)))
-
-(defun split-and-balance-windows-horizontally ()
-  (interactive)
-  (split-window-below)
-  (balance-windows)
-  (select-window (next-window)))
-
-(defun close-window-or-tab ()
-  (interactive)
-  (if (one-window-p)
-      (tab-close)
-    (progn
-      (delete-window)
-      (balance-windows))
-    ))
-
-(defun my-list-windows ()
-  "List all windows in the current tab along with their widths."
-  (interactive)
-  (let ((window-info '()))
-    (walk-windows
-     (lambda (w)
-       (push (format "%s (width: %d)" (buffer-name (window-buffer w)) (window-width w)) window-info))
-     nil t)
-    (message "Windows in current tab: %s" (mapconcat 'identity window-info ", "))))
-
-(defun window-is-maximized ()
-  "Check if any window in the current tab has a width under 16 characters."
-  (cl-some (lambda (w) (< (window-width w) 16))
-           (window-list)))
-
-(defun toggle-maximize-window ()
-  "Toggle the maximization state of the current window."
-  (interactive)
-  (if (window-is-maximized)
-      (balance-windows)    ; If the window is maximized, balance the windows.
-      (maximize-window)))  ; If the window is not maximized, maximize it.
-
-(defun move-and-maybe-maximize (move-fn)
-  "Move using the lambda function MOVE-FN and maximize if the window is already maximized."
-  (funcall move-fn)
-  (when (window-is-maximized)
-    (maximize-window)))
-#+END_SRC
-** Clipboard Settings
-#+BEGIN_SRC emacs-lisp :tangle "config.el"
-;; Disable the system clipboard.
-(setq select-enable-clipboard nil)
-(setq select-enable-primary nil)
-
-;; Function to paste directly from the system clipboard
-(defun paste-from-system-clipboard ()
-  "Paste text from the system clipboard."
-  (interactive)
-  (insert (shell-command-to-string "pbpaste")))
-
-(defun copy-region-to-system-clipboard (start end)
-  "Copy the region to the system clipboard."
-  (interactive "r")
-  (when (display-graphic-p)
-    (let ((selection-value (buffer-substring-no-properties start end)))
-      (x-set-selection 'CLIPBOARD selection-value)
-      (message "Region copied to system clipboard"))))
-#+END_SRC
-
 * Packages
 ** Org Mode
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
@@ -496,6 +344,158 @@ If FROM is non nil, execute the sync of the entire buffer from trello."
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
 (setq evil-ex-search-case 'smart)
 #+END_SRC
+* Appearance
+#+BEGIN_SRC emacs-lisp :tangle "config.el"
+;; Font.
+(setq doom-font (font-spec :family "Iosevka" :size 18)
+      doom-variable-pitch-font (font-spec :family "Iosevka" :size 18)
+      doom-big-font (font-spec :family "Iosevka" :size 26))
+
+;; Disable line numbers.
+(setq display-line-numbers-type nil)
+
+;; Minimal UI
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(load-theme 'whiteboard t)
+
+(set-face-background 'default "#ffffff")
+
+(set-face-attribute 'default nil :family "Iosevka")
+
+;; Add frame borders and window dividers
+(modify-all-frames-parameters
+ '((right-divider-width . 40)
+   (internal-border-width . 40)))
+(dolist (face '(window-divider
+                window-divider-first-pixel
+                window-divider-last-pixel))
+  (face-spec-reset-face face)
+  (set-face-foreground face (face-attribute 'default :background)))
+(set-face-background 'fringe (face-attribute 'default :background))
+#+END_SRC
+* Settings
+** Header
+#+BEGIN_SRC emacs-lisp :tangle "config.el"
+;; -*- no-byte-compile: t; -*-
+
+(add-hook 'doom-after-init-hook
+          (lambda () (doom/quickload-session t)))
+
+(defadvice! reload-with-tangle ()
+  "Tangle README.org before reloading Doom Emacs."
+  :before #'doom/reload
+  (org-babel-tangle-file (expand-file-name "README.org" doom-private-dir)))
+
+;; Visual line mode
+(global-visual-line-mode)
+
+;; Blink cursor mode.
+(blink-cursor-mode 1)
+
+;; Disable highlight line mode.
+(remove-hook 'doom-first-buffer-hook #'global-hl-line-mode)
+
+;; Disable flyspell.
+(remove-hook 'text-mode-hook #'flyspell-mode)
+(remove-hook 'prog-mode-hook #'flyspell-prog-mode)
+
+;; Suppress warnings.
+(setq warning-suppress-types
+      '((obsolete)
+        (bytecomp)
+        (bytecomp . buffer-local-value)))
+(setq enable-local-variables :all)
+
+(after! emacs
+  (find-file "~/org/tasks.org")
+  (neotree))
+
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (find-file "~/org/tasks.org")
+            (org-mode-restart)))
+#+END_SRC
+
+** Tabs, Windows, Panes, etc.
+#+BEGIN_SRC emacs-lisp :tangle "config.el"
+(defun open-scratch-in-new-tab ()
+  "Open a new tab with a *scratch* buffer."
+  (interactive)
+  (tab-new)
+  (switch-to-buffer "*scratch*"))
+
+(defun split-and-balance-windows-vertically ()
+  (interactive)
+  (split-window-right)
+  (balance-windows)
+  (select-window (next-window)))
+
+(defun split-and-balance-windows-horizontally ()
+  (interactive)
+  (split-window-below)
+  (balance-windows)
+  (select-window (next-window)))
+
+(defun close-window-or-tab ()
+  (interactive)
+  (if (one-window-p)
+      (tab-close)
+    (progn
+      (delete-window)
+      (balance-windows))
+    ))
+
+(defun my-list-windows ()
+  "List all windows in the current tab along with their widths."
+  (interactive)
+  (let ((window-info '()))
+    (walk-windows
+     (lambda (w)
+       (push (format "%s (width: %d)" (buffer-name (window-buffer w)) (window-width w)) window-info))
+     nil t)
+    (message "Windows in current tab: %s" (mapconcat 'identity window-info ", "))))
+
+(defun window-is-maximized ()
+  "Check if any window in the current tab has a width under 16 characters."
+  (cl-some (lambda (w) (< (window-width w) 16))
+           (window-list)))
+
+(defun toggle-maximize-window ()
+  "Toggle the maximization state of the current window."
+  (interactive)
+  (if (window-is-maximized)
+      (balance-windows)    ; If the window is maximized, balance the windows.
+      (maximize-window)))  ; If the window is not maximized, maximize it.
+
+(defun move-and-maybe-maximize (move-fn)
+  "Move using the lambda function MOVE-FN and maximize if the window is already maximized."
+  (funcall move-fn)
+  (when (window-is-maximized)
+    (maximize-window)))
+#+END_SRC
+** Clipboard Settings
+#+BEGIN_SRC emacs-lisp :tangle "config.el"
+;; Disable the system clipboard.
+(setq select-enable-clipboard nil)
+(setq select-enable-primary nil)
+
+;; Function to paste directly from the system clipboard
+(defun paste-from-system-clipboard ()
+  "Paste text from the system clipboard."
+  (interactive)
+  (insert (shell-command-to-string "pbpaste")))
+
+(defun copy-region-to-system-clipboard (start end)
+  "Copy the region to the system clipboard."
+  (interactive "r")
+  (when (display-graphic-p)
+    (let ((selection-value (buffer-substring-no-properties start end)))
+      (x-set-selection 'CLIPBOARD selection-value)
+      (message "Region copied to system clipboard"))))
+#+END_SRC
+
 * Functions
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
 (defun toggle-rspec-compilation-buffer ()
