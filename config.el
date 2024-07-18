@@ -14,6 +14,9 @@
 ;; Blink cursor mode.
 (blink-cursor-mode 1)
 
+;; Disable highlight line mode.
+(remove-hook 'doom-first-buffer-hook #'global-hl-line-mode)
+
 ;; Suppress warnings.
 (setq warning-suppress-types
       '((obsolete)
