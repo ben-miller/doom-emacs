@@ -1,11 +1,11 @@
 * Table of Contents :toc:
-- [[#header][Header]]
 - [[#key-bindings][Key Bindings]]
   - [[#leader-key][Leader key]]
   - [[#hold-down-keys][Hold-down keys]]
   - [[#evil-keys][Evil keys]]
 - [[#appearance][Appearance]]
 - [[#settings][Settings]]
+  - [[#header][Header]]
   - [[#tabs-windows-panes-etc][Tabs, Windows, Panes, etc.]]
   - [[#clipboard-settings][Clipboard Settings]]
 - [[#packages][Packages]]
@@ -22,44 +22,6 @@
   - [[#gptel][GPTel]]
   - [[#evil][Evil]]
 - [[#functions][Functions]]
-
-* Header
-#+BEGIN_SRC emacs-lisp :tangle "config.el"
-;; -*- no-byte-compile: t; -*-
-
-(add-hook 'doom-after-init-hook
-          (lambda () (doom/quickload-session t)))
-
-(defadvice! reload-with-tangle ()
-  "Tangle README.org before reloading Doom Emacs."
-  :before #'doom/reload
-  (org-babel-tangle-file (expand-file-name "README.org" doom-private-dir)))
-
-;; Visual line mode
-(global-visual-line-mode)
-
-;; Blink cursor mode.
-(blink-cursor-mode 1)
-
-;; Disable highlight line mode.
-(remove-hook 'doom-first-buffer-hook #'global-hl-line-mode)
-
-;; Suppress warnings.
-(setq warning-suppress-types
-      '((obsolete)
-        (bytecomp)
-        (bytecomp . buffer-local-value)))
-(setq enable-local-variables :all)
-
-(after! emacs
-  (find-file "~/org/tasks.org")
-  (neotree))
-
-(add-hook 'emacs-startup-hook
-          (lambda ()
-            (find-file "~/org/tasks.org")
-            (org-mode-restart)))
-#+END_SRC
 
 * Key Bindings
 ** Leader key
@@ -204,6 +166,48 @@
 (set-face-background 'fringe (face-attribute 'default :background))
 #+END_SRC
 * Settings
+** Header
+#+BEGIN_SRC emacs-lisp :tangle "config.el"
+;; -*- no-byte-compile: t; -*-
+
+(add-hook 'doom-after-init-hook
+          (lambda () (doom/quickload-session t)))
+
+(defadvice! reload-with-tangle ()
+  "Tangle README.org before reloading Doom Emacs."
+  :before #'doom/reload
+  (org-babel-tangle-file (expand-file-name "README.org" doom-private-dir)))
+
+;; Visual line mode
+(global-visual-line-mode)
+
+;; Blink cursor mode.
+(blink-cursor-mode 1)
+
+;; Disable highlight line mode.
+(remove-hook 'doom-first-buffer-hook #'global-hl-line-mode)
+
+;; Disable flyspell.
+(remove-hook 'text-mode-hook #'flyspell-mode)
+(remove-hook 'prog-mode-hook #'flyspell-prog-mode)
+
+;; Suppress warnings.
+(setq warning-suppress-types
+      '((obsolete)
+        (bytecomp)
+        (bytecomp . buffer-local-value)))
+(setq enable-local-variables :all)
+
+(after! emacs
+  (find-file "~/org/tasks.org")
+  (neotree))
+
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (find-file "~/org/tasks.org")
+            (org-mode-restart)))
+#+END_SRC
+
 ** Tabs, Windows, Panes, etc.
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
 (defun open-scratch-in-new-tab ()

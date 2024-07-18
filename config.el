@@ -1,38 +1,3 @@
-;; -*- no-byte-compile: t; -*-
-
-(add-hook 'doom-after-init-hook
-          (lambda () (doom/quickload-session t)))
-
-(defadvice! reload-with-tangle ()
-  "Tangle README.org before reloading Doom Emacs."
-  :before #'doom/reload
-  (org-babel-tangle-file (expand-file-name "README.org" doom-private-dir)))
-
-;; Visual line mode
-(global-visual-line-mode)
-
-;; Blink cursor mode.
-(blink-cursor-mode 1)
-
-;; Disable highlight line mode.
-(remove-hook 'doom-first-buffer-hook #'global-hl-line-mode)
-
-;; Suppress warnings.
-(setq warning-suppress-types
-      '((obsolete)
-        (bytecomp)
-        (bytecomp . buffer-local-value)))
-(setq enable-local-variables :all)
-
-(after! emacs
-  (find-file "~/org/tasks.org")
-  (neotree))
-
-(add-hook 'emacs-startup-hook
-          (lambda ()
-            (find-file "~/org/tasks.org")
-            (org-mode-restart)))
-
 (map! :leader
       ;; Inbox
       :desc "Babel execute source block" "c RET" #'org-babel-execute-src-block
@@ -164,6 +129,45 @@
   (face-spec-reset-face face)
   (set-face-foreground face (face-attribute 'default :background)))
 (set-face-background 'fringe (face-attribute 'default :background))
+
+;; -*- no-byte-compile: t; -*-
+
+(add-hook 'doom-after-init-hook
+          (lambda () (doom/quickload-session t)))
+
+(defadvice! reload-with-tangle ()
+  "Tangle README.org before reloading Doom Emacs."
+  :before #'doom/reload
+  (org-babel-tangle-file (expand-file-name "README.org" doom-private-dir)))
+
+;; Visual line mode
+(global-visual-line-mode)
+
+;; Blink cursor mode.
+(blink-cursor-mode 1)
+
+;; Disable highlight line mode.
+(remove-hook 'doom-first-buffer-hook #'global-hl-line-mode)
+
+;; Disable flyspell.
+(remove-hook 'text-mode-hook #'flyspell-mode)
+(remove-hook 'prog-mode-hook #'flyspell-prog-mode)
+
+;; Suppress warnings.
+(setq warning-suppress-types
+      '((obsolete)
+        (bytecomp)
+        (bytecomp . buffer-local-value)))
+(setq enable-local-variables :all)
+
+(after! emacs
+  (find-file "~/org/tasks.org")
+  (neotree))
+
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (find-file "~/org/tasks.org")
+            (org-mode-restart)))
 
 (defun open-scratch-in-new-tab ()
   "Open a new tab with a *scratch* buffer."
