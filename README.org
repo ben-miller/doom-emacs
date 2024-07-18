@@ -16,11 +16,11 @@
   - [[#leetcode][LeetCode]]
   - [[#gptel][GPTel]]
   - [[#evil][Evil]]
-- [[#appearance][Appearance]]
 - [[#settings][Settings]]
   - [[#header][Header]]
   - [[#tabs-windows-panes-etc][Tabs, Windows, Panes, etc.]]
   - [[#clipboard-settings][Clipboard Settings]]
+- [[#appearance][Appearance]]
 - [[#functions][Functions]]
 
 * Key Bindings
@@ -348,37 +348,6 @@ If FROM is non nil, execute the sync of the entire buffer from trello."
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
 (setq evil-ex-search-case 'smart)
 #+END_SRC
-* Appearance
-#+BEGIN_SRC emacs-lisp :tangle "config.el"
-;; Font.
-(setq doom-font (font-spec :family "Iosevka" :size 18)
-      doom-variable-pitch-font (font-spec :family "Iosevka" :size 18)
-      doom-big-font (font-spec :family "Iosevka" :size 26))
-
-;; Disable line numbers.
-(setq display-line-numbers-type nil)
-
-;; Minimal UI
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-(load-theme 'whiteboard t)
-
-(set-face-background 'default "#ffffff")
-
-(set-face-attribute 'default nil :family "Iosevka")
-
-;; Add frame borders and window dividers
-(modify-all-frames-parameters
- '((right-divider-width . 40)
-   (internal-border-width . 40)))
-(dolist (face '(window-divider
-                window-divider-first-pixel
-                window-divider-last-pixel))
-  (face-spec-reset-face face)
-  (set-face-foreground face (face-attribute 'default :background)))
-(set-face-background 'fringe (face-attribute 'default :background))
-#+END_SRC
 * Settings
 ** Header
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
@@ -500,6 +469,37 @@ If FROM is non nil, execute the sync of the entire buffer from trello."
       (message "Region copied to system clipboard"))))
 #+END_SRC
 
+* Appearance
+#+BEGIN_SRC emacs-lisp :tangle "config.el"
+;; Font.
+(setq doom-font (font-spec :family "Iosevka" :size 18)
+      doom-variable-pitch-font (font-spec :family "Iosevka" :size 18)
+      doom-big-font (font-spec :family "Iosevka" :size 26))
+
+;; Disable line numbers.
+(setq display-line-numbers-type nil)
+
+;; Minimal UI
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(load-theme 'whiteboard t)
+
+(set-face-background 'default "#ffffff")
+
+(set-face-attribute 'default nil :family "Iosevka")
+
+;; Add frame borders and window dividers
+(modify-all-frames-parameters
+ '((right-divider-width . 40)
+   (internal-border-width . 40)))
+(dolist (face '(window-divider
+                window-divider-first-pixel
+                window-divider-last-pixel))
+  (face-spec-reset-face face)
+  (set-face-foreground face (face-attribute 'default :background)))
+(set-face-background 'fringe (face-attribute 'default :background))
+#+END_SRC
 * Functions
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
 (defun toggle-rspec-compilation-buffer ()
