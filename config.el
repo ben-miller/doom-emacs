@@ -230,6 +230,9 @@
                 (neotree-find file-name)))
         (message "Could not find git project root."))))
 
+(after! neotree
+  (setq neo-window-width 40))
+
 (defun centaur-tabs-buffer-groups ()
   "Group buffers by their Projectile project."
   (if (projectile-project-p)

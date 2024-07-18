@@ -275,6 +275,9 @@
                 (neotree-dir project-dir)
                 (neotree-find file-name)))
         (message "Could not find git project root."))))
+
+(after! neotree
+  (setq neo-window-width 40))
 #+END_SRC
 ** Centaur
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
