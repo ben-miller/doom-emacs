@@ -361,6 +361,9 @@ If FROM is non nil, execute the sync of the entire buffer from trello."
   :before #'doom/reload
   (org-babel-tangle-file (expand-file-name "README.org" doom-private-dir)))
 
+;; Don't prompt when exiting.
+(setq confirm-kill-emacs nil)
+
 ;; Visual line mode
 (global-visual-line-mode)
 
