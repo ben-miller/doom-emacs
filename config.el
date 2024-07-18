@@ -235,21 +235,6 @@
       (x-set-selection 'CLIPBOARD selection-value)
       (message "Region copied to system clipboard"))))
 
-(defun gradle-test ()
-  "Run the 'test' task using the Gradle wrapper."
-  (interactive)
-  (gradle-run-from-root "test"))
-
-(defun gradle-build ()
-  "Run the 'build' task using the Gradle wrapper."
-  (interactive)
-  (gradle-run-from-root "build"))
-
-(defun gradle-run-from-root (task)
-  "Run the Gradle task `task` from the top-level directory of the current Git repository."
-  (let ((default-directory (projectile-project-root)))
-    (compile (concat "./gradlew " task))))
-
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((emacs-lisp . t)
