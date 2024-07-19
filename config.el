@@ -143,14 +143,12 @@
 (after! org
   (setq
         org-capture-templates (my/org-capture-templates)
-        org-agenda-files (my/org-agenda-files)
-        org-todo-keywords '((sequence "INBOX" "SELECTED" "NEXT" "DOING" "POSTPONED" "BUG" "|" "DONE")))
+        org-agenda-files (my/org-agenda-files))
   (map! :map org-mode-map
         "M-o" (lambda ()
                 (interactive)
                 (org-meta-return)
-                (evil-insert 1)
-                )))
+                (evil-insert 1))))
 
 (after! org-agenda
   (map! :map org-agenda-mode-map "<escape>" #'org-agenda-exit))
@@ -193,7 +191,6 @@
                                     "~/life"
                                     "~/src/infra/"
                                     "~/src/projects/comptus-takehome"
-                                    "~/src/projects/personal-website"
                                     )
         projectile-completion-system 'default
         projectile-auto-discover nil
