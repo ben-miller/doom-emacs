@@ -328,6 +328,11 @@ If FROM is non nil, execute the sync of the entire buffer from trello."
             (find-file "~/org/tasks.org")
             (org-mode-restart)))
 
+(setq frame-title-format
+      '((:eval (if (projectile-project-p)
+                   (projectile-project-name)
+                 ""))))
+
 (defun open-scratch-in-new-tab ()
   "Open a new tab with a *scratch* buffer."
   (interactive)
