@@ -81,6 +81,8 @@
       :desc "Move tab left" "s-S-<left>" #'centaur-tabs-move-current-tab-to-left
       :desc "Change to tab right" "s-<right>" #'centaur-tabs-forward
       :desc "Change to tab left" "s-<left>" #'centaur-tabs-backward
+      :desc "Change to tab group right" "M-s-<right>" #'centaur-tabs-forward-group
+      :desc "Change to tab group left" "M-s-<left>" #'centaur-tabs-backward-group
       :desc "New tab (scratch)" "s-t" #'centaur-tabs--create-new-tab
       :desc "Close tab" "s-w" #'kill-current-buffer
       :desc "Focus pane left" "s-h" (lambda () (interactive) (move-and-maybe-maximize (lambda () (windmove-left))))
@@ -285,6 +287,8 @@
 
 ;; Apply the custom grouping function
 ;; (advice-add 'centaur-tabs-buffer-groups :override #'centaur-tabs-buffer-groups)
+
+(setq centaur-tabs-cycle-scope 'tabs)
 
 (centaur-tabs-mode)
 #+END_SRC
