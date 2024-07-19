@@ -210,12 +210,8 @@
 (use-package! perspective
   :custom
   (persp-mode-prefix-key (kbd "C-c M-p"))
-  (persp-state-default-file (expand-file-name "persp-state.el" user-emacs-directory))
   :init
-  (persp-mode)
-  :config
-  (add-hook 'kill-emacs-hook #'persp-state-save)
-  )
+  (persp-mode))
 
   (defun neotree-project-dir ()
     "Open NeoTree using the git root."
