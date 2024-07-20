@@ -40,3 +40,39 @@
   (append
     (list (if (executable-find "fdfind" 'remote) "fdfind" "fd")
           "--color=never" "--full-path" "--absolute-path" "--hidden" "--no-ignore" "--exclude" ".git")))
+
+(defun log (text)
+  (interactive "sMessage: ")
+  (let ((buffer-name "debug-info"))
+    (with-current-buffer (get-buffer-create buffer-name)
+      (setq buffer-read-only nil)
+      (goto-char (point-max))
+      (insert (concat text "\n"))
+      (setq buffer-read-only t)
+      )
+    )
+  )
+
+(defun eval-try (expr)
+  "Evaluate EXPR and insert the result. If EXPR results in an error, insert the error message instead."
+  (condition-case err
+      (funcall expr)
+    (error (concat "<Error: " (error-message-string err) ">"))))
+
+(defun insert-line (line) (insert (concat line "\n")))
+
+(defun persp-projectile-status ()
+    "Jump to singleton buffer w/ debug info."
+  (interactive)
+  (let ((buffer-name "*Perspective / Projectile Status*"))
+    (let ((buffer (get-buffer buffer-name)))
+      (switch-to-buffer (get-buffer-create buffer-name))
+      (setq buffer-read-only nil)
+      (erase-buffer)
+      (insert-line "Perspective / projectile status.")
+      (insert-line "\n\n")
+      (insert-line (concat "Persp name: " (persp-name (persp-curr))))
+      (insert-line (concat "Projectile project from persp name: " (projectile-project-root (persp-name (persp-curr)))))
+      (insert-line (concat "Projectile root w/o persp name: " (projectile-project-root)))
+      (insert-line (concat "Projectile project name: " (projectile-project-name)))
+      )))

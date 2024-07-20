@@ -43,6 +43,7 @@
       :desc "Edit fish config" "k f" (lambda () (interactive) (find-file "~/src/infra/config/fish/.config/fish/config.fish"))
       :desc "Edit nvim config" "k v" (lambda () (interactive) (find-file "~/.config/nvim/lua/options.lua"))
       :desc "Edit nvim config" "k V" (lambda () (interactive) (find-file "~/.config/nvim/lua/plugins.lua"))
+      :desc "View debug info buffer" "k d" #'persp-projectile-status
       )
 
 ;; Hold-down key bindings.
