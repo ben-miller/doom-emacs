@@ -74,7 +74,7 @@
       (let ((expressions '((projectile-project-root (persp-name (persp-curr)))
                            (projectile-project-root)
                            (projectile-project-name)
-                           (projectile-known-projects)
+                           projectile-known-projects
                            (projectile-open-projects)
                            (persp-name (persp-curr))
                            (persp-names)
@@ -84,7 +84,7 @@
         ;; Insert expressions and their results
         (dolist (expr expressions)
           (let ((result (try-eval expr)))
-            (insert (format "%s: %s\n    => %s\n\n" expr (type-of result)
+            (insert (format "%s :: %s\n    => %s\n\n" expr (type-of result)
                             (if (listp result)
                                 (mapconcat #'prin1-to-string result "\n       ")
                               (prin1-to-string result)))))))
