@@ -72,7 +72,7 @@
 
       ;; Files.
       :desc "Find file" "s-o" #'consult-fd
-      :desc "Grep in project" "s-i" #'projectile-ripgrep
+      :desc "Grep in project" "s-i" #'consult-ripgrep
       :desc "Create file" "s-n" #'projectile-create-new-file
 
       ;; Neotree.
