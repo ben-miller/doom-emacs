@@ -35,3 +35,8 @@
       '((:eval (if (projectile-project-p)
                    (projectile-project-name)
                  ""))))
+
+(setq consult-fd-args
+  (append
+    (list (if (executable-find "fdfind" 'remote) "fdfind" "fd")
+          "--color=never" "--full-path" "--absolute-path" "--hidden" "--no-ignore" "--exclude" ".git")))

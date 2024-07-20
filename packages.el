@@ -12,5 +12,4 @@
 (package! perspective)
 (package! persp-projectile)
 (package! gptel)
-(package! affe)
 (package! verb)

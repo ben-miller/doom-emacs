@@ -71,8 +71,8 @@
       :desc "Swiper" "C-/" #'swiper
 
       ;; Files.
-      :desc "Find file" "s-o" #'affe-find
-      :desc "Grep in project" "s-i" #'affe-grep
+      :desc "Find file" "s-o" #'consult-fd
+      :desc "Grep in project" "s-i" #'projectile-ripgrep
       :desc "Create file" "s-n" #'projectile-create-new-file
 
       ;; Neotree.
