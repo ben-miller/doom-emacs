@@ -6,7 +6,6 @@
 - [[#packages][Packages]]
   - [[#org-mode][Org Mode]]
   - [[#projectile][Projectile]]
-  - [[#perspective][Perspective]]
   - [[#neotree][Neotree]]
   - [[#centaur-tabs][Centaur Tabs]]
   - [[#magit][Magit]]
@@ -142,15 +141,7 @@
 #+END_SRC
 ** Projectile
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
-(load (expand-file-name "packages/projectile.el" (file-name-directory load-file-name)))
-#+END_SRC
-** Perspective
-#+BEGIN_SRC emacs-lisp :tangle "config.el"
-(use-package! perspective
-  :custom
-  (persp-mode-prefix-key (kbd "C-c M-p"))
-  :init
-  (persp-mode))
+(load (expand-file-name "packages/projectile-perspective.el" (file-name-directory load-file-name)))
 #+END_SRC
 ** Neotree
 #+BEGIN_SRC emacs-lisp :tangle "config.el"

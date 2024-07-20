@@ -19,3 +19,9 @@
                                                     (setq org-capture-templates (my/org-capture-templates)
                                                           org-agenda-files (my/org-agenda-files))
                                                     (message "Project org file: %s" (my/org-project-agenda-file)))))
+
+(use-package! perspective
+  :custom
+  (persp-mode-prefix-key (kbd "C-c M-p"))
+  :init
+  (persp-mode))

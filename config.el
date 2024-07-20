@@ -105,13 +105,7 @@
 
 (load (expand-file-name "packages/centaur-tabs.el" (file-name-directory load-file-name)))
 
-(load (expand-file-name "packages/projectile.el" (file-name-directory load-file-name)))
-
-(use-package! perspective
-  :custom
-  (persp-mode-prefix-key (kbd "C-c M-p"))
-  :init
-  (persp-mode))
+(load (expand-file-name "packages/projectile-perspective.el" (file-name-directory load-file-name)))
 
   (defun neotree-project-dir ()
     "Open NeoTree using the git root."
