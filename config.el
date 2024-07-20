@@ -113,11 +113,6 @@
 
 (load (expand-file-name "packages/magit.el" (file-name-directory load-file-name)))
 
-;; Ivy
-(after! ivy
-  (setq ivy-use-virtual-buffers t
-        ivy-count-format "%d/%d "))
-
 ;;;###autoload
 (defun org-trello-pull-buffer (&optional from)
   "Execute the sync of the entire buffer to trello.

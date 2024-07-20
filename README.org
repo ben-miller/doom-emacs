@@ -155,13 +155,6 @@
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
 (load (expand-file-name "packages/magit.el" (file-name-directory load-file-name)))
 #+END_SRC
-** Ivy
-#+BEGIN_SRC emacs-lisp :tangle "config.el"
-;; Ivy
-(after! ivy
-  (setq ivy-use-virtual-buffers t
-        ivy-count-format "%d/%d "))
-#+END_SRC
 ** Org Trello
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
 ;;;###autoload
