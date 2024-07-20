@@ -472,3 +472,8 @@ If FROM is non nil, execute the sync of the entire buffer from trello."
           (display-buffer buffer '((display-buffer-at-bottom)
                                    (window-height . 0.3))))
       (message "*rspec-compilation* buffer does not exist."))))
+
+(defun my/only-one-visible-tab-p ()
+  "Return t if there is only one visible tab in the current tab group."
+  (let ((tabs (centaur-tabs-view (centaur-tabs-current-tabset t))))
+    (eq (length tabs) 1)))
