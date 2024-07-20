@@ -99,7 +99,6 @@
       :desc "Next buffer" "s-]" #'next-buffer
       :desc "Toggle pane maximization" "s-K" #'toggle-maximize-window
       :desc "Jump to definition" "s-b" #'+lookup/definition
-      :desc "Toggle compilation buffer" "s-u" #'toggle-rspec-compilation-buffer
 
       ;; Swiper.
       :desc "Swiper" "C-/" #'swiper
@@ -335,19 +334,5 @@
 #+END_SRC
 * Functions
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
-(defun toggle-rspec-compilation-buffer ()
-  "Toggle the visibility of the *rspec-compilation* buffer in the bottom window."
-  (interactive)
-  (let ((buffer (get-buffer "*rspec-compilation*")))
-    (if buffer
-        (if (get-buffer-window buffer)
-            (delete-window (get-buffer-window buffer))
-          (display-buffer buffer '((display-buffer-at-bottom)
-                                   (window-height . 0.3))))
-      (message "*rspec-compilation* buffer does not exist."))))
-
-(defun my/only-one-visible-tab-p ()
-  "Return t if there is only one visible tab in the current tab group."
-  (let ((tabs (centaur-tabs-view (centaur-tabs-current-tabset t))))
-    (eq (length tabs) 1)))
+(load (expand-file-name "utils.el" (file-name-directory load-file-name)))
 #+END_SRC
