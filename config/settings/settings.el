@@ -24,9 +24,12 @@
         (bytecomp . buffer-local-value)))
 (setq enable-local-variables :all)
 
-(after! emacs
-  (find-file "~/.doom.d/config/settings/keybindings.el")
-  (neotree))
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (find-file "~/.doom.d/tasks.org")
+            (org-mode-restart)
+            (neotree)
+            (find-file "~/.doom.d/tasks.org")))
 
 (setq frame-title-format
       '((:eval (if (projectile-project-p)
