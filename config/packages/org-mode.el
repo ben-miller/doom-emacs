@@ -38,7 +38,8 @@
 (after! org
   (setq
         org-capture-templates (my/org-capture-templates)
-        org-agenda-files (my/org-agenda-files))
+        org-agenda-files (my/org-agenda-files)
+        org-todo-keywords '((sequence "INBOX" "SELECTED" "NEXT" "DOING" "POSTPONED" "BUG" "|" "DONE")))
   (map! :map org-mode-map
         "M-o" (lambda ()
                 (interactive)
