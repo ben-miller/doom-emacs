@@ -153,17 +153,7 @@
 #+END_SRC
 ** Magit
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
-;; Magit
-(after! magit
-  (map! :map magit-mode-map
-        "<escape>" #'magit-mode-bury-buffer)
-  (remove-hook 'magit-mode-hook #'flyspell-mode))
-
-(defun magit-commit-update ()
-  "Commit with message 'Update' in Magit."
-  (interactive)
-  (magit-commit-create `("-m" "Update")))
-
+(load (expand-file-name "packages/magit.el" (file-name-directory load-file-name)))
 #+END_SRC
 ** Ivy
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
