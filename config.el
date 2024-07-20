@@ -117,9 +117,7 @@
 
 (load (expand-file-name "packages/leetcode.el" (file-name-directory load-file-name)))
 
-(setq evil-ex-search-case 'smart)
-(define-key evil-insert-state-map (kbd "s-<right>") 'centaur-tabs-forward)
-(define-key evil-insert-state-map (kbd "s-<left>") 'centaur-tabs-backward)
+(load (expand-file-name "packages/evil.el" (file-name-directory load-file-name)))
 
 ;; -*- no-byte-compile: t; -*-
 
