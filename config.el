@@ -306,6 +306,8 @@ If FROM is non nil, execute the sync of the entire buffer from trello."
     (setq gptel-model "gpt-4o"))
 
 (setq evil-ex-search-case 'smart)
+(define-key evil-insert-state-map (kbd "s-<right>") 'centaur-tabs-forward)
+(define-key evil-insert-state-map (kbd "s-<left>") 'centaur-tabs-backward)
 
 ;; -*- no-byte-compile: t; -*-
 
