@@ -77,10 +77,15 @@
                            (projectile-open-projects)
                            (persp-name (persp-curr))
                            (persp-names)
-                           (centaur-tabs-buffer-groups))))
+                           (centaur-tabs-buffer-groups)
+                           (centaur-tabs-get-groups)
+                           )))
         ;; Insert expressions and their results
         (dolist (expr expressions)
           (let ((result (eval expr)))
-            (insert (format "%s: %s => %s\n" expr (type-of result) result)))))
+            (insert (format "%s: %s\n    => %s\n\n" expr (type-of result)
+                            (if (listp result)
+                                (mapconcat #'prin1-to-string result "\n       ")
+                              (prin1-to-string result)))))))
       ;; Display the buffer
       (switch-to-buffer buffer-name))))
