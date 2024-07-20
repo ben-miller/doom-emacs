@@ -233,6 +233,6 @@
       (x-set-selection 'CLIPBOARD selection-value)
       (message "Region copied to system clipboard"))))
 
-(load (expand-file-name "config/appearance.el" (file-name-directory load-file-name)))
+(load (expand-file-name "config/settings/appearance.el" (file-name-directory load-file-name)))
 
 (load (expand-file-name "config/utils.el" (file-name-directory load-file-name)))

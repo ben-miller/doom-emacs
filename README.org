@@ -290,7 +290,7 @@
 
 * Appearance
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
-(load (expand-file-name "config/appearance.el" (file-name-directory load-file-name)))
+(load (expand-file-name "config/settings/appearance.el" (file-name-directory load-file-name)))
 #+END_SRC
 * Functions
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
