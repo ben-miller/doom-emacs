@@ -53,7 +53,7 @@
     )
   )
 
-(defun eval-try (expr)
+(defun try-eval (expr)
   "Evaluate EXPR and insert the result. If EXPR results in an error, insert the error message instead."
   (condition-case err
       (funcall expr)
@@ -64,7 +64,7 @@
 (defun persp-projectile-status ()
     "Jump to singleton buffer w/ debug info."
   (interactive)
-  (let ((buffer-name "*Perspective / Projectile Status*"))
+  (let ((buffer-name "Perspective / Projectile Status"))
     (let ((buffer (get-buffer buffer-name)))
       (switch-to-buffer (get-buffer-create buffer-name))
       (setq buffer-read-only nil)
@@ -75,4 +75,6 @@
       (insert-line (concat "Projectile project from persp name: " (projectile-project-root (persp-name (persp-curr)))))
       (insert-line (concat "Projectile root w/o persp name: " (projectile-project-root)))
       (insert-line (concat "Projectile project name: " (projectile-project-name)))
+      (insert-line (concat "Projectile open projects: " (prin1-to-string (projectile-open-projects))))
+      (insert-line (concat "Perspectives: " (prin1-to-string (persp-names))))
       )))
