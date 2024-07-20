@@ -62,19 +62,25 @@
 (defun insert-line (line) (insert (concat line "\n")))
 
 (defun persp-projectile-status ()
-    "Jump to singleton buffer w/ debug info."
+  "Jump to singleton buffer with debug info."
   (interactive)
   (let ((buffer-name "Perspective / Projectile Status"))
-    (let ((buffer (get-buffer buffer-name)))
-      (switch-to-buffer (get-buffer-create buffer-name))
+    (with-current-buffer (get-buffer-create buffer-name)
       (setq buffer-read-only nil)
       (erase-buffer)
-      (insert-line "Perspective / projectile status.")
-      (insert-line "\n\n")
-      (insert-line (concat "Persp name: " (persp-name (persp-curr))))
-      (insert-line (concat "Projectile project from persp name: " (projectile-project-root (persp-name (persp-curr)))))
-      (insert-line (concat "Projectile root w/o persp name: " (projectile-project-root)))
-      (insert-line (concat "Projectile project name: " (projectile-project-name)))
-      (insert-line (concat "Projectile open projects: " (prin1-to-string (projectile-open-projects))))
-      (insert-line (concat "Perspectives: " (prin1-to-string (persp-names))))
-      )))
+      (emacs-lisp-mode)
+      (flycheck-mode -1)
+      ;; Expressions to be evaluated
+      (let ((expressions '((projectile-project-root (persp-name (persp-curr)))
+                           (projectile-project-root)
+                           (projectile-project-name)
+                           (projectile-open-projects)
+                           (persp-name (persp-curr))
+                           (persp-names)
+                           (centaur-tabs-buffer-groups))))
+        ;; Insert expressions and their results
+        (dolist (expr expressions)
+          (let ((result (eval expr)))
+            (insert (format "%s: %s => %s\n" expr (type-of result) result)))))
+      ;; Display the buffer
+      (switch-to-buffer buffer-name))))
