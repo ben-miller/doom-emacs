@@ -56,7 +56,7 @@
 (defun try-eval (expr)
   "Evaluate EXPR and insert the result. If EXPR results in an error, insert the error message instead."
   (condition-case err
-      (funcall expr)
+      (eval expr)
     (error (concat "<Error: " (error-message-string err) ">"))))
 
 (defun insert-line (line) (insert (concat line "\n")))
@@ -74,6 +74,7 @@
       (let ((expressions '((projectile-project-root (persp-name (persp-curr)))
                            (projectile-project-root)
                            (projectile-project-name)
+                           (projectile-known-projects)
                            (projectile-open-projects)
                            (persp-name (persp-curr))
                            (persp-names)
@@ -82,7 +83,7 @@
                            )))
         ;; Insert expressions and their results
         (dolist (expr expressions)
-          (let ((result (eval expr)))
+          (let ((result (try-eval expr)))
             (insert (format "%s: %s\n    => %s\n\n" expr (type-of result)
                             (if (listp result)
                                 (mapconcat #'prin1-to-string result "\n       ")
