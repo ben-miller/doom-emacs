@@ -102,21 +102,21 @@
   (map! :n "s-/" nil)
 )
 
-(load (expand-file-name "packages/org-mode.el" (file-name-directory load-file-name)))
+(load (expand-file-name "config/packages/org-mode.el" (file-name-directory load-file-name)))
 
-(load (expand-file-name "packages/projectile-perspective.el" (file-name-directory load-file-name)))
+(load (expand-file-name "config/packages/projectile-perspective.el" (file-name-directory load-file-name)))
 
-(load (expand-file-name "packages/neotree.el" (file-name-directory load-file-name)))
+(load (expand-file-name "config/packages/neotree.el" (file-name-directory load-file-name)))
 
-(load (expand-file-name "packages/centaur-tabs.el" (file-name-directory load-file-name)))
+(load (expand-file-name "config/packages/centaur-tabs.el" (file-name-directory load-file-name)))
 
-(load (expand-file-name "packages/magit.el" (file-name-directory load-file-name)))
+(load (expand-file-name "config/packages/magit.el" (file-name-directory load-file-name)))
 
-(load (expand-file-name "packages/org-trello.el" (file-name-directory load-file-name)))
+(load (expand-file-name "config/packages/org-trello.el" (file-name-directory load-file-name)))
 
-(load (expand-file-name "packages/leetcode.el" (file-name-directory load-file-name)))
+(load (expand-file-name "config/packages/leetcode.el" (file-name-directory load-file-name)))
 
-(load (expand-file-name "packages/evil.el" (file-name-directory load-file-name)))
+(load (expand-file-name "config/packages/evil.el" (file-name-directory load-file-name)))
 
 ;; -*- no-byte-compile: t; -*-
 
