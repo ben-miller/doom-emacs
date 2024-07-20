@@ -102,7 +102,7 @@
   (map! :n "s-/" nil)
 )
 
-(load (expand-file-name "packages/centaur-tabs.el" (file-name-directory load-file-name)))
+(load (expand-file-name "packages/org-mode.el" (file-name-directory load-file-name)))
 
 (load (expand-file-name "packages/projectile-perspective.el" (file-name-directory load-file-name)))
 
@@ -154,11 +154,6 @@
 (after! emacs
   (find-file "~/.doom.d/README.org")
   (neotree))
-
-(add-hook 'emacs-startup-hook
-          (lambda ()
-            (find-file "~/org/tasks.org")
-            (org-mode-restart)))
 
 (setq frame-title-format
       '((:eval (if (projectile-project-p)
