@@ -47,3 +47,32 @@
 
 (after! org-agenda
   (map! :map org-agenda-mode-map "<escape>" #'org-agenda-exit))
+
+(setq
+ ;; Edit settings
+ org-auto-align-tags nil
+ org-tags-column 0
+ org-catch-invisible-edits 'show-and-error
+ org-special-ctrl-a/e t
+ org-insert-heading-respect-content t
+
+ ;; Org styling, hide markup etc.
+ org-hide-emphasis-markers t
+ org-pretty-entities t)
+
+;; Ellipsis styling
+(setq org-ellipsis "…")
+(set-face-attribute 'org-ellipsis nil :inherit 'default :box nil)
+
+;; Enable org-modern
+(use-package! org-modern
+  :hook (org-mode . org-modern-mode)
+  :config
+  (setq org-modern-todo-faces '(
+                                ("INBOX" :background "#1E90FF" :foreground "white")
+                                ("DOING" :background "#FF8C00" :foreground "white")
+                                ("NEXT" :background "#32CD32" :foreground "white")
+                                ("BUG" :background "#EE4B2B" :foreground "white")
+                                ("SELECTED" :background "#9B30FF" :foreground "white")
+                                ))
+  (global-org-modern-mode))
