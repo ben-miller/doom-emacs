@@ -1,3 +1,10 @@
+:PROPERTIES:
+:GPTEL_MODEL: gpt-4o
+:GPTEL_BACKEND: ChatGPT
+:GPTEL_SYSTEM: You are a large language model living in Emacs and a helpful assistant. Respond concisely.
+:GPTEL_BOUNDS: nil
+:END:
+
 * Table of Contents :toc:
 - [[#key-bindings][Key Bindings]]
   - [[#leader-key][Leader key]]
@@ -162,17 +169,6 @@
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
 (load (expand-file-name "packages/leetcode.el" (file-name-directory load-file-name)))
 #+END_SRC
-** GPTel
-#+BEGIN_SRC emacs-lisp :tangle "config.el"
-(use-package auth-source
-  :config
-  (setq auth-sources '(macos-keychain-internet macos-keychain-generic)))
-
-(use-package gptel
-  :config
-    (setq gptel-model "gpt-4o"))
-#+END_SRC
-
 ** Evil
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
 (setq evil-ex-search-case 'smart)

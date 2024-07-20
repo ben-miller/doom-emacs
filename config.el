@@ -117,14 +117,6 @@
 
 (load (expand-file-name "packages/leetcode.el" (file-name-directory load-file-name)))
 
-(use-package auth-source
-  :config
-  (setq auth-sources '(macos-keychain-internet macos-keychain-generic)))
-
-(use-package gptel
-  :config
-    (setq gptel-model "gpt-4o"))
-
 (setq evil-ex-search-case 'smart)
 (define-key evil-insert-state-map (kbd "s-<right>") 'centaur-tabs-forward)
 (define-key evil-insert-state-map (kbd "s-<left>") 'centaur-tabs-backward)
