@@ -104,7 +104,7 @@
 
 (load (expand-file-name "config/packages/org-mode.el" (file-name-directory load-file-name)))
 
-(load (expand-file-name "config/packages/projectile-perspective.el" (file-name-directory load-file-name)))
+(load (expand-file-name "config/packages/proj-persp.el" (file-name-directory load-file-name)))
 
 (load (expand-file-name "config/packages/neotree.el" (file-name-directory load-file-name)))
 
