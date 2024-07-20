@@ -34,7 +34,7 @@
       :desc "Kill process" "m k" #'kill-process
 
       ;; Frequently edited files (SPC k).
-      :desc "Edit config.el (README.org)" "k k" (lambda () (interactive) (find-file "~/.doom.d/README.org"))
+      :desc "Edit keybindings.el" "k k" (lambda () (interactive) (find-file "~/.doom.d/config/settings/keybindings.el"))
       :desc "Edit packages.el" "k p" (lambda () (interactive) (find-file "~/.doom.d/packages.el"))
       :desc "Edit init.el" "k i" (lambda () (interactive) (find-file "~/.doom.d/init.el"))
       :desc "Edit hammerspoon config" "k h" (lambda () (interactive) (find-file "~/src/infra/hs-profiles/init.lua"))
@@ -100,5 +100,6 @@
                                   (forward-line 1))
       )
 
+;; Evil keybindings.
 (define-key evil-insert-state-map (kbd "s-<right>") 'centaur-tabs-forward)
 (define-key evil-insert-state-map (kbd "s-<left>") 'centaur-tabs-backward)

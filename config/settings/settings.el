@@ -1,11 +1,6 @@
 (add-hook 'doom-after-init-hook
           (lambda () (doom/quickload-session t)))
 
-(defadvice! reload-with-tangle ()
-  "Tangle README.org before reloading Doom Emacs."
-  :before #'doom/reload
-  (org-babel-tangle-file (expand-file-name "README.org" doom-private-dir)))
-
 ;; Don't prompt when exiting.
 (setq confirm-kill-emacs nil)
 
@@ -30,7 +25,7 @@
 (setq enable-local-variables :all)
 
 (after! emacs
-  (find-file "~/.doom.d/README.org")
+  (find-file "~/.doom.d/config/settings/keybindings.el")
   (neotree))
 
 (setq frame-title-format
