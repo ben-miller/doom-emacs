@@ -160,8 +160,7 @@
 #+END_SRC
 ** LeetCode
 #+BEGIN_SRC emacs-lisp :tangle "config.el"
-;; LeetCode
-(setq leetcode-prefer-language "ruby")
+(load (expand-file-name "packages/leetcode.el" (file-name-directory load-file-name)))
 #+END_SRC
 ** GPTel
 #+BEGIN_SRC emacs-lisp :tangle "config.el"

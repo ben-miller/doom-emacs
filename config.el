@@ -115,8 +115,7 @@
 
 (load (expand-file-name "packages/org-trello.el" (file-name-directory load-file-name)))
 
-;; LeetCode
-(setq leetcode-prefer-language "ruby")
+(load (expand-file-name "packages/leetcode.el" (file-name-directory load-file-name)))
 
 (use-package auth-source
   :config
