@@ -262,4 +262,4 @@
   (set-face-foreground face (face-attribute 'default :background)))
 (set-face-background 'fringe (face-attribute 'default :background))
 
-(load (expand-file-name "utils.el" (file-name-directory load-file-name)))
+(load (expand-file-name "config/utils.el" (file-name-directory load-file-name)))
