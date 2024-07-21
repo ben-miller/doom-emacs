@@ -33,7 +33,7 @@
 
 (setq frame-title-format
       '((:eval (if (projectile-project-p)
-                   (projectile-project-name)
+                   (concat (projectile-project-name) " :: " (persp-name (persp-curr)))
                  ""))))
 
 (setq consult-fd-args

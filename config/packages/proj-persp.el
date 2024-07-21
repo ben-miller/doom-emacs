@@ -25,3 +25,13 @@
   (persp-mode-prefix-key (kbd "C-c M-p"))
   :init
   (persp-mode))
+
+(defun find-doom-file (path)
+  (message (concat "finding config file for: " path))
+  (persp-switch ".doom.d")
+  (find-file path))
+
+(defun find-infra-file (path)
+  (message (concat "finding config file for: " path))
+  (persp-switch "infra")
+  (find-file path))
