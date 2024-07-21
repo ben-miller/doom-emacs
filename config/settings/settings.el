@@ -90,3 +90,16 @@
                               (prin1-to-string result)))))))
       ;; Display the buffer
       (switch-to-buffer buffer-name))))
+
+(use-package! vertico
+  :init
+  (vertico-mode))
+
+;; Enable Vertico-Posframe
+(use-package! vertico-posframe
+  :after vertico
+  :config
+  (vertico-posframe-mode 1)
+  (setq vertico-posframe-poshandler 'posframe-poshandler-frame-center
+        vertico-posframe-width 80
+        vertico-posframe-border-width 1))
