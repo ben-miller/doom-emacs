@@ -1,3 +1,2 @@
 tasks.org
-config/settings/flycheck_keybindings.el
-config/settings/flycheck_settings.el
+**/flycheck_*.el
