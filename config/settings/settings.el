@@ -101,5 +101,6 @@
   :config
   (vertico-posframe-mode 1)
   (setq vertico-posframe-poshandler 'posframe-poshandler-frame-center
-        vertico-posframe-width 80
+        vertico-posframe-width 120
+        vertico-posframe-height 30
         vertico-posframe-border-width 1))
