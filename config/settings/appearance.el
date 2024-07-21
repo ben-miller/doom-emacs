@@ -1,20 +1,14 @@
 ;; Font.
 (setq doom-font (font-spec :family "Iosevka" :size 18)
       doom-variable-pitch-font (font-spec :family "Iosevka" :size 18)
-      doom-big-font (font-spec :family "Iosevka" :size 26))
+      doom-big-font (font-spec :family "Iosevka" :size 24))
 
-;; Disable line numbers.
-(setq display-line-numbers-type nil)
+(set-face-attribute 'default nil :family "Iosevka")
 
 ;; Minimal UI
 (menu-bar-mode -1)
 (tool-bar-mode -1)
-(scroll-bar-mode -1)
-(load-theme 'whiteboard t)
-
-(set-face-background 'default "#ffffff")
-
-(set-face-attribute 'default nil :family "Iosevka")
+(scroll-bar-mode 1)
 
 ;; Add frame borders and window dividers
 (modify-all-frames-parameters
@@ -26,3 +20,7 @@
   (face-spec-reset-face face)
   (set-face-foreground face (face-attribute 'default :background)))
 (set-face-background 'fringe (face-attribute 'default :background))
+
+(setq doom-theme 'doom-feather-light)
+;; (setq doom-theme 'doom-flatwhite)
+;; (setq doom-theme 'doom-nord-light)
