@@ -41,18 +41,6 @@
     (list (if (executable-find "fdfind" 'remote) "fdfind" "fd")
           "--color=never" "--full-path" "--absolute-path" "--hidden" "--no-ignore" "--exclude" ".git")))
 
-(defun log (text)
-  (interactive "sMessage: ")
-  (let ((buffer-name "debug-info"))
-    (with-current-buffer (get-buffer-create buffer-name)
-      (setq buffer-read-only nil)
-      (goto-char (point-max))
-      (insert (concat text "\n"))
-      (setq buffer-read-only t)
-      )
-    )
-  )
-
 (defun try-eval (expr)
   "Evaluate EXPR and insert the result. If EXPR results in an error, insert the error message instead."
   (condition-case err
