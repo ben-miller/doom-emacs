@@ -45,3 +45,33 @@
   (message (concat "finding config file for: " path))
   (persp-switch "infra")
   (find-file path))
+
+(defun persp-projectile-status ()
+  "Jump to singleton buffer with debug info."
+  (interactive)
+  (let ((buffer-name "Perspective / Projectile Status"))
+    (with-current-buffer (get-buffer-create buffer-name)
+      (setq buffer-read-only nil)
+      (erase-buffer)
+      (emacs-lisp-mode)
+      (flycheck-mode -1)
+      ;; Expressions to be evaluated
+      (let ((expressions '((projectile-project-root (persp-name (persp-curr)))
+                           (projectile-project-root)
+                           (projectile-project-name)
+                           projectile-known-projects
+                           (projectile-open-projects)
+                           (persp-name (persp-curr))
+                           (persp-names)
+                           (centaur-tabs-buffer-groups)
+                           (centaur-tabs-get-groups)
+                           )))
+        ;; Insert expressions and their results
+        (dolist (expr expressions)
+          (let ((result (try-eval expr)))
+            (insert (format "%s :: %s\n    => %s\n\n" expr (type-of result)
+                            (if (listp result)
+                                (mapconcat #'prin1-to-string result "\n       ")
+                              (prin1-to-string result)))))))
+      ;; Display the buffer
+      (switch-to-buffer buffer-name))))
