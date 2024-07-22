@@ -73,11 +73,15 @@
         vertico-posframe-height 30
         vertico-posframe-border-width 1))
 
-(use-package! paredit
-  :hook (emacs-lisp-mode . enable-paredit-mode)
+(sp-use-paredit-bindings)
+(use-package! smartparens
   :config
-  (defun enable-paredit-mode ()
-    "Enable paredit mode."
-    (paredit-mode 1)))
-
-(setq after-focus-change-function #'vertico-posframe-cleanup)
+  (smartparens-global-mode t)
+  (map! :map smartparens-mode-map
+        "M-s-0" #'sp-wrap-round
+        "M-s-9" #'sp-unwrap-sexp
+        "s-," #'sp-forward-slurp-sexp
+        "s-." #'sp-forward-barf-sexp
+        "M-s-." #'sp-backward-slurp-sexp
+        "M-s-," #'sp-backward-barf-sexp
+        "M-s-x" #'sp-delete-sexp))
