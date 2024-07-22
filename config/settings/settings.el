@@ -102,3 +102,10 @@
         vertico-posframe-width 120
         vertico-posframe-height 30
         vertico-posframe-border-width 1))
+
+(use-package! paredit
+  :hook (emacs-lisp-mode . enable-paredit-mode)
+  :config
+  (defun enable-paredit-mode ()
+    "Enable paredit mode."
+    (paredit-mode 1)))
