@@ -87,6 +87,7 @@
 
       ;; Neotree.
       :desc "Toggle neotree" "s-g" #'neotree-project-dir
+      :desc "Neotree find this file" "M-h" #'+neotree/find-this-file
 
       ;; System clipboard.
       :desc "Paste from system clipboard" "s-v" #'paste-from-system-clipboard
