@@ -10,7 +10,7 @@
 
 (defun my/org-agenda-files ()
   (interactive)
-  (list "~/org/tasks.org" (my/org-project-agenda-file)))
+  (list (my/org-project-agenda-file)))
 
 (defun my/org-capture-templates ()
   "Define org capture templates. Global capture, as well templates specific to current project."
