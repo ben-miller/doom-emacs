@@ -79,3 +79,5 @@
   (defun enable-paredit-mode ()
     "Enable paredit mode."
     (paredit-mode 1)))
+
+(setq after-focus-change-function #'vertico-posframe-cleanup)
