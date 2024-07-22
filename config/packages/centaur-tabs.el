@@ -4,19 +4,22 @@
       (list (projectile-project-name))
     (list "Misc")))
 
-(message "loading centaur tabs...")
+(defun match-proj-scratch (input-string)
+  (if (string-match "\\*scratch\\* (\\(.*\\))" input-string)
+      (match-string 1 input-string)
+    nil))
 
 (defun my/centaur-tabs-buffer-groups ()
   (list
    (cond
     ;; Match project-specific scratch buffers
-    ((when-let ((buffer-name (buffer-name))
-                 (project-name (centaur-tabs-project-name))
-                 (match (string-match "\\*scratch\\* (\\(.*\\))" buffer-name))
-                 (scratch-project-name (match-string 1 buffer-name)))
-       (message scratch-project-name)
-       (when (string-equal project-name scratch-project-name)
-         project-name)))
+    ((when-let* ((buf (buffer-name))
+                 (persp (match-proj-scratch buf))
+                 (proj (cdr (assoc persp persp-proj-map))))
+                 (message (concat "string match: " proj))
+                 (concat "Project: " (expand-file-name proj))))
+    ((when-let ((project-dir (cdr (project-current))))
+       (concat "Project: " project-dir)))
     ((when-let ((project-name (centaur-tabs-project-name)))
        project-name))
     ((or (memq major-mode '(org-mode org-agenda-mode diary-mode))

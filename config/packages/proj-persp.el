@@ -1,3 +1,11 @@
+(setq persp-proj-map '(
+                       (".doom.d" . "~/.doom.d/")
+                       ("org" . "~/org/")
+                       ("life" . "~/life/")
+                       ("infra" . "~/src/infra/")
+                       ("comptus-takehome" . "~/src/projects/comptus-takehome/"))
+      )
+
 (after! projectile
   (setq projectile-known-projects '(
                                     "~/.doom.d"
@@ -6,13 +14,6 @@
                                     "~/src/infra"
                                     "~/src/projects/comptus-takehome"
                                     )
-        persp-proj-map '(
-                               (".doom.d" . "~/.doom.d")
-                               ("org" . "~/org")
-                               ("life" . "~/life")
-                               ("infra" . "~/src/infra")
-                               ("comptus-takehome" . "~/src/projects/comptus-takehome")
-                               )
         projectile-completion-system 'default
         projectile-auto-discover nil
         projectile-cache-file (concat doom-cache-dir "projectile.cache")
