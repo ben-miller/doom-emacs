@@ -47,7 +47,7 @@
       '((:eval (if (projectile-project-p)
                    (concat
                     "Perspective: " (persp-name (persp-curr))
-                    " :::: Project: " (projectile-project-name)
+                    " <=> Project: " (projectile-project-name)
                  )))))
 
 (setq consult-fd-args
