@@ -16,7 +16,6 @@
     ((when-let* ((buf (buffer-name))
                  (persp (match-proj-scratch buf))
                  (proj (cdr (assoc persp persp-proj-map))))
-                 (message (concat "string match: " proj))
                  (concat "Project: " (expand-file-name proj))))
     ((when-let ((project-dir (cdr (project-current))))
        (concat "Project: " project-dir)))
