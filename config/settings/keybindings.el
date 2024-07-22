@@ -60,7 +60,7 @@
       :desc "Change to tab left" "s-<left>" #'centaur-tabs-backward
       :desc "Change to tab group right" "M-s-<right>" #'centaur-tabs-forward-group
       :desc "Change to tab group left" "M-s-<left>" #'centaur-tabs-backward-group
-      :desc "New tab (scratch)" "s-t" #'centaur-tabs--create-new-tab
+      :desc "New tab (scratch)" "s-t" #'centaur-tabs--create-new-empty-buffer
       :desc "Close tab" "s-w" #'kill-current-buffer
       :desc "Focus pane left" "s-h" (lambda () (interactive) (move-and-maybe-maximize (lambda () (windmove-left))))
       :desc "Focus pane right" "s-l" (lambda () (interactive) (move-and-maybe-maximize (lambda () (windmove-right))))
