@@ -1,4 +1,6 @@
-(load (expand-file-name "config/settings/keybindings.el" (file-name-directory load-file-name)))
+(load (expand-file-name "config/settings/keybindings-leader.el" (file-name-directory load-file-name)))
+
+(load (expand-file-name "config/settings/keybindings-hold-down.el" (file-name-directory load-file-name)))
 
 (load (expand-file-name "config/packages/org-mode.el" (file-name-directory load-file-name)))
 
