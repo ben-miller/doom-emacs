@@ -65,6 +65,8 @@
       :desc "Focus pane right" "s-l" (lambda () (interactive) (move-and-maybe-maximize (lambda () (windmove-right))))
       :desc "Focus pane up" "s-k" (lambda () (interactive) (move-and-maybe-maximize (lambda () (windmove-up))))
       :desc "Focus pane down" "s-j" (lambda () (interactive) (move-and-maybe-maximize (lambda () (windmove-down))))
+      :desc "Move window to the left" "s-H" #'+evil/window-move-left
+      :desc "Move window to the right" "s-L" #'+evil/window-move-right
       :desc "Split pane vertically" "s-d" #'split-and-balance-windows-vertically
       :desc "Split pane horizontally" "s-D" #'split-and-balance-windows-horizontally
       :desc "Previous buffer" "s-[" #'previous-buffer
