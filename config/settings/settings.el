@@ -31,10 +31,24 @@
             (neotree)
             (find-file "~/.doom.d/tasks.org")))
 
+(setq frame-persp-debug
+      '((:eval (if (projectile-project-p)
+                   (concat
+                    " Persp:" (persp-name (persp-curr))
+                    " Proj:" (projectile-project-name)
+                    " Buf-groups:" (prin1-to-string (centaur-tabs-buffer-groups))
+                    " Get-groups:" (prin1-to-string (centaur-tabs-get-groups))
+                    " Cent-proj:" (centaur-tabs-project-name)
+                    " Proj-curr:" (prin1-to-string (cdr (project-current)))
+                    " Tabset:" (prin1-to-string centaur-tabs-current-tabset)
+                 )))))
+
 (setq frame-title-format
       '((:eval (if (projectile-project-p)
-                   (concat (projectile-project-name) " :: " (persp-name (persp-curr)))
-                 ""))))
+                   (concat
+                    "Perspective: " (persp-name (persp-curr))
+                    " :::: Project: " (projectile-project-name)
+                 )))))
 
 (setq consult-fd-args
   (append
