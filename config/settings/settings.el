@@ -84,4 +84,6 @@
         "s-." #'sp-forward-barf-sexp
         "M-s-." #'sp-backward-slurp-sexp
         "M-s-," #'sp-backward-barf-sexp
+        "M-s-h" #'sp-backward-sexp
+        "M-s-l" #'sp-forward-sexp
         "M-s-x" #'sp-delete-sexp))
