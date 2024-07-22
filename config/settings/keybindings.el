@@ -35,18 +35,19 @@
       :desc "Kill process" "m k" #'kill-process
 
       ;; Frequently edited files (SPC k).
-      :desc "Edit settings.el" "k s" (lambda () (interactive) (find-file "~/.doom.d/config/settings/settings.el"))
-      :desc "Edit keybindings.el" "k k" (lambda () (interactive) (find-file "~/.doom.d/config/settings/keybindings.el"))
-      :desc "Edit appearance.el" "k a" (lambda () (interactive) (find-file "~/.doom.d/config/settings/appearance.el"))
-      :desc "Edit appearance.el" "k o" (lambda () (interactive) (find-file "~/.doom.d/config/packages/org-mode.el"))
-      :desc "Edit packages.el" "k p" (lambda () (interactive) (find-file "~/.doom.d/packages.el"))
-      :desc "Edit init.el" "k i" (lambda () (interactive) (find-file "~/.doom.d/init.el"))
-      :desc "Edit hammerspoon config" "k h" (lambda () (interactive) (find-file "~/src/infra/hs-profiles/init.lua"))
-      :desc "Edit wezterm config" "k w" (lambda () (interactive) (find-file "~/src/infra/config/wezterm/.wezterm.lua"))
-      :desc "Edit tmux config" "k t" (lambda () (interactive) (find-file "~/src/infra/config/tmux/.tmux.conf"))
-      :desc "Edit fish config" "k f" (lambda () (interactive) (find-file "~/src/infra/config/fish/.config/fish/config.fish"))
-      :desc "Edit nvim config" "k v" (lambda () (interactive) (find-file "~/.config/nvim/lua/options.lua"))
-      :desc "Edit nvim config" "k V" (lambda () (interactive) (find-file "~/.config/nvim/lua/plugins.lua"))
+      :desc "Edit settings.el" "k s" (lambda () (interactive) (find-doom-file "~/.doom.d/config/settings/settings.el"))
+      :desc "Edit keybindings.el" "k k" (lambda () (interactive) (find-doom-file "~/.doom.d/config/settings/keybindings.el"))
+      :desc "Edit appearance.el" "k a" (lambda () (interactive) (find-doom-file "~/.doom.d/config/settings/appearance.el"))
+      :desc "Edit appearance.el" "k o" (lambda () (interactive) (find-doom-file "~/.doom.d/config/packages/org-mode.el"))
+      :desc "Edit proj-persp.el" "k j" (lambda () (interactive) (find-doom-file "~/.doom.d/config/packages/proj-persp.el"))
+      :desc "Edit packages.el" "k p" (lambda () (interactive) (find-doom-file "~/.doom.d/packages.el"))
+      :desc "Edit init.el" "k i" (lambda () (interactive) (find-doom-file "~/.doom.d/init.el"))
+      :desc "Edit hammerspoon config" "k h" (lambda () (interactive) (find-infra-file "~/src/infra/hs-profiles/init.lua"))
+      :desc "Edit wezterm config" "k w" (lambda () (interactive) (find-infra-file "~/src/infra/config/wezterm/.wezterm.lua"))
+      :desc "Edit tmux config" "k t" (lambda () (interactive) (find-infra-file "~/src/infra/config/tmux/.tmux.conf"))
+      :desc "Edit fish config" "k f" (lambda () (interactive) (find-infrra-file "~/src/infra/config/fish/.config/fish/config.fish"))
+      :desc "Edit nvim config" "k v" (lambda () (interactive) (find-infra-file "~/.config/nvim/lua/options.lua"))
+      :desc "Edit nvim config" "k V" (lambda () (interactive) (find-infra-file "~/.config/nvim/lua/plugins.lua"))
       :desc "View debug info buffer" "k d" #'persp-projectile-status
       )
 
