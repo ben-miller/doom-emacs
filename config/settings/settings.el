@@ -93,10 +93,6 @@
       ;; Display the buffer
       (switch-to-buffer buffer-name))))
 
-(use-package! vertico
-  :init
-  (vertico-mode))
-
 ;; Enable Vertico-Posframe
 (use-package! vertico-posframe
   :after vertico
