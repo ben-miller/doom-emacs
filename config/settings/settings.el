@@ -93,3 +93,14 @@
         "M-S-<left>" #'sp-previous-sexp
         "M-S-<right>" #'sp-next-sexp
         "M-s-x" #'sp-delete-sexp))
+
+(defun ielm-open-in-persp () (interactive)
+  (let* ((project-name (persp-name (persp-curr)))
+         (ielm-buffer-name (concat "*ielm* (" project-name ")"))
+         (existing-buffer (get-buffer ielm-buffer-name)))
+    (if existing-buffer
+        (switch-to-buffer existing-buffer)
+      (progn
+        (ielm)
+        (rename-buffer ielm-buffer-name))
+      )))
