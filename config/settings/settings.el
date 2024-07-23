@@ -101,3 +101,5 @@
     (if existing-buffer
         (switch-to-buffer existing-buffer)
       (switch-to-buffer (generate-new-buffer buffer-name)))))
+
+(setq auto-save-default nil)
