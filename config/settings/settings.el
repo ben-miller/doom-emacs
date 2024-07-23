@@ -50,10 +50,11 @@
                     " <=> Project: " (projectile-project-name)
                  )))))
 
-(setq consult-fd-args
-  (append
-    (list (if (executable-find "fdfind" 'remote) "fdfind" "fd")
-          "--color=never" "--full-path" "--absolute-path" "--hidden" "--no-ignore" "--exclude" ".git")))
+(after! consult
+  (setq consult-fd-args
+        (append
+         (list (if (executable-find "fdfind" 'remote) "fdfind" "fd")
+               "--color=never" "--full-path" "--absolute-path" "--hidden" "--no-ignore" "--exclude" ".git"))))
 
 (defun try-eval (expr)
   "Evaluate EXPR and insert the result. If EXPR results in an error, insert the error message instead."
