@@ -104,3 +104,11 @@
         (ielm)
         (rename-buffer ielm-buffer-name))
       )))
+
+(defun scratch-open-in-proj () (interactive)
+  (let* ((project-name (persp-name (persp-curr)))
+         (buffer-name (concat "*scratch* (" project-name ")"))
+         (existing-buffer (get-buffer buffer-name)))
+    (if existing-buffer
+        (switch-to-buffer existing-buffer)
+      (switch-to-buffer (generate-new-buffer buffer-name)))))
