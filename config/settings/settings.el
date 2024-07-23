@@ -94,17 +94,6 @@
         "M-S-<right>" #'sp-next-sexp
         "M-s-x" #'sp-delete-sexp))
 
-(defun ielm-open-in-proj () (interactive)
-  (let* ((project-name (persp-name (persp-curr)))
-         (buffer-name (concat "*ielm* (" project-name ")"))
-         (existing-buffer (get-buffer buffer-name)))
-    (if existing-buffer
-        (switch-to-buffer existing-buffer)
-      (progn
-        (ielm)
-        (rename-buffer buffer-name))
-      )))
-
 (defun scratch-open-in-proj () (interactive)
   (let* ((project-name (persp-name (persp-curr)))
          (buffer-name (concat "*scratch* (" project-name ")"))

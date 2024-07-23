@@ -26,4 +26,6 @@
 
 (load (expand-file-name "config/settings/appearance.el" (file-name-directory load-file-name)))
 
+(load (expand-file-name "config/settings/ielm.el" (file-name-directory load-file-name)))
+
 (load (expand-file-name "config/utils.el" (file-name-directory load-file-name)))

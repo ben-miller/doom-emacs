@@ -15,9 +15,6 @@
 (defun match-proj-scratch (input-string)
   (funcall (try-match-pattern "\\*scratch\\* (\\(.*\\))") input-string))
 
-(defun match-proj-ielm (input-string)
-  (funcall (try-match-pattern "\\*ielm\\* (\\(.*\\))") input-string))
-
 (defun match-proj-magit (input-string)
   (funcall (try-match-pattern "magit[^:]*: \\(.*\\)") input-string))
 
