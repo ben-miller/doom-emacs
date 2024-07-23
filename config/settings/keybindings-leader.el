@@ -78,4 +78,8 @@
       "k e" (lambda () (interactive) (find-infra-file "~/.doom.d/config/packages/evil.el"))
       :desc "View debug info buffer"
       "k d" #'persp-projectile-status
+
+      ;; Uncategorized.
+      :desc "Neotree find this file"
+      "f h" #'+neotree/find-this-file
       )

@@ -60,8 +60,6 @@
       ;; Neotree.
       :desc "Toggle neotree"
       "s-g" #'neotree-project-dir
-      :desc "Neotree find this file"
-      "M-h" #'+neotree/find-this-file
 
       ;; System clipboard.
       :desc "Paste from system clipboard"
@@ -80,12 +78,16 @@
       "M-k" #'drag-stuff-up
       :desc "Drag stuff down"
       "M-j" #'drag-stuff-down
+      :desc "Drag stuff left"
+      "M-h" #'drag-stuff-left
+      :desc "Drag stuff right"
+      "M-l" #'drag-stuff-right
 
-      ;; Expand-region
+      ;; Expand-region.
       :desc "Expand region"
-      "M-s-j" #'er/expand-region
+      "M-s-k" #'er/expand-region
       :desc "Contract region"
-      "M-s-k" #'er/contract-region
+      "M-s-j" #'er/contract-region
 
       ;; Comments.
       :desc "Comment LOC"

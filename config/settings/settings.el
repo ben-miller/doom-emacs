@@ -73,7 +73,6 @@
         vertico-posframe-height 30
         vertico-posframe-border-width 1))
 
-(sp-use-paredit-bindings)
 (use-package! smartparens
   :config
   (smartparens-global-mode t)
@@ -82,8 +81,14 @@
         "M-s-9" #'sp-unwrap-sexp
         "s-," #'sp-forward-slurp-sexp
         "s-." #'sp-forward-barf-sexp
-        "M-s-." #'sp-backward-slurp-sexp
+        "M-s-." #'sp-sexp-backward-slurp
         "M-s-," #'sp-backward-barf-sexp
-        "M-s-h" #'sp-backward-sexp
-        "M-s-l" #'sp-forward-sexp
+        "M-<up>" #'sp-backward-sexp
+        "M-<down>" #'sp-forward-sexp
+        "M-<right>" #'sp-forward-sexp
+        "M-<left>" #'sp-backward-sexp
+        "M-S-<up>" #'sp-up-sexp
+        "M-S-<down>" #'sp-down-sexp
+        "M-S-<left>" #'sp-previous-sexp
+        "M-S-<right>" #'sp-next-sexp
         "M-s-x" #'sp-delete-sexp))
