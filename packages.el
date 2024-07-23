@@ -11,6 +11,5 @@
 (package! swiper)
 (package! perspective)
 (package! persp-projectile)
-(package! gptel)
 (package! verb)
 (package! vertico-posframe)
