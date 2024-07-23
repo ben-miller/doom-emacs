@@ -18,6 +18,9 @@
 (defun match-proj-ielm (input-string)
   (funcall (try-match-pattern "\\*ielm\\* (\\(.*\\))") input-string))
 
+(defun match-proj-magit (input-string)
+  (funcall (try-match-pattern "magit[^:]*: \\(.*\\)") input-string))
+
 (defun my/centaur-tabs-buffer-groups ()
   (list
    (cond
@@ -26,6 +29,10 @@
                  (persp (match-proj-scratch buf))
                  (proj (cdr (assoc persp persp-proj-map))))
                  (concat "Project: " (expand-file-name proj))))
+    ((when-let* ((buf (buffer-name))
+                 (persp (match-proj-magit buf))
+                 (proj (cdr (assoc persp persp-proj-map))))
+                 (concat "Git: " (expand-file-name proj))))
     ((when-let ((project-dir (cdr (project-current))))
        (concat "Project: " project-dir)))
     ((when-let ((project-name (centaur-tabs-project-name)))
