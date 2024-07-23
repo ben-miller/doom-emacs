@@ -83,7 +83,7 @@
       :desc "Neotree find this file"
       "f h" #'+neotree/find-this-file
       :desc "Open ielm in current project"
-      "c m" #'ielm-open-in-persp
+      "c m" #'ielm-open-in-proj
       :desc "Open scratch in current project"
       "c s" #'scratch-open-in-proj
 )

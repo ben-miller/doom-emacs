@@ -1,13 +1,22 @@
+;; -*- lexical-binding: t; -*-
+
 (defun centaur-tabs-buffer-groups ()
   "Group buffers by their Projectile project."
   (if (projectile-project-p)
       (list (projectile-project-name))
     (list "Misc")))
 
+(defun try-match-pattern (pattern)
+  (lambda (input-string)
+    (if (string-match pattern input-string)
+        (match-string 1 input-string)
+      nil)))
+
 (defun match-proj-scratch (input-string)
-  (if (string-match "\\*scratch\\* (\\(.*\\))" input-string)
-      (match-string 1 input-string)
-    nil))
+  (funcall (try-match-pattern "\\*scratch\\* (\\(.*\\))") input-string))
+
+(defun match-proj-ielm (input-string)
+  (funcall (try-match-pattern "\\*ielm\\* (\\(.*\\))") input-string))
 
 (defun my/centaur-tabs-buffer-groups ()
   (list
