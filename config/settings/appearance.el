@@ -1,7 +1,11 @@
 ;; Font.
-(setq doom-font (font-spec :family "Iosevka" :size 18)
-      doom-variable-pitch-font (font-spec :family "Iosevka" :size 18)
-      doom-big-font (font-spec :family "Iosevka" :size 24))
+;; (setq doom-font (font-spec :family "Iosevka" :size 18)
+      ;; doom-variable-pitch-font (font-spec :family "Iosevka" :size 18)
+      ;; doom-big-font (font-spec :family "Iosevka" :size 24))
+
+(setq doom-font (font-spec :family "JetBrains Mono" :size 16 :weight 'Medium)
+      doom-big-font (font-spec :family "JetBrains Mono" :size 20 :weight 'Medium)
+      doom-variable-pitch-font (font-spec :family "JetBrains Mono" :size 16))
 
 (set-face-attribute 'default nil :family "Iosevka")
 
