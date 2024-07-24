@@ -36,10 +36,6 @@
     ((string-match-p "^\\*Org TODO\\*" (buffer-name))
      "Org TODO"
      )
-    ((when-let ((project-dir (cdr (project-current))))
-       (concat "Project: " project-dir)))
-    ((when-let ((project-name (centaur-tabs-project-name)))
-       project-name))
     ((or (string-equal "*" (substring (buffer-name) 0 1))
          (memq major-mode '( magit-process-mode
                              magit-status-mode
@@ -49,6 +45,10 @@
                              magit-blob-mode
                              magit-blame-mode)))
      "Emacs")
+    ((when-let ((project-dir (cdr (project-current))))
+       (concat "Project: " project-dir)))
+    ((when-let ((project-name (centaur-tabs-project-name)))
+       project-name))
     ((derived-mode-p 'shell-mode) "Shell")
     ((derived-mode-p 'eshell-mode) "EShell")
     ((derived-mode-p 'emacs-lisp-mode) "Elisp")
