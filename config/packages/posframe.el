@@ -5,4 +5,5 @@
   (setq vertico-posframe-poshandler 'posframe-poshandler-frame-center
         vertico-posframe-width 120
         vertico-posframe-height 30
+        vertico-count 28
         vertico-posframe-border-width 1))
