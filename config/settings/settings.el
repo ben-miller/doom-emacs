@@ -65,16 +65,6 @@
 
 (defun insert-line (line) (insert (concat line "\n")))
 
-;; Enable Vertico-Posframe
-(use-package! vertico-posframe
-  :after vertico
-  :config
-  (vertico-posframe-mode 1)
-  (setq vertico-posframe-poshandler 'posframe-poshandler-frame-center
-        vertico-posframe-width 120
-        vertico-posframe-height 30
-        vertico-posframe-border-width 1))
-
 (use-package! smartparens
   :config
   (smartparens-global-mode t)

@@ -16,6 +16,8 @@
 
 (load (expand-file-name "config/packages/leetcode.el" (file-name-directory load-file-name)))
 
+(load (expand-file-name "config/packages/posframe.el" (file-name-directory load-file-name)))
+
 (load (expand-file-name "config/packages/evil.el" (file-name-directory load-file-name)))
 
 (load (expand-file-name "config/settings/settings.el" (file-name-directory load-file-name)))
