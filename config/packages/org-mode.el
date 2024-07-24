@@ -47,7 +47,7 @@
                 (evil-insert 1))))
 
 (after! org-agenda
-  (map! :map org-agenda-mode-map "<escape>" #'org-agenda-exit))
+  (map! :map org-agenda-mode-map "<escape>" #'org-agenda-Quit))
 
 (setq
  ;; Edit settings

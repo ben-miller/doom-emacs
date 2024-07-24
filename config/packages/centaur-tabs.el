@@ -30,13 +30,16 @@
                  (persp (match-proj-magit buf))
                  (proj (cdr (assoc persp persp-proj-map))))
                  (concat "Git: " (expand-file-name proj))))
+    ((string-match-p "^\\*Org Agenda\\*" (buffer-name))
+     "Org Agenda"
+     )
+    ((string-match-p "^\\*Org TODO\\*" (buffer-name))
+     "Org TODO"
+     )
     ((when-let ((project-dir (cdr (project-current))))
        (concat "Project: " project-dir)))
     ((when-let ((project-name (centaur-tabs-project-name)))
        project-name))
-    ((or (memq major-mode '(org-mode org-agenda-mode diary-mode))
-         (string-match-p "^\\*Org Agenda\\*" (buffer-name)))
-     "OrgMode")
     ((or (string-equal "*" (substring (buffer-name) 0 1))
          (memq major-mode '( magit-process-mode
                              magit-status-mode
