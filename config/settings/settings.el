@@ -27,9 +27,10 @@
 (add-hook 'emacs-startup-hook
           (lambda ()
             (find-file "~/.doom.d/tasks.org")
-            (org-mode-restart)
+            (org-reload)
+            (org-modern-mode)
             (neotree)
-            (find-file "~/.doom.d/tasks.org")))
+            ))
 
 (setq frame-persp-debug
       '((:eval (if (projectile-project-p)
