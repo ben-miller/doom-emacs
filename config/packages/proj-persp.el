@@ -3,6 +3,7 @@
                        ("org" . "~/org/")
                        ("life" . "~/life/")
                        ("infra" . "~/src/infra/")
+                       (".emacs.d" . "~/.emacs.d/")
                        ("comptus-takehome" . "~/src/projects/comptus-takehome/"))
       )
 
@@ -12,6 +13,7 @@
                                     "~/org"
                                     "~/life"
                                     "~/src/infra"
+                                    "~/.emacs.d"
                                     "~/src/projects/comptus-takehome"
                                     )
         projectile-completion-system 'default
