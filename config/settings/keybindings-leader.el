@@ -72,10 +72,10 @@
       "k f" (lambda () (interactive) (find-infra-file "~/src/infra/config/fish/.config/fish/config.fish"))
       :desc "Edit nvim options"
       "k v" (lambda () (interactive) (find-infra-file "~/.config/nvim/lua/options.lua"))
-      :desc "Edit nvim plugins"
-      "k V" (lambda () (interactive) (find-infra-file "~/.config/nvim/lua/plugins.lua"))
       :desc "Edit evil config"
       "k e" (lambda () (interactive) (find-infra-file "~/.doom.d/config/packages/evil.el"))
+      :desc "Edit ideavim config"
+      "k V" (lambda () (interactive) (find-infra-file "~/.ideavimrc"))
       :desc "View debug info buffer"
       "k d" #'persp-projectile-status
 
