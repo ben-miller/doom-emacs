@@ -1,1 +1,1 @@
-(setq leetcode-prefer-language "ruby")
+(setq leetcode-prefer-language "kotlin")

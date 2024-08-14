@@ -1,6 +1,9 @@
 (add-hook 'doom-after-init-hook
           (lambda () (doom/quickload-session t)))
 
+;; Disable save-place mode
+(setq save-place-mode nil)
+
 ;; Don't prompt when exiting.
 (setq confirm-kill-emacs nil)
 

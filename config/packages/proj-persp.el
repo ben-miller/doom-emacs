@@ -3,8 +3,11 @@
                        ("org" . "~/org/")
                        ("life" . "~/life/")
                        ("infra" . "~/src/infra/")
+                       ("config" . "~/src/infra/config")
                        (".emacs.d" . "~/.emacs.d/")
-                       ("comptus-takehome" . "~/src/projects/comptus-takehome/"))
+                       ("tauri-tutorial" . "~/src/projects/tauri-tutorial/")
+                       ("life-api" . "~/src/projects/life-api/")
+                       ("utility-service" . "~/src/projects/utility-service/"))
       )
 
 (after! projectile
@@ -13,8 +16,10 @@
                                     "~/org"
                                     "~/life"
                                     "~/src/infra"
-                                    "~/.emacs.d"
-                                    "~/src/projects/comptus-takehome"
+                                    "~/src/infra/config"
+                                    "~/src/projects/tauri-tutorial"
+                                    "~/src/projects/life-api"
+                                    "~/src/projects/utility-service"
                                     )
         projectile-completion-system 'default
         projectile-auto-discover nil

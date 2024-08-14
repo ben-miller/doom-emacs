@@ -14,8 +14,10 @@
       ;; Org mode (SPC d).
       :desc "Org refile"
       "d f" #'org-refile
+      ;; :desc "Show DOING items"
+      ;; "d d" (lambda () (interactive) (org-todo-list "DOING"))
       :desc "Show DOING items"
-      "d d" (lambda () (interactive) (org-todo-list "DOING"))
+      "d d" (lambda () (interactive) (find-file "~/org/projects/dev.org"))
       :desc "Show NEXT items"
       "d n" (lambda () (interactive) (org-todo-list "NEXT"))
       :desc "Show SELECTED items"
