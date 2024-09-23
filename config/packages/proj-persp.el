@@ -5,9 +5,10 @@
                        ("infra" . "~/src/infra/")
                        ("config" . "~/src/infra/config")
                        (".emacs.d" . "~/.emacs.d/")
-                       ("tauri-tutorial" . "~/src/projects/tauri-tutorial/")
+                       ("imprecv" . "~/src/projects/imprecv/")
                        ("life-api" . "~/src/projects/life-api/")
-                       ("utility-service" . "~/src/projects/utility-service/"))
+                       ("obsidian-components" . "~/src/projects/obsidian-components/")
+                       ("py-utils" . "~/src/projects/py-utils/"))
       )
 
 (after! projectile
@@ -17,9 +18,10 @@
                                     "~/life"
                                     "~/src/infra"
                                     "~/src/infra/config"
-                                    "~/src/projects/tauri-tutorial"
+                                    "~/src/projects/imprecv"
                                     "~/src/projects/life-api"
-                                    "~/src/projects/utility-service"
+                                    "~/src/projects/obsidian-components"
+                                    "~/src/projects/py-utils"
                                     )
         projectile-completion-system 'default
         projectile-auto-discover nil

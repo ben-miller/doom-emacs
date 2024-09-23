@@ -97,3 +97,9 @@
       (switch-to-buffer (generate-new-buffer buffer-name)))))
 
 (setq auto-save-default nil)
+
+(defun disable-flycheck-kotlin ()
+  (when (derived-mode-p 'kotlin-mode)
+    (flycheck-mode -1)))
+
+(add-hook 'kotlin-mode-hook 'disable-flycheck-kotlin)

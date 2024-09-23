@@ -34,7 +34,7 @@
       :desc "Capture to global inbox"
       "n k" (lambda () (interactive) (org-capture nil "g"))
 
-      :desc "Open current tasks.org"
+      :desc "Open tasks.org"
       "d K" (lambda () (interactive) (find-file (my/org-project-agenda-file)))
       :desc "Open global tasks.org"
       "n K" (lambda () (interactive) (find-file "~/org/tasks.org"))
@@ -60,6 +60,8 @@
       "k o" (lambda () (interactive) (find-doom-file "~/.doom.d/config/packages/org-mode.el"))
       :desc "Edit proj-persp.el"
       "k j" (lambda () (interactive) (find-doom-file "~/.doom.d/config/packages/proj-persp.el"))
+      :desc "Edit JetBrains keymaps"
+      "k J" (lambda () (interactive) (find-doom-file "~/src/infra/config/jetbrains/macOS copy.xml"))
       :desc "Edit packages.el"
       "k p" (lambda () (interactive) (find-doom-file "~/.doom.d/packages.el"))
       :desc "Edit init.el"

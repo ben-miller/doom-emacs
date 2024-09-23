@@ -13,3 +13,4 @@
 (package! persp-projectile)
 (package! verb)
 (package! vertico-posframe)
+(package! format-all)

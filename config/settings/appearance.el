@@ -25,6 +25,6 @@
   (set-face-foreground face (face-attribute 'default :background)))
 (set-face-background 'fringe (face-attribute 'default :background))
 
-(setq doom-theme 'doom-feather-light)
+;; (setq doom-theme 'doom-feather-light)
 ;; (setq doom-theme 'doom-flatwhite)
 ;; (setq doom-theme 'doom-nord-light)
