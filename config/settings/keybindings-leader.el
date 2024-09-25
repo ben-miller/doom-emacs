@@ -1,3 +1,7 @@
+;; Make both Option keys Meta
+(setq mac-option-modifier 'meta)
+(setq mac-right-option-modifier 'meta)
+
 (map! :leader
       ;; Inbox
       :desc "Babel execute source block"
