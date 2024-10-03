@@ -103,3 +103,6 @@
     (flycheck-mode -1)))
 
 (add-hook 'kotlin-mode-hook 'disable-flycheck-kotlin)
+
+;; Make cursor flash indefinitely
+(setq blink-cursor-blinks 0)
