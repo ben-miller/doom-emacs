@@ -18,10 +18,10 @@
       ;; Org mode (SPC d).
       :desc "Org refile"
       "d f" #'org-refile
-      ;; :desc "Show DOING items"
-      ;; "d d" (lambda () (interactive) (org-todo-list "DOING"))
-      :desc "Show DOING items"
-      "d d" (lambda () (interactive) (find-file "~/org/projects/dev.org"))
+      :desc "Open dev.org"
+      "d d" (lambda () (interactive) (find-file "~/life/org/projects/dev.org"))
+      :desc "Open emacs.org"
+      "d e" (lambda () (interactive) (find-file "~/life/org/projects/emacs.org"))
       :desc "Show NEXT items"
       "d n" (lambda () (interactive) (org-todo-list "NEXT"))
       :desc "Show SELECTED items"
@@ -37,11 +37,6 @@
       "d N" (lambda () (interactive) (org-capture nil "n"))
       :desc "Capture to global inbox"
       "n k" (lambda () (interactive) (org-capture nil "g"))
-
-      :desc "Open tasks.org"
-      "d K" (lambda () (interactive) (find-file (my/org-project-agenda-file)))
-      :desc "Open global tasks.org"
-      "n K" (lambda () (interactive) (find-file "~/org/tasks.org"))
 
       ;; Projectile-perspective.
       :desc "Switch project"

@@ -6,7 +6,7 @@
 
 (defun my/org-project-agenda-file ()
   "Get project's tasks.org file, if it exists."
-  (expand-file-name "tasks.org" (or (projectile-project-root) "~/org/")))
+  (expand-file-name "tasks.org" (or (projectile-project-root) "~/life/org/")))
 
 (defun my/org-agenda-files ()
   (interactive)
@@ -39,7 +39,7 @@
   (setq
         org-capture-templates (my/org-capture-templates)
         org-agenda-files (my/org-agenda-files)
-        org-todo-keywords '((sequence "INBOX" "SELECTED" "NEXT" "DOING" "POSTPONED" "BUG" "|" "DONE")))
+        org-todo-keywords '((sequence "INBOX" "IDEA" "SELECTED" "NEXT" "DOING" "POSTPONED" "BUG" "|" "DONE")))
   (map! :map org-mode-map
         "M-o" (lambda ()
                 (interactive)

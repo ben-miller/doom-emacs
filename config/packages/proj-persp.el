@@ -8,6 +8,7 @@
                        ("imprecv" . "~/src/projects/imprecv/")
                        ("life-api" . "~/src/projects/life-api/")
                        ("obsidian-components" . "~/src/projects/obsidian-components/")
+                       ("life" . "~/life/")
                        ("py-utils" . "~/src/projects/py-utils/"))
       )
 
@@ -21,6 +22,7 @@
                                     "~/src/projects/imprecv"
                                     "~/src/projects/life-api"
                                     "~/src/projects/obsidian-components"
+                                    "~/life"
                                     "~/src/projects/py-utils"
                                     )
         projectile-completion-system 'default

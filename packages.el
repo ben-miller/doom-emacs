@@ -14,3 +14,4 @@
 (package! verb)
 (package! vertico-posframe)
 (package! format-all)
+(package! obsidian)
