@@ -12,4 +12,5 @@
         (message "Could not find git project root."))))
 
 (after! neotree
+  (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
   (setq neo-window-width 40))

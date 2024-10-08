@@ -15,3 +15,5 @@
 (package! vertico-posframe)
 (package! format-all)
 (package! obsidian)
+(package! all-the-icons)
+(package! all-the-icons-dired)

@@ -106,3 +106,9 @@
 
 ;; Make cursor flash indefinitely
 (setq blink-cursor-blinks 0)
+
+;; Dired settings
+(after! dired
+  (setq dired-listing-switches "-a1")
+  (add-hook 'dired-mode-hook 'dired-hide-details-mode)
+  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))

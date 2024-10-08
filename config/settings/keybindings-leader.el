@@ -19,9 +19,14 @@
       :desc "Org refile"
       "d f" #'org-refile
       :desc "Open dev.org"
-      "d d" (lambda () (interactive) (find-file "~/life/org/projects/dev.org"))
+      "d d" (lambda () (interactive) (find-file "~/life/org/dev.org"))
       :desc "Open emacs.org"
-      "d e" (lambda () (interactive) (find-file "~/life/org/projects/emacs.org"))
+      "d e" (lambda () (interactive) (find-file "~/life/org/emacs.org"))
+      :desc "Open infra.org"
+      "d i" (lambda () (interactive) (find-file "~/life/org/infra.org"))
+      :desc "Open tech-learning.org"
+      "d t" (lambda () (interactive) (find-file "~/life/org/tech-learning.org"))
+
       :desc "Show NEXT items"
       "d n" (lambda () (interactive) (org-todo-list "NEXT"))
       :desc "Show SELECTED items"
