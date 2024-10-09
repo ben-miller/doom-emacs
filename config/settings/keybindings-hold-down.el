@@ -57,6 +57,10 @@
       :desc "Create file"
       "s-n" #'projectile-create-new-file
 
+      ;; Projectile-perspective.
+      :desc "Switch perspective"
+      "C-M-j" #'projectile-persp-switch-project
+
       ;; Neotree.
       :desc "Toggle neotree"
       "s-g" #'neotree-project-dir

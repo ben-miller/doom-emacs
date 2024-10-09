@@ -7,3 +7,7 @@
         vertico-posframe-height 30
         vertico-count 28
         vertico-posframe-border-width 1))
+
+(after! vertico
+  (define-key vertico-map (kbd "C-M-j") #'vertico-next)
+  (define-key vertico-map (kbd "C-M-k") #'vertico-previous))
