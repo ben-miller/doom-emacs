@@ -24,3 +24,6 @@
 ;; (setq doom-theme 'doom-feather-light)
 ;; (setq doom-theme 'doom-flatwhite)
 ;; (setq doom-theme 'doom-nord-light)
+(setq doom-theme 'doom-city-lights)
+
+;; (set-face-attribute 'default nil :background "#414141")
