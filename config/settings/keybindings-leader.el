@@ -88,8 +88,6 @@
       "k d" #'persp-projectile-status
 
       ;; Uncategorized.
-      :desc "Neotree find this file"
-      "f h" #'+neotree/find-this-file
       :desc "Open ielm"
       "c m" #'ielm
       :desc "Reload ielm"

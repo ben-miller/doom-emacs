@@ -98,4 +98,7 @@
       "s-/" (lambda () (interactive)
                                   (evilnc-comment-or-uncomment-lines 1)
                                   (forward-line 1))
+
+      :desc "Neotree find this file"
+      "M-h" #'+neotree/find-this-file
       )
