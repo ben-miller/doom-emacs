@@ -29,7 +29,6 @@
 
 (add-hook 'emacs-startup-hook
           (lambda ()
-            (find-file "~/.doom.d/tasks.org")
             (org-reload)
             (org-modern-mode)
             (neotree)

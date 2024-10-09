@@ -35,10 +35,13 @@
         projectile-track-known-projects-automatically nil)
   (add-hook 'persp-switch-hook
             (lambda ()
-              (message (concat "persp name: " (prin1-to-string (persp-name (persp-curr)))))
-              (neotree-dir (cdr (assoc (persp-name (persp-curr)) persp-proj-map)))
-              (setq org-capture-templates (my/org-capture-templates)
-                    org-agenda-files (my/org-agenda-files))))
+              (let* ((current-persp-name (persp-name (persp-curr))))
+                (message (concat "persp name: " (prin1-to-string current-persp-name)))
+                (neotree-dir (cdr (assoc current-persp-name persp-proj-map)))
+                (setq org-capture-templates (my/org-capture-templates)
+                      org-agenda-files (my/org-agenda-files)))
+              )
+            )
   (add-hook 'projectile-after-switch-project-hook (lambda ())))
 
 (use-package! perspective
