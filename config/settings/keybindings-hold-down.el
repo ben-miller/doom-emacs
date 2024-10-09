@@ -60,6 +60,8 @@
       ;; Projectile-perspective.
       :desc "Switch perspective"
       "C-M-j" #'projectile-persp-switch-project
+      :desc "Switch perspective"
+      "C-M-k" #'projectile-persp-switch-project
 
       ;; Neotree.
       :desc "Toggle neotree"
