@@ -37,14 +37,25 @@
 
 (after! org
   (setq
-        org-capture-templates (my/org-capture-templates)
-        org-agenda-files (my/org-agenda-files)
-        org-todo-keywords '((sequence "INBOX" "IDEA" "SELECTED" "NEXT" "DOING" "POSTPONED" "BUG" "|" "DONE")))
+   org-capture-templates (my/org-capture-templates)
+   org-agenda-files (my/org-agenda-files)
+   org-todo-keywords '((sequence "INBOX" "IDEA" "SELECTED" "NEXT" "DOING" "POSTPONED" "BUG" "|" "DONE")))
   (map! :map org-mode-map
         "M-o" (lambda ()
                 (interactive)
                 (org-meta-return)
-                (evil-insert 1))))
+                (evil-insert 1)))
+  (dolist (face '(org-level-1
+                  org-level-2
+                  org-level-3
+                  org-level-4
+                  org-level-5
+                  org-level-6
+                  org-level-7
+                  org-level-8
+                  org-document-title))
+    (set-face-attribute face nil :weight 'Light))
+  )
 
 (after! org-agenda
   (map! :map org-agenda-mode-map "<escape>" #'org-agenda-Quit))
