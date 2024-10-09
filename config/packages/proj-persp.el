@@ -1,6 +1,5 @@
 (setq persp-proj-map '(
                        (".doom.d" . "~/.doom.d/")
-                       ("org" . "~/org/")
                        ("life" . "~/life/")
                        ("infra" . "~/src/infra/")
                        ("config" . "~/src/infra/config")
@@ -15,7 +14,6 @@
 (after! projectile
   (setq projectile-known-projects '(
                                     "~/.doom.d"
-                                    "~/org"
                                     "~/life"
                                     "~/src/infra"
                                     "~/src/infra/config"
@@ -35,13 +33,8 @@
         projectile-track-known-projects-automatically nil)
   (add-hook 'persp-switch-hook
             (lambda ()
-              (let* ((current-persp-name (persp-name (persp-curr))))
-                (message (concat "persp name: " (prin1-to-string current-persp-name)))
-                (neotree-dir (cdr (assoc current-persp-name persp-proj-map)))
-                (setq org-capture-templates (my/org-capture-templates)
-                      org-agenda-files (my/org-agenda-files)))
-              )
-            )
+              (neotree-dir-from-persp)
+            ))
   (add-hook 'projectile-after-switch-project-hook (lambda ())))
 
 (use-package! perspective
