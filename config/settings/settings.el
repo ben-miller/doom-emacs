@@ -120,3 +120,8 @@
         scroll-margin 0)
   :config
   (ultra-scroll-mac-mode 1))
+
+(load-file "~/.gptel.el")
+(use-package! gptel
+  :config
+  (setq! gptel-api-key gptel-api-key))
