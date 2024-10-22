@@ -112,3 +112,11 @@
   (setq dired-omit-files "^\\...+$")
   (add-hook 'dired-mode-hook 'dired-hide-details-mode)
   (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
+
+(use-package! ultra-scroll-mac
+  :if (eq window-system 'mac)
+  :init
+  (setq scroll-conservatively 101 ; important!
+        scroll-margin 0)
+  :config
+  (ultra-scroll-mac-mode 1))
