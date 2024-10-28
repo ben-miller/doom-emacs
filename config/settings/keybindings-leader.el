@@ -19,29 +19,19 @@
       :desc "Org refile"
       "d f" #'org-refile
       :desc "Open dev.org"
-      "d d" (lambda () (interactive) (find-file "~/life/org/dev.org"))
-      :desc "Open emacs.org"
-      "d e" (lambda () (interactive) (find-file "~/life/org/emacs.org"))
-      :desc "Open infra.org"
-      "d i" (lambda () (interactive) (find-file "~/life/org/infra.org"))
-      :desc "Open tech-learning.org"
-      "d t" (lambda () (interactive) (find-file "~/life/org/tech-learning.org"))
+      "d d" (lambda () (interactive) (find-file "~/life/org/tasks.org"))
 
       :desc "Show NEXT items"
       "d n" (lambda () (interactive) (org-todo-list "NEXT"))
       :desc "Show SELECTED items"
       "d s" (lambda () (interactive) (org-todo-list "SELECTED"))
 
-      :desc "Capture to inbox as DOING"
-      "d D" (lambda () (interactive) (org-capture nil "d"))
       :desc "Capture to inbox as INBOX"
       "d k" (lambda () (interactive) (org-capture nil "i"))
-      :desc "Capture to inbox as INBOX"
-      "d I" (lambda () (interactive) (org-capture nil "i"))
+      :desc "Capture to inbox as DOING"
+      "d D" (lambda () (interactive) (org-capture nil "d"))
       :desc "Capture to inbox as NEXT"
       "d N" (lambda () (interactive) (org-capture nil "n"))
-      :desc "Capture to global inbox"
-      "n k" (lambda () (interactive) (org-capture nil "g"))
 
       ;; Projectile-perspective.
       :desc "Switch project"

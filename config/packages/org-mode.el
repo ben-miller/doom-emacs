@@ -4,7 +4,7 @@
 
 (defun my/org-project-agenda-file ()
   "Get project's tasks.org file, if it exists"
-  (expand-file-name "tasks.org" (or (projectile-project-root) "~/life/org/")))
+  (expand-file-name "tasks.org" "~/life/org/"))
 
 (defun my/org-agenda-files ()
   (interactive)
@@ -12,10 +12,7 @@
 
 (defun my/org-capture-templates ()
   "Define org capture templates"
-  `(("g" "Global INBOX item" entry
-     (file+headline "~/org/tasks.org" "Inbox")
-     "** INBOX %?\n")
-
+  `(
     ("i" "INBOX item" entry
      (file+headline ,(my/org-project-agenda-file) "Inbox")
      "** INBOX %?\n")

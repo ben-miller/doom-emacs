@@ -20,7 +20,7 @@
                                     "~/src/projects/imprecv"
                                     "~/src/projects/life-api"
                                     "~/src/projects/obsidian-components"
-                                    "~/org"
+                                    "~/life/org"
                                     "~/src/projects/py-utils"
                                     )
         projectile-completion-system 'default
