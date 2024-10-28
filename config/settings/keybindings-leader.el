@@ -18,16 +18,20 @@
       ;; Org mode (SPC d).
       :desc "Org refile"
       "d f" #'org-refile
-      :desc "Open dev.org"
-      "d d" (lambda () (interactive) (find-file "~/life/org/tasks.org"))
+      :desc "Open tasks.org"
+      "d k" (lambda () (interactive) (find-file "~/life/org/tasks.org"))
 
+      :desc "Show INBOX items"
+      "d i" (lambda () (interactive) (org-todo-list "INBOX"))
+      :desc "Show DOING items"
+      "d d" (lambda () (interactive) (org-todo-list "DOING"))
       :desc "Show NEXT items"
       "d n" (lambda () (interactive) (org-todo-list "NEXT"))
       :desc "Show SELECTED items"
       "d s" (lambda () (interactive) (org-todo-list "SELECTED"))
 
       :desc "Capture to inbox as INBOX"
-      "d k" (lambda () (interactive) (org-capture nil "i"))
+      "d I" (lambda () (interactive) (org-capture nil "i"))
       :desc "Capture to inbox as DOING"
       "d D" (lambda () (interactive) (org-capture nil "d"))
       :desc "Capture to inbox as NEXT"
