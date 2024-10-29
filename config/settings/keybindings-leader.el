@@ -23,12 +23,14 @@
 
       :desc "Show INBOX items"
       "d i" (lambda () (interactive) (org-todo-list "INBOX"))
-      :desc "Show DOING items"
-      "d d" (lambda () (interactive) (org-todo-list "DOING"))
-      :desc "Show NEXT items"
-      "d n" (lambda () (interactive) (org-todo-list "NEXT"))
       :desc "Show SELECTED items"
       "d s" (lambda () (interactive) (org-todo-list "SELECTED"))
+      :desc "Show NEXT items"
+      "d n" (lambda () (interactive) (org-todo-list "NEXT"))
+      :desc "Show DOING items"
+      "d d" (lambda () (interactive) (org-todo-list "DOING"))
+      :desc "Show BUG items"
+      "d b" (lambda () (interactive) (org-todo-list "BUG"))
 
       :desc "Capture to inbox as INBOX"
       "d I" (lambda () (interactive) (org-capture nil "i"))

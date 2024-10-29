@@ -81,13 +81,13 @@
 
       ;; Drag stuff.
       :desc "Drag stuff up"
-      "M-k" #'drag-stuff-up
+      "M-s-k" #'drag-stuff-up
       :desc "Drag stuff down"
-      "M-j" #'drag-stuff-down
+      "M-s-j" #'drag-stuff-down
       :desc "Drag stuff left"
-      "M-h" #'drag-stuff-left
+      "M-s-h" #'drag-stuff-left
       :desc "Drag stuff right"
-      "M-l" #'drag-stuff-right
+      "M-s-l" #'drag-stuff-right
 
       ;; Expand-region.
       :desc "Expand region"

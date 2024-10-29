@@ -17,17 +17,21 @@
      (file+headline ,(my/org-project-agenda-file) "Inbox")
      "** INBOX %?\n")
 
-    ("d" "DOING item" entry
+    ("s" "SELECTED item" entry
      (file+headline ,(my/org-project-agenda-file) "Inbox")
-     "** DOING %?\n")
+     "** SELECTED %?\n")
 
     ("n" "NEXT item" entry
      (file+headline ,(my/org-project-agenda-file) "Inbox")
      "** NEXT %?\n")
 
-    ("s" "SELECTED item" entry
+    ("d" "DOING item" entry
      (file+headline ,(my/org-project-agenda-file) "Inbox")
-     "** SELECTED %?\n")
+     "** DOING %?\n")
+
+    ("b" "BUG item" entry
+     (file+headline ,(my/org-project-agenda-file) "Inbox")
+     "** BUG %?\n")
     ))
 
 (after! org
