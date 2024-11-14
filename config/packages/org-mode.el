@@ -4,7 +4,7 @@
 
 (defun my/org-project-agenda-file ()
   "Get project's tasks.org file, if it exists"
-  (expand-file-name "tasks.org" "~/life/org/"))
+  (expand-file-name "tasks.org" "~/org/"))
 
 (defun my/org-agenda-files ()
   (interactive)

@@ -19,7 +19,9 @@
       :desc "Org refile"
       "d f" #'org-refile
       :desc "Open tasks.org"
-      "d k" (lambda () (interactive) (find-file "~/life/org/tasks.org"))
+      "d k" (lambda () (interactive) (find-file "~/org/tasks.org"))
+      :desc "Open archive.org"
+      "d a" (lambda () (interactive) (find-file "~/org/archive.org"))
 
       :desc "Show INBOX items"
       "d i" (lambda () (interactive) (org-todo-list "INBOX"))
@@ -90,4 +92,6 @@
       "c M" #'ielm-reload
       :desc "Open scratch in current project"
       "c s" #'scratch-open-in-proj
+      :desc "Neotree find this file"
+      "f h" #'+neotree/find-this-file
 )

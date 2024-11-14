@@ -1,25 +1,23 @@
 (setq persp-proj-map '(
                        (".doom.d" . "~/.doom.d/")
                        ("life" . "~/life/")
+                       ("org" . "~/org/")
                        ("infra" . "~/src/infra/")
                        ("config" . "~/src/infra/config")
                        (".emacs.d" . "~/.emacs.d/")
                        ("imprecv" . "~/src/projects/imprecv/")
-                       ("life-api" . "~/src/projects/life-api/")
-                       ("obsidian-components" . "~/src/projects/obsidian-components/")
-                       ("py-utils" . "~/src/projects/py-utils/"))
-      )
+                       ("relational-links" . "~/src/projects/relational-links/")
+                       ))
 
 (after! projectile
   (setq projectile-known-projects '(
                                     "~/.doom.d"
                                     "~/life"
+                                    "~/org"
                                     "~/src/infra"
                                     "~/src/infra/config"
                                     "~/src/projects/imprecv"
-                                    "~/src/projects/life-api"
-                                    "~/src/projects/obsidian-components"
-                                    "~/src/projects/py-utils"
+                                    "~/src/projects/relational-links"
                                     )
         projectile-completion-system 'default
         projectile-auto-discover nil
