@@ -1,22 +1,23 @@
 
 (defun neotree-dir-from-persp ()
-  (neotree-toggle)
-  (let* ((current-persp-name (persp-name (persp-curr)))
+  "Open NeoTree with the directory of the current perspective and maintain window focus."
+  (let* ((current-window (selected-window))  ;; Save the current window
+         (current-persp-name (persp-name (persp-curr)))
          (persp-project-path (cdr (assoc current-persp-name persp-proj-map))))
-    (message (concat "persp name: " (prin1-to-string current-persp-name)))
+    ;; Toggle NeoTree and set directory based on perspective
+    (neotree-toggle)
+    (message "persp name: %s" (prin1-to-string current-persp-name))
     (cond
      ;; If perspective path is available, use it
      (persp-project-path
-      (if (neo-global--window-exists-p)
-          (progn
-            (neotree-dir persp-project-path))
-        (message "NeoTree window does not exist.")))
-
+      (when (neo-global--window-exists-p)
+        (neotree-dir persp-project-path)))
+     ;; Default to home directory if no project path is found
      (t
-      (if (neo-global--window-exists-p)
-          (progn
-            (neotree-dir "~")))))))
-
+      (when (neo-global--window-exists-p)
+        (neotree-dir "~"))))
+    ;; Restore focus to the original window
+    (select-window current-window)))
 
 (defun neotree-project-dir ()
   (interactive)
