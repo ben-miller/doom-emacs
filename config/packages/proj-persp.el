@@ -91,9 +91,12 @@
                     " Tabset:" (prin1-to-string centaur-tabs-current-tabset)
                  )))))
 
-(setq frame-title-format
-      '((:eval (if (projectile-project-p)
-                   (concat
-                    "Perspective: " (persp-name (persp-curr))
-                    " <=> Project: " (projectile-project-name)
-                 )))))
+;; (setq frame-title-format
+;;       '((:eval (if (projectile-project-p)
+;;                    (concat
+;;                     "Perspective: " (persp-name (persp-curr))
+;;                     " <=> Project: " (projectile-project-name)
+;;                  )))))
+
+;; Disable frame title (otherwise shows as barely visible white color)
+(setq frame-title-format nil)
