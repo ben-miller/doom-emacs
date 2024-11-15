@@ -62,6 +62,10 @@
       "C-M-j" #'projectile-persp-switch-project
       :desc "Switch perspective"
       "C-M-k" #'projectile-persp-switch-project
+      :desc "Next tab"
+      "M-s-<right>" #'tab-next
+      :desc "Previous tab"
+      "M-s-<left>" #'tab-previous
 
       ;; Neotree.
       :desc "Toggle neotree"

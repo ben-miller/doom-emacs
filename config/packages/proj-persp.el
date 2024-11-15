@@ -100,3 +100,77 @@
 
 ;; Disable frame title (otherwise shows as barely visible white color)
 (setq frame-title-format nil)
+
+(defun rename-initial-tab-to-main ()
+  "Rename the initial tab to main and link it to the main perspective."
+  (when (string= (alist-get 'name (tab-bar--current-tab)) "*scratch*")
+    (tab-bar-rename-tab "main")
+    (message "Renamed initial tab to main.")))
+
+(add-hook 'tab-bar-mode-hook #'rename-initial-tab-to-main)
+
+;; Enable 'tab-bar-mode'
+(tab-bar-mode 1)
+
+(defun persp-status ()
+  "Print the current perspective name and a list of all perspectives."
+  (interactive)
+  (let ((current-persp (persp-name (persp-curr)))
+        (all-persps (persp-names)))
+    (message "Current Perspective: %s" current-persp)
+    (message "All Perspectives: %s" (mapconcat 'identity all-persps ", "))))
+
+
+;; Hook for when a perspective is created
+(add-hook 'persp-created-hook
+          (lambda (&rest _args)
+            (let ((persp-name (persp-name (persp-curr))))
+              (message "persp-created-hook triggered: %s" persp-name)
+              ;; Create a new tab with the name of the perspective
+              (tab-bar-new-tab)
+              (tab-bar-rename-tab persp-name)
+              ;; Optionally show perspective status
+              (persp-status))))
+
+;; Hook for before a perspective is killed
+(add-hook 'persp-killed-hook
+          (lambda (&rest _args)
+            (let ((persp-name (persp-name persp)))
+              (message "persp-killed-hook triggered: %s" persp-name))
+            (persp-status)))
+
+;; Hook for when a perspective is activated
+(add-hook 'persp-activated-hook
+          (lambda (&rest _args)
+            (message "persp-activated-hook triggered")
+            (let ((persp-name (persp-name (persp-curr))))
+              (message "persp-activated-hook triggered: %s" persp-name))
+            (persp-status)))
+
+;; Hook for when a perspective is switched
+(add-hook 'persp-switch-hook
+          (lambda ()
+            (message "persp-switch-hook triggered")
+            (persp-status)))
+
+;; Advice for when a tab is selected
+(advice-add 'tab-bar-select-tab :after
+            (lambda (&rest _args)
+              (message "tab-bar-select-tab called")
+              (persp-status)))
+
+;; Advice for switching to the next tab
+(advice-add 'tab-bar-switch-to-next-tab :after
+            (lambda (&rest _args)
+              (let ((tab-name (alist-get 'name (tab-bar--current-tab))))
+                (persp-switch tab-name)
+                (message "Switched to next tab: %s" tab-name))
+              (persp-status)))
+
+;; Advice for switching to the previous tab
+(advice-add 'tab-bar-switch-to-prev-tab :after
+            (lambda (&rest _args)
+              (let ((tab-name (alist-get 'name (tab-bar--current-tab))))
+                (persp-switch tab-name)
+                (message "Switched to previous tab: %s" tab-name))
+              (persp-status)))
