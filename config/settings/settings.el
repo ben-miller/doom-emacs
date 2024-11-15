@@ -81,3 +81,12 @@
         scroll-margin 0)
   :config
   (ultra-scroll-mac-mode 1))
+
+(use-package! popwin
+  :config
+  (popwin-mode 1)
+
+  ;; Example configuration for specific buffers:
+  (push '("*Messages*" :height 0.3 :position bottom :dedicated t) popwin:special-display-config)
+  (push '("*Warnings*" :height 0.3 :position bottom :dedicated t) popwin:special-display-config)
+  (push '("*Help*" :height 0.5 :position right) popwin:special-display-config))

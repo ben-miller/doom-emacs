@@ -15,3 +15,4 @@
 (package! format-all)
 (package! all-the-icons)
 (package! all-the-icons-dired)
+(package! popwin)
