@@ -87,3 +87,21 @@
   (push '("\\*compilation\\*<.*>" :height 0.4 :position bottom :dedicated t) popwin:special-display-config)
   (push '("*Warnings*" :height 0.4 :position bottom :dedicated t) popwin:special-display-config)
   (push '("*Help*" :height 0.5 :position right) popwin:special-display-config))
+
+(defun project-root-from-persp ()
+  "Get the project root directory based on the current perspective name using `persp-proj-map`."
+  (interactive)
+  (let* ((persp-name (persp-name (persp-curr))) ;; Get current perspective name
+         (project-root (cdr (assoc persp-name persp-proj-map)))) ;; Look up in map
+    (if project-root
+        (expand-file-name project-root)
+      (message "No project root found for perspective: %s" persp-name)
+      nil)))
+
+(defun magit-status-from-persp ()
+  "Open Magit in the project root directory derived from the current perspective."
+  (interactive)
+  (let ((project-root (project-root-from-persp)))
+    (if project-root
+        (magit-status project-root)
+      (message "Could not determine project root from perspective."))))

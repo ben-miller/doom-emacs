@@ -94,4 +94,6 @@
       "c s" #'scratch-open-in-proj
       :desc "Neotree find this file"
       "f h" #'+neotree/find-this-file
+      :desc "Magit status (in project)"
+      "g g" #'magit-status-from-persp
 )
