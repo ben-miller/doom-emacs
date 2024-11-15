@@ -30,6 +30,7 @@
   (add-hook 'persp-switch-hook
             (lambda ()
               (neotree-dir-from-persp)
+              (setq projectile-project-name (persp-name (persp-curr)))
             ))
   (add-hook 'projectile-after-switch-project-hook (lambda ())))
 
@@ -49,47 +50,27 @@
   (persp-switch "infra")
   (find-file path))
 
-(defun persp-projectile-status ()
-  "Jump to singleton buffer with debug info."
-  (interactive)
-  (let ((buffer-name "Perspective / Projectile Status"))
-    (with-current-buffer (get-buffer-create buffer-name)
-      (setq buffer-read-only nil)
-      (erase-buffer)
-      (emacs-lisp-mode)
-      (flycheck-mode -1)
-      ;; Expressions to be evaluated
-      (let ((expressions '((projectile-project-root (persp-name (persp-curr)))
-                           (projectile-project-root)
-                           (projectile-project-name)
-                           projectile-known-projects
-                           (projectile-open-projects)
-                           (persp-name (persp-curr))
-                           (persp-names)
-                           (centaur-tabs-buffer-groups)
-                           (centaur-tabs-get-groups)
-                           )))
-        ;; Insert expressions and their results
-        (dolist (expr expressions)
-          (let ((result (try-eval expr)))
-            (insert (format "%s :: %s\n    => %s\n\n" expr (type-of result)
-                            (if (listp result)
-                                (mapconcat #'prin1-to-string result "\n       ")
-                              (prin1-to-string result)))))))
-      ;; Display the buffer
-      (switch-to-buffer buffer-name))))
-
 (setq frame-persp-debug
       '((:eval (if (projectile-project-p)
                    (concat
-                    " Persp:" (persp-name (persp-curr))
-                    " Proj:" (projectile-project-name)
-                    " Buf-groups:" (prin1-to-string (centaur-tabs-buffer-groups))
-                    " Get-groups:" (prin1-to-string (centaur-tabs-get-groups))
-                    " Cent-proj:" (centaur-tabs-project-name)
-                    " Proj-curr:" (prin1-to-string (cdr (project-current)))
-                    " Tabset:" (prin1-to-string centaur-tabs-current-tabset)
+                    "Current perspective:        " (persp-name (persp-curr))
+                    "\nProjectile project name:    " (projectile-project-name)
+                    "\nCentaur tabs buffers:       " (prin1-to-string centaur-tabs--buffers)
+                    "\nCentaur tabs groups:        " (prin1-to-string (centaur-tabs-get-groups))
+                    "\nCentaur tabs tabset:        " (prin1-to-string centaur-tabs-current-tabset)
                  )))))
+
+(defun print-frame-persp-debug ()
+  "Evaluate and print the contents of `frame-persp-debug` as a message."
+  (interactive)
+  (let ((debug-output (mapconcat
+                       (lambda (segment)
+                         (if (and (listp segment) (eq (car segment) :eval))
+                             (eval (cadr segment)) ;; Evaluate `(:eval ...)` segments
+                           (format "%s" segment))) ;; Convert other parts to strings
+                       frame-persp-debug
+                       ""))) ;; Concatenate results
+    (message "%s\n\n\n" debug-output)))
 
 ;; (setq frame-title-format
 ;;       '((:eval (if (projectile-project-p)
@@ -115,11 +96,7 @@
 (defun persp-status ()
   "Print the current perspective name and a list of all perspectives."
   (interactive)
-  (let ((current-persp (persp-name (persp-curr)))
-        (all-persps (persp-names)))
-    (message "Current Perspective: %s" current-persp)
-    (message "All Perspectives: %s" (mapconcat 'identity all-persps ", "))))
-
+  (print-frame-persp-debug))
 
 ;; Hook for when a perspective is created
 (add-hook 'persp-created-hook
@@ -128,9 +105,7 @@
               (message "persp-created-hook triggered: %s" persp-name)
               ;; Create a new tab with the name of the perspective
               (tab-bar-new-tab)
-              (tab-bar-rename-tab persp-name)
-              ;; Optionally show perspective status
-              (persp-status))))
+              (tab-bar-rename-tab persp-name))))
 
 ;; Hook for before a perspective is killed
 (add-hook 'persp-killed-hook
@@ -142,10 +117,8 @@
 ;; Hook for when a perspective is activated
 (add-hook 'persp-activated-hook
           (lambda (&rest _args)
-            (message "persp-activated-hook triggered")
             (let ((persp-name (persp-name (persp-curr))))
-              (message "persp-activated-hook triggered: %s" persp-name))
-            (persp-status)))
+              (message "persp-activated-hook triggered: %s" persp-name))))
 
 (defun sync-tab-with-perspective ()
   "Synchronize the tab name with the current perspective name."
@@ -160,33 +133,10 @@
       (tab-bar-rename-tab persp-name)
       (message "Tab renamed to match perspective: %s" persp-name))))
 
-;; Hook for when a perspective is switched
-(add-hook 'persp-switch-hook
-          (lambda ()
-            (message "persp-switch-hook triggered")
-            (persp-status)
-            (sync-tab-with-perspective)))
-
 ;; Advice for when a tab is selected
 (advice-add 'tab-bar-select-tab :after
             (lambda (&rest _args)
               (let ((tab-name (alist-get 'name (tab-bar--current-tab))))
-                (persp-switch tab-name)
-                (message "Switched to next tab: %s" tab-name))
-              (persp-status)))
-
-;; Advice for switching to the next tab
-(advice-add 'tab-bar-switch-to-next-tab :after
-            (lambda (&rest _args)
-              (let ((tab-name (alist-get 'name (tab-bar--current-tab))))
-                (persp-switch tab-name)
-                (message "Switched to next tab: %s" tab-name))
-              (persp-status)))
-
-;; Advice for switching to the previous tab
-(advice-add 'tab-bar-switch-to-prev-tab :after
-            (lambda (&rest _args)
-              (let ((tab-name (alist-get 'name (tab-bar--current-tab))))
-                (persp-switch tab-name)
-                (message "Switched to previous tab: %s" tab-name))
+                (message "Tab bar select tab: %s" tab-name)
+                (persp-switch tab-name))
               (persp-status)))

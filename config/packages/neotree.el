@@ -6,7 +6,6 @@
          (persp-project-path (cdr (assoc current-persp-name persp-proj-map))))
     ;; Toggle NeoTree and set directory based on perspective
     (neotree-toggle)
-    (message "persp name: %s" (prin1-to-string current-persp-name))
     (cond
      ;; If perspective path is available, use it
      (persp-project-path
