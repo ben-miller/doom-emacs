@@ -19,9 +19,9 @@
       :desc "Org refile"
       "d f" #'org-refile
       :desc "Open tasks.org"
-      "d k" (lambda () (interactive) (find-file "~/org/tasks.org"))
+      "n n" (lambda () (interactive) (find-file "~/org/tasks.org"))
       :desc "Open archive.org"
-      "d a" (lambda () (interactive) (find-file "~/org/archive.org"))
+      "n i" (lambda () (interactive) (find-file "~/org/infra.org"))
 
       :desc "Show INBOX items"
       "d i" (lambda () (interactive) (org-todo-list "INBOX"))
