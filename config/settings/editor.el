@@ -1,9 +1,3 @@
-(defun open-scratch-in-new-tab ()
-  "Open a new tab with a *scratch* buffer."
-  (interactive)
-  (tab-new)
-  (switch-to-buffer "*scratch*"))
-
 (defun split-and-balance-windows-vertically ()
   (interactive)
   (split-window-right)
