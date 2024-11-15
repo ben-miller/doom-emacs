@@ -75,3 +75,7 @@
 (setq frame-title-format nil)
 
 (perspective-tabs-mode +1)
+
+(advice-add 'perspective-tabs-select-tab :after (lambda (&rest _args)
+                                                  (neotree-dir-from-persp)
+                                                  (message "Persp tab switched")))
