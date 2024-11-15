@@ -147,11 +147,25 @@
               (message "persp-activated-hook triggered: %s" persp-name))
             (persp-status)))
 
+(defun sync-tab-with-perspective ()
+  "Synchronize the tab name with the current perspective name."
+  (let* ((persp-name (persp-name (persp-curr)))
+         (tab-exists (seq-find (lambda (tab)
+                                 (string= (alist-get 'name tab) persp-name))
+                               (tab-bar-tabs))))
+    (if tab-exists
+        ;; If a tab with the perspective's name exists, switch to it
+        (tab-bar-select-tab-by-name persp-name)
+      ;; Otherwise, rename the current tab to match the perspective name
+      (tab-bar-rename-tab persp-name)
+      (message "Tab renamed to match perspective: %s" persp-name))))
+
 ;; Hook for when a perspective is switched
 (add-hook 'persp-switch-hook
           (lambda ()
             (message "persp-switch-hook triggered")
-            (persp-status)))
+            (persp-status)
+            (sync-tab-with-perspective)))
 
 ;; Advice for when a tab is selected
 (advice-add 'tab-bar-select-tab :after
