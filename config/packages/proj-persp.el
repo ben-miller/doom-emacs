@@ -29,7 +29,6 @@
         projectile-track-known-projects-automatically nil)
   (add-hook 'persp-switch-hook
             (lambda ()
-              (setq projectile-project-name (persp-name (persp-curr)))
               (neotree-dir-from-persp)
             ))
   (add-hook 'projectile-after-switch-project-hook (lambda ())))
