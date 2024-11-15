@@ -5,7 +5,6 @@
   :recipe (:host github :repo "kaiwk/leetcode.el"))
 (package! expand-region)
 (package! hyperbole)
-(package! org-trello)
 (package! org-modern)
 (package! centaur-tabs)
 (package! swiper)

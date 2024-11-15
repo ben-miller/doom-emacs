@@ -12,8 +12,6 @@
 
 (load (expand-file-name "config/packages/magit.el" (file-name-directory load-file-name)))
 
-(load (expand-file-name "config/packages/org-trello.el" (file-name-directory load-file-name)))
-
 (load (expand-file-name "config/packages/leetcode.el" (file-name-directory load-file-name)))
 
 (load (expand-file-name "config/packages/posframe.el" (file-name-directory load-file-name)))
