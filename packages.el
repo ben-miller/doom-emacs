@@ -16,3 +16,5 @@
 (package! all-the-icons)
 (package! all-the-icons-dired)
 (package! popwin)
+(package! perspective-tabs
+  :recipe (:host sourcehut :repo "woozong/perspective-tabs"))

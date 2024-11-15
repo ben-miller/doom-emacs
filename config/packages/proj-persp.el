@@ -30,7 +30,6 @@
   (add-hook 'persp-switch-hook
             (lambda ()
               (setq projectile-project-name (persp-name (persp-curr)))
-              (tab-bar-select-tab-by-name (persp-name (persp-curr)))
               (neotree-dir-from-persp)
             ))
   (add-hook 'projectile-after-switch-project-hook (lambda ())))
@@ -76,41 +75,4 @@
 ;; Disable frame title (otherwise shows as barely visible white color)
 (setq frame-title-format nil)
 
-(defun rename-initial-tab-to-main ()
-  "Rename the initial tab to main and link it to the main perspective."
-  (when (string= (alist-get 'name (tab-bar--current-tab)) "*scratch*")
-    (tab-bar-rename-tab "main")
-    (message "Renamed initial tab to main.")))
-
-(add-hook 'tab-bar-mode-hook #'rename-initial-tab-to-main)
-
-;; Enable 'tab-bar-mode'
-(tab-bar-mode 1)
-
-(defun persp-status ()
-  "Print the current perspective name and a list of all perspectives."
-  (interactive)
-  (print-frame-persp-debug))
-
-;; Hook for when a perspective is created
-(add-hook 'persp-created-hook
-          (lambda (&rest _args)
-            (let ((persp-name (persp-name (persp-curr))))
-              (message "persp-created-hook triggered: %s" persp-name)
-              ;; Create a new tab with the name of the perspective
-              (tab-bar-new-tab)
-              (tab-bar-rename-tab persp-name))))
-
-;; Hook for when a perspective is activated
-(add-hook 'persp-activated-hook
-          (lambda (&rest _args)
-            (let ((persp-name (persp-name (persp-curr))))
-              (message "persp-activated-hook triggered: %s" persp-name))))
-
-;; Advice for when a tab is selected
-(advice-add 'tab-bar-select-tab :after
-            (lambda (&rest _args)
-              (let ((tab-name (alist-get 'name (tab-bar--current-tab))))
-                (message "Tab bar select tab: %s" tab-name)
-                (persp-switch tab-name))
-              (persp-status)))
+(perspective-tabs-mode +1)
