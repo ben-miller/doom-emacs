@@ -1,11 +1,5 @@
 ;; -*- lexical-binding: t; -*-
 
-(defun centaur-tabs-buffer-groups ()
-  "Group buffers by their Projectile project."
-  (if (projectile-project-p)
-      (list (projectile-project-name))
-    (list "Misc")))
-
 (defun try-match-pattern (pattern)
   (lambda (input-string)
     (if (string-match pattern input-string)

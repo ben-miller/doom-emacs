@@ -46,8 +46,6 @@
       (eval expr)
     (error (concat "<Error: " (error-message-string err) ">"))))
 
-(defun insert-line (line) (insert (concat line "\n")))
-
 (defun scratch-open-in-proj () (interactive)
   (let* ((project-name (persp-name (persp-curr)))
          (buffer-name (concat "*scratch* (" project-name ")"))
