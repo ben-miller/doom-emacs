@@ -156,7 +156,9 @@
 ;; Advice for when a tab is selected
 (advice-add 'tab-bar-select-tab :after
             (lambda (&rest _args)
-              (message "tab-bar-select-tab called")
+              (let ((tab-name (alist-get 'name (tab-bar--current-tab))))
+                (persp-switch tab-name)
+                (message "Switched to next tab: %s" tab-name))
               (persp-status)))
 
 ;; Advice for switching to the next tab
