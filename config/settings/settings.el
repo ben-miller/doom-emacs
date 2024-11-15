@@ -67,26 +67,6 @@
 
 (defun insert-line (line) (insert (concat line "\n")))
 
-(use-package! smartparens
-  :config
-  (smartparens-global-mode t)
-  (map! :map smartparens-mode-map
-        "M-s-0" #'sp-wrap-round
-        "M-s-9" #'sp-unwrap-sexp
-        "s-," #'sp-forward-slurp-sexp
-        "s-." #'sp-forward-barf-sexp
-        "M-s-." #'sp-sexp-backward-slurp
-        "M-s-," #'sp-backward-barf-sexp
-        "M-<up>" #'sp-backward-sexp
-        "M-<down>" #'sp-forward-sexp
-        "M-<right>" #'sp-forward-sexp
-        "M-<left>" #'sp-backward-sexp
-        "M-S-<up>" #'sp-up-sexp
-        "M-S-<down>" #'sp-down-sexp
-        "M-S-<left>" #'sp-previous-sexp
-        "M-S-<right>" #'sp-next-sexp
-        "M-s-x" #'sp-delete-sexp))
-
 (defun scratch-open-in-proj () (interactive)
   (let* ((project-name (persp-name (persp-curr)))
          (buffer-name (concat "*scratch* (" project-name ")"))
