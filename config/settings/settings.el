@@ -85,7 +85,7 @@
 (use-package! popwin
   :config
   (popwin-mode 1)
-  (push '("*Messages*" :height 0.4 :position bottom :dedicated t) popwin:special-display-config)
-  (push '("*compilation*<.emacs.d>" :height 0.4 :position bottom :dedicated t) popwin:special-display-config)
-  (push '("*Warnings*" :height 0.3 :position bottom :dedicated t) popwin:special-display-config)
+  (push '("*Messages*" :height 0.6 :position bottom :dedicated t) popwin:special-display-config)
+  (push '("\\*compilation\\*<.*>" :height 0.4 :position bottom :dedicated t) popwin:special-display-config)
+  (push '("*Warnings*" :height 0.4 :position bottom :dedicated t) popwin:special-display-config)
   (push '("*Help*" :height 0.5 :position right) popwin:special-display-config))
