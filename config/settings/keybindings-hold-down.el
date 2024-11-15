@@ -59,9 +59,9 @@
 
       ;; Projectile-perspective.
       :desc "Switch perspective"
-      "C-M-j" #'projectile-persp-switch-project
+      "M-s-j" #'projectile-persp-switch-project
       :desc "Switch perspective"
-      "C-M-k" #'projectile-persp-switch-project
+      "M-s-k" #'projectile-persp-switch-project
       :desc "Next tab"
       "M-s-<right>" #'tab-next
       :desc "Previous tab"
@@ -85,19 +85,19 @@
 
       ;; Drag stuff.
       :desc "Drag stuff up"
-      "M-s-k" #'drag-stuff-up
+      "C-M-k" #'drag-stuff-up
       :desc "Drag stuff down"
-      "M-s-j" #'drag-stuff-down
+      "C-M-j" #'drag-stuff-down
       :desc "Drag stuff left"
-      "M-s-h" #'drag-stuff-left
+      "C-M-h" #'drag-stuff-left
       :desc "Drag stuff right"
-      "M-s-l" #'drag-stuff-right
+      "C-M-l" #'drag-stuff-right
 
       ;; Expand-region.
       :desc "Expand region"
-      "M-s-k" #'er/expand-region
+      "M-k" #'er/expand-region
       :desc "Contract region"
-      "M-s-j" #'er/contract-region
+      "M-j" #'er/contract-region
 
       ;; Comments.
       :desc "Comment LOC"
