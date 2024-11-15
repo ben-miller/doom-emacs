@@ -73,13 +73,6 @@
                        ""))) ;; Concatenate results
     (message "%s\n\n\n" debug-output)))
 
-;; (setq frame-title-format
-;;       '((:eval (if (projectile-project-p)
-;;                    (concat
-;;                     "Perspective: " (persp-name (persp-curr))
-;;                     " <=> Project: " (projectile-project-name)
-;;                  )))))
-
 ;; Disable frame title (otherwise shows as barely visible white color)
 (setq frame-title-format nil)
 
@@ -108,31 +101,11 @@
               (tab-bar-new-tab)
               (tab-bar-rename-tab persp-name))))
 
-;; Hook for before a perspective is killed
-(add-hook 'persp-killed-hook
-          (lambda (&rest _args)
-            (let ((persp-name (persp-name persp)))
-              (message "persp-killed-hook triggered: %s" persp-name))
-            (persp-status)))
-
 ;; Hook for when a perspective is activated
 (add-hook 'persp-activated-hook
           (lambda (&rest _args)
             (let ((persp-name (persp-name (persp-curr))))
               (message "persp-activated-hook triggered: %s" persp-name))))
-
-(defun sync-tab-with-perspective ()
-  "Synchronize the tab name with the current perspective name."
-  (let* ((persp-name (persp-name (persp-curr)))
-         (tab-exists (seq-find (lambda (tab)
-                                 (string= (alist-get 'name tab) persp-name))
-                               (tab-bar-tabs))))
-    (if tab-exists
-        ;; If a tab with the perspective's name exists, switch to it
-        (tab-bar-select-tab-by-name persp-name)
-      ;; Otherwise, rename the current tab to match the perspective name
-      (tab-bar-rename-tab persp-name)
-      (message "Tab renamed to match perspective: %s" persp-name))))
 
 ;; Advice for when a tab is selected
 (advice-add 'tab-bar-select-tab :after
