@@ -9,6 +9,10 @@
                        ("relational-links" . "~/src/projects/relational-links/")
                        ))
 
+(defun on-perspective-switched ()
+  "Function to run when the perspective is switched."
+  (message "Perspective changed to %s" (persp-name (persp-curr))))
+
 (after! projectile
   (setq projectile-known-projects '(
                                     "~/.doom.d"
@@ -29,7 +33,7 @@
         projectile-track-known-projects-automatically nil)
   (add-hook 'persp-switch-hook
             (lambda ()
-              (neotree-dir-from-persp)
+              (on-perspective-switched)
             ))
   (add-hook 'projectile-after-switch-project-hook (lambda ())))
 
@@ -76,6 +80,5 @@
 
 (perspective-tabs-mode +1)
 
-(advice-add 'perspective-tabs-select-tab :after (lambda (&rest _args)
-                                                  (neotree-dir-from-persp)
-                                                  (message "Persp tab switched")))
+(advice-add 'perspective-tabs-select-tab :after (lambda (tab-index)
+                                                  (on-perspective-switched)))
