@@ -67,10 +67,6 @@
       :desc "Previous tab"
       "M-s-<left>" #'tab-previous
 
-      ;; Neotree.
-      :desc "Toggle neotree"
-      "s-g" #'neotree-project-dir
-
       ;; System clipboard.
       :desc "Paste from system clipboard"
       "s-v" #'paste-from-system-clipboard

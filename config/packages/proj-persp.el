@@ -11,7 +11,9 @@
 
 (defun on-perspective-switched ()
   "Function to run when the perspective is switched."
-  (message "Perspective changed to %s" (persp-name (persp-curr))))
+  (message "Perspective changed to %s" (persp-name (persp-curr))
+  (neotree-toggle)
+  (neotree-dir-from-persp)))
 
 (after! projectile
   (setq projectile-known-projects '(
