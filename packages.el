@@ -1,8 +1,7 @@
 ;; -*- no-byte-compile: t; -*-
 
 (package! tldr)
-(package! leetcode
-  :recipe (:host github :repo "kaiwk/leetcode.el"))
+(package! leetcode)
 (package! expand-region)
 (package! hyperbole)
 (package! org-modern)
