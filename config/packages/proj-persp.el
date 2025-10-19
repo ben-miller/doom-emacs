@@ -5,7 +5,7 @@
                        ("infra" . "~/src/infra/")
                        ("config" . "~/src/infra/config")
                        (".emacs.d" . "~/.emacs.d/")
-                       ("imprecv" . "~/src/projects/imprecv/")
+                       ("imprecv" . "~/src/imprecv/")
                        ("relational-links" . "~/src/projects/relational-links/")
                        ))
 
