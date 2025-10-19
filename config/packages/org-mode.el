@@ -39,9 +39,11 @@
    org-capture-templates (my/org-capture-templates)
    org-agenda-files (my/org-agenda-files)
    org-todo-keywords '((sequence "INBOX" "IDEA" "SELECTED" "NEXT" "DOING" "POSTPONED" "BUG" "|" "DONE")))
+  (setq org-blank-before-new-entry '((heading . nil) (plain-list-item . nil)))
   (map! :map org-mode-map
         "M-o" (lambda ()
                 (interactive)
+                (end-of-line)
                 (org-meta-return)
                 (evil-insert 1)))
   (dolist (face '(org-level-1
