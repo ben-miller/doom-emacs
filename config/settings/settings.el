@@ -20,6 +20,11 @@
 (remove-hook 'text-mode-hook #'flyspell-mode)
 (remove-hook 'prog-mode-hook #'flyspell-prog-mode)
 
+;; Disable company spell-checking backends.
+(after! company
+  (setq company-backends (delete 'company-ispell company-backends))
+  (setq company-backends (delete 'company-dabbrev company-backends)))
+
 ;; Suppress warnings.
 (setq warning-suppress-types
       '((obsolete)
