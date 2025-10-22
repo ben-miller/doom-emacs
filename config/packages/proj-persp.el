@@ -6,6 +6,7 @@
                        ("config" . "~/src/infra/config")
                        (".emacs.d" . "~/.emacs.d/")
                        ("imprecv" . "~/src/imprecv/")
+                       ("idris-dl" . "~/src/projects/idris-dl/")
                        ("relational-links" . "~/src/projects/relational-links/")
                        ))
 
@@ -23,6 +24,7 @@
                                     "~/src/infra"
                                     "~/src/infra/config"
                                     "~/src/projects/imprecv"
+                                    "~/src/projects/idris-dl"
                                     "~/src/projects/relational-links"
                                     )
         projectile-completion-system 'default
