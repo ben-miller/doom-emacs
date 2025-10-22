@@ -15,5 +15,7 @@
 (package! all-the-icons)
 (package! all-the-icons-dired)
 (package! popwin)
+(package! idris2-mode
+  :recipe (:host github :repo "idris-community/idris2-mode"))
 (package! perspective-tabs
   :recipe (:host sourcehut :repo "woozong/perspective-tabs"))

@@ -18,6 +18,8 @@
 
 (load (expand-file-name "config/packages/evil.el" (file-name-directory load-file-name)))
 
+(load (expand-file-name "config/packages/idris.el" (file-name-directory load-file-name)))
+
 (load (expand-file-name "config/settings/settings.el" (file-name-directory load-file-name)))
 
 (load (expand-file-name "config/settings/editor.el" (file-name-directory load-file-name)))
