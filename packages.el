@@ -19,3 +19,5 @@
   :recipe (:host github :repo "idris-community/idris2-mode"))
 (package! perspective-tabs
   :recipe (:host sourcehut :repo "woozong/perspective-tabs"))
+(package! claude-code-ide
+  :recipe (:host github :repo "manzaltu/claude-code-ide.el"))

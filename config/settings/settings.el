@@ -110,3 +110,8 @@
     (if project-root
         (magit-status project-root)
       (message "Could not determine project root from perspective."))))
+
+(use-package! claude-code-ide
+  :bind ("C-c C-'" . claude-code-ide-menu)  ; Or choose your own keybinding
+  :config
+  (claude-code-ide-emacs-tools-setup))  ; Enables MCP tools for Emacs integration
