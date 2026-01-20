@@ -1,13 +1,10 @@
 (setq persp-proj-map '(
                        (".doom.d" . "~/.doom.d/")
-                       ("life" . "~/life/")
                        ("org" . "~/org/")
                        ("infra" . "~/src/infra/")
                        ("config" . "~/src/infra/config")
                        (".emacs.d" . "~/.emacs.d/")
-                       ("imprecv" . "~/src/imprecv/")
-                       ("idris-dl" . "~/src/projects/idris-dl/")
-                       ("relational-links" . "~/src/projects/relational-links/")
+                       ("sheetwork" . "~/src/projects/sheetwork/")
                        ))
 
 (defun on-perspective-switched ()
@@ -19,13 +16,11 @@
 (after! projectile
   (setq projectile-known-projects '(
                                     "~/.doom.d"
-                                    "~/life"
                                     "~/org"
                                     "~/src/infra"
                                     "~/src/infra/config"
-                                    "~/src/projects/imprecv"
-                                    "~/src/projects/idris-dl"
-                                    "~/src/projects/relational-links"
+                                    "~/.emacs.d"
+                                    "~/src/projects/sheetwork"
                                     )
         projectile-completion-system 'default
         projectile-auto-discover nil
