@@ -1,7 +1,7 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
 (doom! :completion
-       company           ; the ultimate code completion backend
+       ;company           ; the ultimate code completion backend
        vertico           ; the search engine of the future
 
        :ui

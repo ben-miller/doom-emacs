@@ -115,3 +115,12 @@
   :bind ("C-c C-'" . claude-code-ide-menu)  ; Or choose your own keybinding
   :config
   (claude-code-ide-emacs-tools-setup))  ; Enables MCP tools for Emacs integration
+
+;; Auto-revert files when they change on disk
+(global-auto-revert-mode 1)
+
+(global-company-mode -1)
+
+;; Disable ligatures
+(setq-default inhibit-compacting-font-caches t)
+(setq auto-composition-mode nil)
